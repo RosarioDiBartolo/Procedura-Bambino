@@ -1,0 +1,19 @@
+/* Shared visual language; named themes preserve prototype comparisons. */
+:root {
+ --font-sans:'Segoe UI',Arial,sans-serif;--radius:.75rem;
+ --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;
+ --background:#f3f5f8;--foreground:#182b3c;--card:#fff;--card-foreground:#182b3c;
+ --popover:#fff;--popover-foreground:#182b3c;--primary:#203f59;--primary-foreground:#fff;
+ --secondary:#edf1f5;--secondary-foreground:#294258;--muted:#f4f6f9;--muted-foreground:#718092;
+ --accent:#e8eef4;--accent-foreground:#18364f;--destructive:#bd444a;--border:#e0e6ed;
+ --input:#d6dfe8;--ring:#6b91b0;--warning:#9b7547;--warning-background:#fbf4e9;
+ --success:#5b7c6e;--success-background:#f4f8f5;
+}
+:root[data-theme="nido"] {
+ --font-sans:Inter,'Segoe UI',sans-serif;
+ --background:#f3f6f5;--foreground:#163b42;--card-foreground:#163b42;--popover-foreground:#163b42;
+ --primary:#146b5d;--secondary:#e5efeb;--secondary-foreground:#244d50;
+ --muted:#f9fbfa;--muted-foreground:#617a7a;--accent:#dceee7;--accent-foreground:#165f53;
+ --border:#dce6e1;--input:#bdcec8;--ring:#b47519;--destructive:#a52c33;
+ --warning:#775a22;--warning-background:#fff4df;--success:#285e43;--success-background:#dfefe5;
+}

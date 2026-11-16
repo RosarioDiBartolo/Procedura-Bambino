@@ -1,0 +1,1443 @@
+[
+  {
+    "number": 1,
+    "key": "access",
+    "label": "Accesso vascolare",
+    "choices": [],
+    "note": "Nessuna alternativa sufficientemente appropriata trovata nella famiglia scelta per CVO/IO."
+  },
+  {
+    "number": 2,
+    "key": "airway",
+    "label": "Via aerea alternativa",
+    "choices": [],
+    "note": "Nessuna alternativa sufficientemente appropriata per tubo o maschera laringea."
+  },
+  {
+    "number": 3,
+    "key": "assessment",
+    "label": "Valutazione",
+    "choices": [
+      {
+        "option": "A",
+        "id": "3979",
+        "name": "Checklist",
+        "commonName": "checklist",
+        "platform": "ios7",
+        "category": "User Interface",
+        "subcategory": "Checkbox",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "S4uQPzcYuUUQ",
+        "name": "Medical ID",
+        "commonName": "medical-id",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medicine",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 4,
+    "key": "birth",
+    "label": "Nascita",
+    "choices": [
+      {
+        "option": "A",
+        "id": "TSBeKJdyf0P3",
+        "name": "Newborn Baby",
+        "commonName": "newborn-baby",
+        "platform": "ios7",
+        "category": "People",
+        "subcategory": "Ages",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "2090",
+        "name": "Baby",
+        "commonName": "baby",
+        "platform": "ios7",
+        "category": "Baby,People",
+        "subcategory": "Family,Ages",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 5,
+    "key": "breathing",
+    "label": "Respiro",
+    "choices": [
+      {
+        "option": "A",
+        "id": "5355",
+        "name": "Lungs",
+        "commonName": "lungs",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Internal Organs",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "NZ6xJ1MPsUMH",
+        "name": "Breath",
+        "commonName": "breath",
+        "platform": "ios7",
+        "category": "People",
+        "subcategory": "State of Mind",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 6,
+    "key": "care",
+    "label": "Cure e assistenza",
+    "choices": [
+      {
+        "option": "A",
+        "id": "HquP7TI2ej2Z",
+        "name": "Hand Holding Heart",
+        "commonName": "hand-holding-heart",
+        "platform": "ios7",
+        "category": "Holidays",
+        "subcategory": "Wedding",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "24761",
+        "name": "Trust",
+        "commonName": "trust",
+        "platform": "ios7",
+        "category": "Business,People",
+        "subcategory": "Business Communication,State of Mind",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 7,
+    "key": "checklist",
+    "label": "Checklist",
+    "choices": [
+      {
+        "option": "A",
+        "id": "3979",
+        "name": "Checklist",
+        "commonName": "checklist",
+        "platform": "ios7",
+        "category": "User Interface",
+        "subcategory": "Checkbox",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "4023",
+        "name": "To Do List",
+        "commonName": "todo-list",
+        "platform": "ios7",
+        "category": "Business",
+        "subcategory": "Business Planning",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 8,
+    "key": "compressions",
+    "label": "Compressioni",
+    "choices": [],
+    "note": "I risultati mostrano cuori e tracciati, non compressioni neonatali: scartati."
+  },
+  {
+    "number": 9,
+    "key": "cord",
+    "label": "Cordone",
+    "choices": [
+      {
+        "option": "A",
+        "id": "2756",
+        "name": "Surgical Scissors",
+        "commonName": "surgical-scissors",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "TSBeKJdyf0P3",
+        "name": "Newborn Baby",
+        "commonName": "newborn-baby",
+        "platform": "ios7",
+        "category": "People",
+        "subcategory": "Ages",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": "A: forbici chirurgiche, richiama il clampaggio ma non raffigura il cordone. B: neonato, simbolo generico."
+  },
+  {
+    "number": 10,
+    "key": "distress",
+    "label": "Difficoltà respiratoria",
+    "choices": [
+      {
+        "option": "A",
+        "id": "5355",
+        "name": "Lungs",
+        "commonName": "lungs",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Internal Organs",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "MM--xPq8Af1V",
+        "name": "Patient Oxygen Mask",
+        "commonName": "patient-oxygen-mask",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": "Entrambe simboliche: non rappresentano cianosi o segni clinici neonatali."
+  },
+  {
+    "number": 11,
+    "key": "dry",
+    "label": "Asciugatura",
+    "choices": [
+      {
+        "option": "A",
+        "id": "2491",
+        "name": "Towel",
+        "commonName": "towel",
+        "platform": "ios7",
+        "category": "Household",
+        "subcategory": "Bathroom",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "YXtE3RJwWoDL",
+        "name": "Blankie",
+        "commonName": "blankie",
+        "platform": "ios7",
+        "category": "Healthcare,Household",
+        "subcategory": "Medical Facilities,Home Decor",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 12,
+    "key": "heart",
+    "label": "Frequenza cardiaca",
+    "choices": [
+      {
+        "option": "A",
+        "id": "956",
+        "name": "Heart Monitor",
+        "commonName": "heart-monitor",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "39137",
+        "name": "Pulse",
+        "commonName": "pulse",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 13,
+    "key": "lungs",
+    "label": "Polmoni",
+    "choices": [
+      {
+        "option": "A",
+        "id": "5355",
+        "name": "Lungs",
+        "commonName": "lungs",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Internal Organs",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "gTVFn9gRJjKn",
+        "name": "Spirometer",
+        "commonName": "spirometer",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 14,
+    "key": "mask",
+    "label": "Maschera ventilazione",
+    "choices": [
+      {
+        "option": "A",
+        "id": "MM--xPq8Af1V",
+        "name": "Patient Oxygen Mask",
+        "commonName": "patient-oxygen-mask",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "5355",
+        "name": "Lungs",
+        "commonName": "lungs",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Internal Organs",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": "A: maschera per ossigenoterapia su paziente, non maschera neonatale per PPV. B: polmoni, simbolo generico."
+  },
+  {
+    "number": 15,
+    "key": "medication",
+    "label": "Adrenalina",
+    "choices": [
+      {
+        "option": "A",
+        "id": "962",
+        "name": "Syringe",
+        "commonName": "syringe",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "7787",
+        "name": "Infusion Pumps",
+        "commonName": "infusion-pumps",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": "A: siringa generica, non specifica farmaco o via. B: pompa infusionale, meno diretta per l’adrenalina."
+  },
+  {
+    "number": 16,
+    "key": "mouth",
+    "label": "Bocca",
+    "choices": [
+      {
+        "option": "A",
+        "id": "123858",
+        "name": "Smiling Mouth",
+        "commonName": "smiling-mouth",
+        "platform": "ios7",
+        "category": "Beauty,Healthcare,Messaging",
+        "subcategory": "Makeup,Parts of Body,Emoji",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "58702",
+        "name": "Set of Teeth",
+        "commonName": "set-of-teeth",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Parts of Body",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": "Nessuna rappresenta la manovra di apertura della bocca."
+  },
+  {
+    "number": 17,
+    "key": "oxygen",
+    "label": "Ossigeno",
+    "choices": [
+      {
+        "option": "A",
+        "id": "14735",
+        "name": "Oxygen",
+        "commonName": "oxygen",
+        "platform": "ios7",
+        "category": "Science",
+        "subcategory": "Natural Sciences",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "MM--xPq8Af1V",
+        "name": "Patient Oxygen Mask",
+        "commonName": "patient-oxygen-mask",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 18,
+    "key": "position",
+    "label": "Posizionamento",
+    "choices": [
+      {
+        "option": "A",
+        "id": "61967",
+        "name": "Sleeping Baby",
+        "commonName": "sleeping-baby",
+        "platform": "ios7",
+        "category": "Baby",
+        "subcategory": "Baby Care",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "2090",
+        "name": "Baby",
+        "commonName": "baby",
+        "platform": "ios7",
+        "category": "Baby,People",
+        "subcategory": "Family,Ages",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": "Simboli generici: non mostrano il corretto posizionamento delle vie aeree."
+  },
+  {
+    "number": 19,
+    "key": "pregnancy",
+    "label": "Gravidanza",
+    "choices": [
+      {
+        "option": "A",
+        "id": "5264",
+        "name": "Pregnant",
+        "commonName": "pregnant",
+        "platform": "ios7",
+        "category": "Baby",
+        "subcategory": "Family",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "OEOE_cGkfKPr",
+        "name": "Embryo",
+        "commonName": "embryo",
+        "platform": "ios7",
+        "category": "Baby",
+        "subcategory": "Baby Care",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 20,
+    "key": "saturation",
+    "label": "Saturazione SpO₂",
+    "choices": [
+      {
+        "option": "A",
+        "id": "1ywhPHT9sgZB",
+        "name": "Pulse Oximeter",
+        "commonName": "pulse-oximeter",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "956",
+        "name": "Heart Monitor",
+        "commonName": "heart-monitor",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 21,
+    "key": "skin",
+    "label": "Skin to skin",
+    "choices": [
+      {
+        "option": "A",
+        "id": "5260",
+        "name": "Mother",
+        "commonName": "mother",
+        "platform": "ios7",
+        "category": "Baby",
+        "subcategory": "Family",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "tuW6n6tWOHYh",
+        "name": "Maternity",
+        "commonName": "maternity",
+        "platform": "ios7",
+        "category": "Baby",
+        "subcategory": "Family",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 22,
+    "key": "stomach",
+    "label": "Stomaco",
+    "choices": [
+      {
+        "option": "A",
+        "id": "5353",
+        "name": "Stomach",
+        "commonName": "stomach",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Internal Organs",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "57892",
+        "name": "Gastrointestinal Tract",
+        "commonName": "gastrointestinal-tract",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Internal Organs",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 23,
+    "key": "suction",
+    "label": "Aspirazione secrezioni",
+    "choices": [],
+    "note": "Nessun aspiratore clinico appropriato trovato; scartati aspirapolvere e simboli non medici."
+  },
+  {
+    "number": 24,
+    "key": "team",
+    "label": "Team e briefing",
+    "choices": [
+      {
+        "option": "A",
+        "id": "21995",
+        "name": "Group",
+        "commonName": "group-foreground-selected",
+        "platform": "ios7",
+        "category": "Profile",
+        "subcategory": "Groups",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "55597",
+        "name": "Nurse",
+        "commonName": "nurse-male",
+        "platform": "ios7",
+        "category": "Healthcare,People",
+        "subcategory": "Health Workers,Professions",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 25,
+    "key": "tone",
+    "label": "Tono e stimolazione",
+    "choices": [
+      {
+        "option": "A",
+        "id": "2090",
+        "name": "Baby",
+        "commonName": "baby",
+        "platform": "ios7",
+        "category": "Baby,People",
+        "subcategory": "Family,Ages",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "2092",
+        "name": "Baby Feet",
+        "commonName": "baby-feet",
+        "platform": "ios7",
+        "category": "Baby,Travel",
+        "subcategory": "Baby Care,Footprints",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": "Simboli del neonato: non mostrano il tono muscolare o la stimolazione."
+  },
+  {
+    "number": 26,
+    "key": "ventilation",
+    "label": "Ventilazione PPV",
+    "choices": [],
+    "note": "Nessun pallone rianimatore appropriato trovato; scartati ventilatori domestici."
+  },
+  {
+    "number": 27,
+    "key": "warmth",
+    "label": "Calore",
+    "choices": [
+      {
+        "option": "A",
+        "id": "1414",
+        "name": "Temperature",
+        "commonName": "temperature",
+        "platform": "ios7",
+        "category": "Science",
+        "subcategory": "Lab Measurements",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "3565",
+        "name": "Warm",
+        "commonName": "medical-thermometer",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 28,
+    "key": "activity",
+    "label": "Monitoraggio",
+    "choices": [
+      {
+        "option": "A",
+        "id": "39137",
+        "name": "Pulse",
+        "commonName": "pulse",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "956",
+        "name": "Heart Monitor",
+        "commonName": "heart-monitor",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 29,
+    "key": "clipboard",
+    "label": "Registro checklist",
+    "choices": [
+      {
+        "option": "A",
+        "id": "11698",
+        "name": "Clipboard",
+        "commonName": "clipboard",
+        "platform": "ios7",
+        "category": "Editing",
+        "subcategory": "Document Editing",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "3979",
+        "name": "Checklist",
+        "commonName": "checklist",
+        "platform": "ios7",
+        "category": "User Interface",
+        "subcategory": "Checkbox",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 30,
+    "key": "clock",
+    "label": "Tempo",
+    "choices": [
+      {
+        "option": "A",
+        "id": "423",
+        "name": "Clock",
+        "commonName": "clock--v3",
+        "platform": "ios7",
+        "category": "Popular,Time And Date",
+        "subcategory": "Status,Clocks",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "6902",
+        "name": "Clock",
+        "commonName": "present",
+        "platform": "ios7",
+        "category": "Time And Date",
+        "subcategory": "Time Spans",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 31,
+    "key": "file",
+    "label": "Documento",
+    "choices": [
+      {
+        "option": "A",
+        "id": "1395",
+        "name": "Document",
+        "commonName": "document",
+        "platform": "ios7",
+        "category": "Files,Popular",
+        "subcategory": "File Types,Documents and Folders",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "123470",
+        "name": "Document",
+        "commonName": "document-1",
+        "platform": "ios7",
+        "category": "Files",
+        "subcategory": "File Types",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 32,
+    "key": "menu",
+    "label": "Menu",
+    "choices": [
+      {
+        "option": "A",
+        "id": "120374",
+        "name": "Menu",
+        "commonName": "menu--v7",
+        "platform": "ios7",
+        "category": "Popular,User Interface",
+        "subcategory": "Website Sections,Menu",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "3096",
+        "name": "Menu",
+        "commonName": "menu",
+        "platform": "ios7",
+        "category": "Popular,User Interface",
+        "subcategory": "Website Sections,Menu",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 33,
+    "key": "phone",
+    "label": "Richiesta aiuto",
+    "choices": [
+      {
+        "option": "A",
+        "id": "9659",
+        "name": "Phone",
+        "commonName": "phone",
+        "platform": "ios7",
+        "category": "Mobile",
+        "subcategory": "Calls",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "2olGSGqpqGWD",
+        "name": "Phone",
+        "commonName": "apple-phone",
+        "platform": "ios7",
+        "category": "Logos",
+        "subcategory": "Apple",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 34,
+    "key": "reset",
+    "label": "Ricomincia",
+    "choices": [
+      {
+        "option": "A",
+        "id": "11676",
+        "name": "Restart",
+        "commonName": "restart",
+        "platform": "ios7",
+        "category": "Computer Hardware,Popular",
+        "subcategory": "Modes,Common Actions",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "54313",
+        "name": "Reboot",
+        "commonName": "reboot",
+        "platform": "ios7",
+        "category": "Computer Hardware",
+        "subcategory": "Modes",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 35,
+    "key": "thermometer",
+    "label": "Temperatura",
+    "choices": [
+      {
+        "option": "A",
+        "id": "3565",
+        "name": "Warm",
+        "commonName": "medical-thermometer",
+        "platform": "ios7",
+        "category": "Healthcare",
+        "subcategory": "Medical Facilities",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "37802",
+        "name": "Thermometer",
+        "commonName": "thermometer",
+        "platform": "ios7",
+        "category": "Farming,Science,Weather",
+        "subcategory": "Weather,Meteorology,Instruments",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 36,
+    "key": "volume",
+    "label": "Guida audio",
+    "choices": [
+      {
+        "option": "A",
+        "id": "2795",
+        "name": "Audio",
+        "commonName": "high-volume",
+        "platform": "ios7",
+        "category": "Media Controls",
+        "subcategory": "Sound",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "11408",
+        "name": "Speaker",
+        "commonName": "speaker",
+        "platform": "ios7",
+        "category": "Mobile",
+        "subcategory": "Mobile Interface",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 37,
+    "key": "stop",
+    "label": "Interrompi audio",
+    "choices": [
+      {
+        "option": "A",
+        "id": "400",
+        "name": "Stop",
+        "commonName": "stop",
+        "platform": "ios7",
+        "category": "Media Controls",
+        "subcategory": "Player controls",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "62209",
+        "name": "Stop Squared",
+        "commonName": "stop-squared",
+        "platform": "ios7",
+        "category": "Media Controls",
+        "subcategory": "Squared controls",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 38,
+    "key": "forward",
+    "label": "Avanti",
+    "choices": [
+      {
+        "option": "A",
+        "id": "355",
+        "name": "Right",
+        "commonName": "right",
+        "platform": "ios7",
+        "category": "Arrows",
+        "subcategory": "Basic Arrows",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "39969",
+        "name": "Right Arrow",
+        "commonName": "long-arrow-right",
+        "platform": "ios7",
+        "category": "Arrows",
+        "subcategory": "Basic Arrows",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 39,
+    "key": "back",
+    "label": "Indietro",
+    "choices": [
+      {
+        "option": "A",
+        "id": "357",
+        "name": "Left",
+        "commonName": "left",
+        "platform": "ios7",
+        "category": "Arrows",
+        "subcategory": "Basic Arrows",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "39944",
+        "name": "Left Arrow",
+        "commonName": "long-arrow-left",
+        "platform": "ios7",
+        "category": "Arrows",
+        "subcategory": "Basic Arrows",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 40,
+    "key": "external",
+    "label": "Apri esterno",
+    "choices": [
+      {
+        "option": "A",
+        "id": "742",
+        "name": "External Link",
+        "commonName": "external-link",
+        "platform": "ios7",
+        "category": "Popular",
+        "subcategory": "Website Sections",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "37780",
+        "name": "Linking",
+        "commonName": "external-link-squared",
+        "platform": "ios7",
+        "category": "User Interface",
+        "subcategory": "Basic Elements",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 41,
+    "key": "check",
+    "label": "Conferma",
+    "choices": [
+      {
+        "option": "A",
+        "id": "3061",
+        "name": "Done",
+        "commonName": "checkmark",
+        "platform": "ios7",
+        "category": "Popular,User Interface",
+        "subcategory": "Common Actions,Checkbox",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "11695",
+        "name": "Checkmark",
+        "commonName": "checked",
+        "platform": "ios7",
+        "category": "Popular,User Interface",
+        "subcategory": "Status,Checkbox",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 42,
+    "key": "checkcircle",
+    "label": "Completato",
+    "choices": [
+      {
+        "option": "A",
+        "id": "11658",
+        "name": "Check Mark",
+        "commonName": "ok",
+        "platform": "ios7",
+        "category": "Popular,Messaging",
+        "subcategory": "Common Actions,Composing Message",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "25534",
+        "name": "Checked Checkbox",
+        "commonName": "checked-checkbox",
+        "platform": "ios7",
+        "category": "User Interface",
+        "subcategory": "Checkbox",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 43,
+    "key": "close",
+    "label": "Chiudi",
+    "choices": [
+      {
+        "option": "A",
+        "id": "46",
+        "name": "Close",
+        "commonName": "delete-sign",
+        "platform": "ios7",
+        "category": "Popular,User Interface",
+        "subcategory": "Common Actions,Basic Elements",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "3062",
+        "name": "Cancel",
+        "commonName": "cancel",
+        "platform": "ios7",
+        "category": "Popular",
+        "subcategory": "Status",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 44,
+    "key": "info",
+    "label": "Informazioni",
+    "choices": [
+      {
+        "option": "A",
+        "id": "77",
+        "name": "Info",
+        "commonName": "info",
+        "platform": "ios7",
+        "category": "Popular,User Interface",
+        "subcategory": "Website Sections,Customer Support",
+        "isFree": true,
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "17077",
+        "name": "Info Squared",
+        "commonName": "info-squared",
+        "platform": "ios7",
+        "category": "User Interface",
+        "subcategory": "Symbols",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 45,
+    "key": "download",
+    "label": "Esporta",
+    "choices": [
+      {
+        "option": "A",
+        "id": "366",
+        "name": "Download",
+        "commonName": "download",
+        "platform": "ios7",
+        "category": "User Interface",
+        "subcategory": "Basic Elements",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "23353",
+        "name": "Downloading Updates",
+        "commonName": "downloading-updates",
+        "platform": "ios7",
+        "category": "User Interface",
+        "subcategory": "Basic Elements",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "number": 46,
+    "key": "maximize",
+    "label": "Ingrandisci",
+    "choices": [
+      {
+        "option": "A",
+        "id": "1755",
+        "name": "Expand",
+        "commonName": "expand",
+        "platform": "ios7",
+        "category": "Editing",
+        "subcategory": "Resize",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      },
+      {
+        "option": "B",
+        "id": "6509",
+        "name": "Enlarge",
+        "commonName": "resize-diagonal",
+        "platform": "ios7",
+        "category": "Arrows,Editing",
+        "subcategory": "Resize",
+        "isColor": false,
+        "isExplicit": false,
+        "authorId": "",
+        "authorApiCode": "icons8"
+      }
+    ],
+    "note": ""
+  }
+]

@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@import "../../shared/design-system/tokens.css";
+@import "../../shared/design-system/tailwind.css";
+@layer base{*{@apply border-border}body{@apply bg-background text-foreground;font-family:var(--font-sans);margin:0}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed}button,a,input{touch-action:manipulation}}
