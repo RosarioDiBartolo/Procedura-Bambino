@@ -21,6 +21,12 @@ La chiave principale non arriva al browser ed è esclusa da Git. Non utilizzare 
 
 **Disattiva microfono** chiude tracce e connessione. **Interrompi voce** annulla la valutazione/risposta corrente mantenendo l'ascolto. La voce si interrompe anche quando l'utente ricomincia a parlare. Chiudere con **Chiudi e termina**, ricaricare, iniziare una nuova simulazione o concluderla termina la sessione. Ridurre il pannello con il pulsante **Assistente AI** conserva l'ascolto: il pulsante continua a indicare «attivo». La guida preregistrata viene sospesa mentre l'assistente AI è attivo.
 
+## Accesso dalla stessa rete
+
+`npm run dev` espone l'interfaccia sulla porta 5180 anche agli altri dispositivi della rete locale. Aprire `http://IP-DEL-PC:5180` dal dispositivo collegato alla stessa rete; il PC deve restare acceso. Dopo un cambio di indirizzo Wi-Fi, usare il nuovo IP mostrato da `ipconfig`. Riavviare il comando dopo modifiche alla configurazione di avvio.
+
+Questo accesso HTTP permette di usare la procedura e l'interfaccia. Il microfono dell'assistente AI da un dispositivo remoto richiede HTTPS e una configurazione dedicata delle origini autorizzate: non è abilitato dal solo accesso di rete. Il server vocale continua ad ascoltare esclusivamente su `127.0.0.1:5181`.
+
 ## Flusso implementato
 
 1. L'API Node crea un client secret temporaneo e un token locale di sessione in memoria. Il browser apre WebRTC direttamente con OpenAI.

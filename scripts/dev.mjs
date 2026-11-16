@@ -7,7 +7,7 @@ const require = createRequire(new URL('../prototipo-02/package.json', import.met
 const vite = join(dirname(require.resolve('vite/package.json')), 'bin/vite.js');
 const children = [
   spawn(process.execPath, ['--env-file-if-exists=.env', 'server/index.ts'], { cwd: app, stdio: 'inherit' }),
-  spawn(process.execPath, [vite, '--host', '127.0.0.1', '--port', '5180', '--strictPort'], { cwd: app, stdio: 'inherit' }),
+  spawn(process.execPath, [vite, '--host', '0.0.0.0', '--port', '5180', '--strictPort'], { cwd: app, stdio: 'inherit' }),
 ];
 let stopping = false;
 function stop(code = 0) { if (stopping) return; stopping = true; children.forEach(c => c.kill()); process.exitCode = code; }
