@@ -1,5 +1,7 @@
 # Prototipo 02 — assistente di procedura NLS
 
+**Assistente AI proattivo:** [avvio, architettura, limiti e 30 scenari di collaudo](VOICE_ASSISTANT.md). Per avviare insieme frontend e server vocale, usare `npm run dev` dalla cartella principale del repository. L'avvio Vite da questa sottocartella serve solo l'interfaccia. L'assistente AI ha un'attivazione separata dalla guida vocale descritta sotto e invia audio/trascrizioni a OpenAI dopo consenso all'avvio.
+
 Nuovo prototipo indipendente da Nido. React, TypeScript, Vite, Tailwind CSS e componenti ufficiali shadcn/ui aggiunti dal relativo registro: Button, Card, Badge, Checkbox, Dialog, Tabs, Separator, Input, Label e Alert. I componenti sono adattabili nel codice del progetto. Nessun documento decisionale del prototipo 01 è stato adottato come specifica.
 
 L'indipendenza riguarda i flussi e le decisioni. Componenti, asset e design system sono in `../shared/`: l'app importa la libreria `@nls/ui` e i token comuni. Installazione e dipendenze sono gestite dal workspace principale; eseguire `npm install` dalla cartella superiore.

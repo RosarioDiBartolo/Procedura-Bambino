@@ -52,6 +52,7 @@ export function StepFrame({
       className={`compact-procedure ${(current.actions?.length ?? 0) >= 4 ? "dense-procedure" : ""}`}
       aria-label="Passaggio attuale"
       data-step={step}
+      data-assistant-target={step}
     >
       <div className="compact-heading">
         <h1 ref={heading} tabIndex={-1}>

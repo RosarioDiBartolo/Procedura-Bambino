@@ -6,6 +6,7 @@ import { formatTime, phases, secondsFrom, steps, type StepId } from "./flow";
 import { useSession } from "./SessionContext";
 import { useProcedureRoute } from "./navigation";
 import { VoiceGuide } from "./VoiceGuide";
+import { VoiceAssistant } from "./assistant/VoiceAssistant";
 import { SessionPanels } from "./SessionPanels";
 import { useNow } from "./useNow";
 import "./App.css";
@@ -17,6 +18,7 @@ export default function App() {
   const current = steps[routeStep] ?? steps[session.step];
   const { panel, setPanel } = useProcedureRoute();
   const [showVoice, setShowVoice] = useState(false);
+  const [aiActive, setAiActive] = useState(false);
   const now = useNow();
   const born = secondsFrom(session.birthAt, session.finishedAt ?? now);
   const helpRequested = session.events.some((e) => e.type === "help");
@@ -110,6 +112,7 @@ export default function App() {
             <Volume2 size={17} />
             <span>Guida vocale</span>
           </Button>
+          <VoiceAssistant onActive={setAiActive} />
           <Button className="compact-help" onClick={() => setPanel("help")}>
             <PhoneCall size={17} />
             {helpRequested ? "Aiuto segnalato" : "Richiedere aiuto"}
@@ -128,7 +131,7 @@ export default function App() {
           step={current}
           finished={session.finishedAt !== null}
           sessionKey={session.startedAt}
-          blocked={panel !== null}
+          blocked={panel !== null || aiActive}
         />
       </div>
       <SessionPanels />

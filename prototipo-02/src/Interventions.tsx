@@ -46,7 +46,7 @@ export function AnimatedInterventions({
       </p>
       <ol className="compact-action-list animated-intervention-list">
         {details.map((item, i) => (
-          <li key={item.panel}>
+          <li key={item.panel} data-assistant-target={`${step}-${i}`}>
             <motion.div
               className="intervention-card"
               layoutId={`card-${item.panel}`}

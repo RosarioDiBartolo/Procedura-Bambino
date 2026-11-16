@@ -22,7 +22,7 @@ export default defineConfig({
   generateBundle(){this.emitFile({type:'asset',fileName:'sources/poster-sin-2025.pdf',source:readFileSync(posterSource)})}
  }],
  publicDir:'../shared/assets',base:'./',css:{postcss:{plugins:[]}},
- server:{fs:{allow:[projectRoot]}},
+ server:{fs:{allow:[projectRoot]},proxy:{'/api/assistant':{target:'http://127.0.0.1:5181',changeOrigin:true}}},
  resolve:{alias:{'@':fileURLToPath(new URL('./src',import.meta.url))},dedupe:['react','react-dom']},
  test:{environment:'jsdom',include:['src/**/*.test.{ts,tsx}'],restoreMocks:true}
 })

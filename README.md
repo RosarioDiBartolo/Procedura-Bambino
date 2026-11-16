@@ -1,5 +1,7 @@
 # Prototipi del supporto NLS
 
+Assistente AI proattivo nel prototipo React: [configurazione e collaudo](prototipo-02/VOICE_ASSISTANT.md). `npm run dev` avvia interfaccia e API locale; richiede Node.js 22.18+. La voce AI richiede `OPENAI_API_KEY` in `prototipo-02/.env` (esempio incluso). Senza chiave, la procedura e la guida vocale esistente restano utilizzabili.
+
 I prototipi condividono asset e base dell'interfaccia; flussi, contenuti decisionali e documenti di progetto restano specifici di ciascuna versione.
 
 ```text
