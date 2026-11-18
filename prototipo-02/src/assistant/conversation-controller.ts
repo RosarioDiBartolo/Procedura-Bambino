@@ -1,3 +1,4 @@
+import type { Authorized } from './assessment';
 import type { Context, Decision, Turn } from './protocol';
 
 type Item = { id: string; previous: string | null; text?: string; failed?: boolean };
@@ -11,6 +12,7 @@ export class ConversationController {
   private speaking = false;
   private output = false;
   private stopped = false;
+  private applied = new Set<string>();
   private last = '';
   constructor(private context: Context,
     private evaluate: (context: Context, turns: Turn[], sequence: number, signal: AbortSignal) => Promise<Decision>,
@@ -41,6 +43,12 @@ export class ConversationController {
   }
   transcriptionFailed(id: string) { const item = this.items.find(t => t.id === id); if (item) item.failed = true; this.invalidate(); this.schedule(); }
   updateContext(context: Context) { this.invalidate(); this.context = context; this.items = []; this.early.clear(); this.last = ''; }
+  enterStep(context: Context) { this.updateContext(context); }
+  updateObservations(context: Context) { this.updateContext(context); }
+  authorizedAction(action: Authorized) {
+    if (this.stopped || action.sessionKey !== this.context.sessionKey || action.visit !== this.context.visit || this.applied.has(action.turn)) return false;
+    this.applied.add(action.turn); return true;
+  }
   stop() { this.stopped = true; this.invalidate(); this.items = []; this.early.clear(); }
   private schedule() {
     clearTimeout(this.timer);
@@ -60,7 +68,9 @@ export class ConversationController {
     try {
       const decision = await this.evaluate(this.context, turns, ++this.sequence, request.signal);
       if (this.stopped || request.signal.aborted || generation !== this.generation) return;
-      this.last = signature; this.status('listening'); this.deliver(decision);
+      this.last = signature; this.status('listening');
+      if (decision.type !== 'IGNORE' && decision.guided && !this.authorizedAction(decision.guided.action)) return;
+      this.deliver(decision);
     } catch (error) { if (!request.signal.aborted && !this.stopped) { this.status('listening'); this.error(error); } }
   }
 }

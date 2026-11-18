@@ -1,3 +1,4 @@
+import { cleanData, type Field, type Observations } from '../src/assistant/assessment.ts';
 import { steps } from '../src/flow.ts';
 import { canComplete, type Context, type Decision } from '../src/assistant/protocol.ts';
 import { guidelinesFor } from '../src/assistant/guidelines.ts';
@@ -10,7 +11,15 @@ export function validateContext(value: unknown): Context {
       c.checks.some(id => !(steps[c.step].actions ?? []).some((_, i) => id === `${c.step}-${i}`))) {
     throw new Error('Contesto della procedura non valido.');
   }
-  return { step: c.step, checks: [...c.checks], revision: c.revision, sessionKey: c.sessionKey, finished: c.finished };
+  const observations: Observations = {};
+  if (c.observations && typeof c.observations === 'object') {
+    const values = Object.fromEntries(Object.entries(c.observations).filter(([, o]) => o && typeof o === 'object').map(([f, o]) => [f, o.value]));
+    for (const [field, value] of Object.entries(cleanData(c.step, values))) {
+      const o = c.observations[field as Field]!;
+      observations[field as Field] = { value, source: o.source === 'voice' ? 'voice' : 'manual', at: typeof o.at === 'number' && Number.isFinite(o.at) ? o.at : Date.now() };
+    }
+  }
+  return { visit: typeof c.visit === "string" ? c.visit.slice(0, 200) : undefined, observations, step: c.step, checks: [...c.checks], revision: c.revision, sessionKey: c.sessionKey, finished: c.finished };
 }
 
 // Only a source ID and an allowed action cross the model boundary. The model

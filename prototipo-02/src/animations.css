@@ -1,0 +1,6 @@
+/* Keyframes cannot be expressed as inline utilities. */
+@keyframes text-cursor-blink{50%{opacity:0}}
+@keyframes reveal-chrome{from{opacity:0}to{opacity:1}}
+.assistant-highlight{outline:3px solid #187a89!important;outline-offset:3px;background-color:#edf9f8!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:0s!important;transition:none!important}}

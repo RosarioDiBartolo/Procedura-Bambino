@@ -7,3 +7,21 @@
  --color-accent:var(--accent);--color-accent-foreground:var(--accent-foreground);--color-destructive:var(--destructive);--color-border:var(--border);--color-input:var(--input);--color-ring:var(--ring);
  --radius-sm:calc(var(--radius) - 4px);--radius-md:calc(var(--radius) - 2px);--radius-lg:var(--radius);--radius-xl:calc(var(--radius) + 4px);
 }
+
+/* Motion tokens used by the shared dialog primitives. */
+@theme {
+ --animate-dialog-in: dialog-in 240ms cubic-bezier(.23,1,.32,1) both;
+ --animate-dialog-out: dialog-out 160ms cubic-bezier(.23,1,.32,1) both;
+ --animate-dialog-overlay-in: dialog-overlay-in 200ms ease-out both;
+ --animate-dialog-overlay-out: dialog-overlay-out 160ms ease-out both;
+ @keyframes dialog-in {
+  from { opacity:0; transform:translateY(8px) scale(.96); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+ }
+ @keyframes dialog-out {
+  from { opacity:1; transform:translateY(0) scale(1); }
+  to { opacity:0; transform:translateY(4px) scale(.97); }
+ }
+ @keyframes dialog-overlay-in { from { opacity:0; } to { opacity:1; } }
+ @keyframes dialog-overlay-out { from { opacity:1; } to { opacity:0; } }
+}

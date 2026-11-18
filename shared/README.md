@@ -8,7 +8,7 @@
 - `design-system/tailwind.css`: utility basate sui token e scansione dei componenti esterni.
 - `ui/src/components/`: unica implementazione dei dieci componenti React shadcn.
 - `ui/src/lib/utils.ts`: utility comuni.
-- `design-system/legacy-components.css`: adattatore delle primitive visive del prototipo HTML. Condivide i token ma non monta componenti React. Ogni prototipo React importa direttamente `@nls/ui/components/...`.
+- Gli stili dei componenti React sono definiti direttamente nei rispettivi `className` Tailwind. I file CSS condivisi contengono soltanto token e configurazione del tema; l'app mantiene separati soltanto keyframe e comportamento globale indispensabile.
 
 Layout e composizione rimangono specifici dei prototipi. La base comune non contiene regole cliniche, flussi decisionali o stato delle sessioni.
 

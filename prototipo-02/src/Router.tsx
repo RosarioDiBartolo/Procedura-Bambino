@@ -47,7 +47,9 @@ export default function Application() {
     <HashRouter>
       <SessionProvider>
         <Routes>
-          <Route path="/procedura" element={<App />}>
+          <Route element={<App />}>
+          <Route path="/" element={null} />
+          <Route path="/procedura">
             <Route index element={<Resume />} />
             <Route element={<SessionGuard />}>
               <Route path="preparation" element={<Preparation />} />
@@ -72,6 +74,7 @@ export default function Application() {
             </Route>
           </Route>
           <Route path="*" element={<Resume />} />
+          </Route>
         </Routes>
       </SessionProvider>
     </HashRouter>

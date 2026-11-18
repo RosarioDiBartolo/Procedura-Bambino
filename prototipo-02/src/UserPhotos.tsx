@@ -14,5 +14,5 @@ const photos={
 export const stepPhotos:Partial<Record<StepId,keyof typeof photos>>={preparation:'preparation',birth:'birthCare',cord:'birthCare',skin:'skin','first-actions':'birthCare','recovery-review':'newborn',post:'newborn'}
 export function UserPhoto({name,className=''}:{name:keyof typeof photos;className?:string}){
  const photo=photos[name]
- return <img className={`user-photo ${className}`} src={photo.src} alt={photo.alt} style={{objectPosition:photo.position}}/>
+ return <img className={`user-photo block size-full min-h-0 max-h-none object-cover [.case-art_&]:rounded-[inherit] ${className}`} src={photo.src} alt={photo.alt} style={{objectPosition:photo.position}}/>
 }

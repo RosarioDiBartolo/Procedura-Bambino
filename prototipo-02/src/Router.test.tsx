@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { beforeEach, afterEach, describe, expect, it } from "vitest";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Application from "./Router";
@@ -46,7 +46,8 @@ describe("Routing e contesto della simulazione", () => {
     await user.click(screen.getAllByRole("checkbox")[0]);
     await user.click(screen.getByRole("button", { name: "Prosegui" }));
     await waitFor(() => expect(window.location.hash).toBe("#/procedura/birth"));
-    await user.click(screen.getByRole("button", { name: "MR SOPA" }));
+    window.location.hash = "/procedura/birth?panel=mrsopa";
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeTruthy());
     expect(window.location.hash).toBe("#/procedura/birth?panel=mrsopa");
     view.unmount();
     render(<Application />);
@@ -87,8 +88,11 @@ describe("Routing e contesto della simulazione", () => {
       screen.getByRole("button", { name: "Azzera e ricomincia" }),
     );
     await waitFor(() =>
-      expect(window.location.hash).toBe("#/procedura/preparation"),
+      expect(window.location.hash).toBe("#/"),
     );
+    expect(screen.queryByRole('region', { name: 'Passaggio attuale' })).toBeNull();
+    expect(screen.getByRole('button', { name: 'Inizia dalla preparazione' })).toBeTruthy();
+    expect(screen.queryByRole('dialog')).toBeNull();
     expect(
       JSON.parse(sessionStorage.getItem("nls-simulation-v1")!).events,
     ).toEqual([]);
@@ -112,16 +116,17 @@ describe("Routing e contesto della simulazione", () => {
   it("mantiene il layout comune montato quando cambia la pagina", async () => {
     const user = userEvent.setup();
     render(<Application />);
-    await user.click(screen.getByRole("button", { name: "Guida vocale" }));
+    await user.click(screen.getByRole("button", { name: "Comandi e impostazioni di Nido" }));
+      await user.click(screen.getByRole("button", { name: "Chiudi impostazioni assistente" }));
     const layout = screen.getByRole("banner");
     await user.click(screen.getByRole("button", { name: "Prosegui" }));
     await waitFor(() => expect(window.location.hash).toBe("#/procedura/birth"));
     expect(screen.getByRole("banner")).toBe(layout);
     expect(
       screen
-        .getByRole("button", { name: "Guida vocale" })
+        .getByRole("button", { name: "Comandi e impostazioni di Nido" })
         .getAttribute("aria-expanded"),
-    ).toBe("true");
+    ).toBe("false");
   });
   it("usa una route separata per la conclusione e la ripristina", async () => {
     const session = { ...createSession(), step: "skin" };
@@ -143,3 +148,5 @@ describe("Routing e contesto della simulazione", () => {
     ).toBeNull();
   });
 });
+
+beforeEach(() => { window.history.replaceState(null, '', '/#/procedura'); });

@@ -1,0 +1,26 @@
+import { afterEach, expect, it, vi } from 'vitest';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import Application from '../../Router';
+import { createSession } from '../../flow';
+const animation = vi.hoisted(() => ({ to: vi.fn(), set: vi.fn() }));
+vi.mock('gsap', () => ({ gsap: { set: animation.set, context: (callback: () => void) => { callback(); return { revert: vi.fn() }; }, timeline: () => ({ to: animation.to }) } }));
+afterEach(() => { cleanup(); sessionStorage.clear(); vi.unstubAllGlobals(); window.history.replaceState(null, '', '/'); });
+it('avvia una nuova timeline sui contenuti dello step navigato, anche tornando indietro senza voce', async () => {
+  vi.stubGlobal('matchMedia', () => ({ matches: false, addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {} }));
+  vi.stubGlobal('fetch', vi.fn(() => { throw new Error('La voce deve restare disattivata'); }));
+  sessionStorage.setItem('nls-simulation-v1', JSON.stringify({ ...createSession(), voiceDisabled: true }));
+  window.history.replaceState(null, '', '/#/procedura/preparation');
+  const user = userEvent.setup(); render(<Application />);
+  const animatedHeading = (title: string) => animation.to.mock.calls.some(([node]) => node instanceof Element && node.classList.contains('compact-heading') && node.textContent?.includes(title));
+  await waitFor(() => expect(animatedHeading('Preparazione')).toBe(true));
+  animation.to.mockClear();
+  await user.click(screen.getByRole('button', { name: 'Prosegui' }));
+  await waitFor(() => expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Nascita'));
+  expect(animatedHeading('Nascita')).toBe(true);
+  animation.to.mockClear();
+  await user.click(screen.getByRole('button', { name: 'Passo precedente' }));
+  await waitFor(() => expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Preparazione'));
+  expect(animatedHeading('Preparazione')).toBe(true);
+  expect(fetch).not.toHaveBeenCalled();
+});

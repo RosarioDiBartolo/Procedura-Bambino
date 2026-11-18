@@ -18,8 +18,17 @@ La foto di Graz mostra una simulazione su manichino con ventilazione e compressi
 Per gli altri passaggi restano SVG originali, ingranditi e affiancati da didascalie basate sui contenuti già presenti in flow.ts. Non è stata trovata e verificata una serie esterna completa per tutti i 18 step.
 
 Altre fonti esaminate:
-- Unsplash: https://unsplash.com/s/photos/skin-to-skin — foto di contesto; nessuna importata.
+- Unsplash: ricerca iniziale di foto skin to skin; il 18 novembre è stata aggiunta la foto del supporto respiratorio documentata sotto.
 - MSF: https://medicalguidelines.msf.org/en/viewport/ONC/english/10-2-neonatal-resuscitation-51418320.html — figure pertinenti per posizione, maschera e ventilazione, non importate. Condizioni per strumenti/app: https://medicalguidelines.msf.org/en/node/1338.
 - Wikimedia, compressioni: https://commons.wikimedia.org/wiki/Category:Neonatal_chest_compressions.
 
 Per sostituire le immagini principali e le spiegazioni: ../../ProcedureVisual.tsx. Per gli SVG e le icone dei singoli interventi: ../../Illustration.tsx. Le decisioni e le soglie del percorso non sono state modificate.
+
+## Supporto respiratorio — 18 novembre 2026
+
+- File: `respiratory-support-unsplash.jpg`.
+- Foto: https://unsplash.com/photos/baby-lying-in-incubator-74-7j5t4sG0
+- Immagine: https://images.unsplash.com/photo-1560306580-9e204fe45f3e
+- Licenza: Unsplash License, indicata dalla pagina come gratuita: https://unsplash.com/license
+- Descrizione della fonte: neonato prematuro in incubatrice con ossigeno. È una foto di contesto, non una dimostrazione della tecnica CPAP.
+- Copia locale ridimensionata; ritaglio di visualizzazione tramite object-fit. La didascalia rimanda alla pagina originale.

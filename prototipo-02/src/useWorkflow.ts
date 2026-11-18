@@ -1,3 +1,4 @@
+import { startTransition } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSession } from "./SessionContext";
 import {
@@ -16,8 +17,10 @@ export function useWorkflow() {
   const [session, setSession] = useSession();
   const navigate = useNavigate();
   function commit(next: Session) {
-    setSession(next);
-    navigate(sessionPath(next), { replace: true });
+    startTransition(() => {
+      setSession(next);
+      navigate(sessionPath(next), { replace: true });
+    });
   }
   function change(next: StepId, text: string, answers?: Answers) {
     commit(move(session, next, Date.now(), text, answers));
@@ -59,7 +62,12 @@ export function useWorkflow() {
     );
   }
   function reset() {
-    commit(createSession());
+    // Commit the new route and session at the same priority, so the route guard
+    // never sees the old step with the freshly reset session.
+    startTransition(() => {
+      setSession(createSession(Math.max(Date.now(), session.startedAt + 1)));
+      navigate('/', { replace: true });
+    });
   }
   function checkAction(step: StepId, index: number, checked: boolean) {
     setSession((s) =>

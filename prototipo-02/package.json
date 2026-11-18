@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nls/ui": "*",
+    "gsap": "^3.15.1",
     "lucide-react": "^0.468.0",
     "motion": "^14.14.0",
     "react": "^19.1.0",

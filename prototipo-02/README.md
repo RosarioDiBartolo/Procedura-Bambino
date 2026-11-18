@@ -61,20 +61,20 @@ La sessione è temporanea in memoria: ricaricando la pagina si perde. È disponi
 
 Componenti: https://ui.shadcn.com/docs/installation/vite
 
-### Guida vocale
-Nel passaggio corrente, «Attiva guida vocale» abilita la lettura automatica delle procedure e delle richieste di parametri. «Riascolta procedura» funziona anche senza attivare la guida automatica; «Interrompi» ferma la lettura corrente. Le risposte vengono inserite sullo schermo: non viene attivato il microfono. La lettura si interrompe cambiando passaggio, aprendo un pannello o concludendo la simulazione.
+### Assistente AI Realtime
+L’unico sistema vocale è l’assistente AI: spiega automaticamente lo step con il microfono spento e permette di attivare l’ascolto separatamente. Realtime riceve audio, procedura completa, approfondimenti e strumenti; il codice valida insieme i dati e le azioni di ogni turno prima della risposta audio. Le soglie e le transizioni restano applicative. Il client non usa più un modello testuale separato per interpretare il parlato né un testo precomposto da far leggere alla voce.
 
-La sintesi usa le voci italiane di Web Speech disponibili nel browser e privilegia quelle il cui nome indica Natural, Neural o Online. La selezione è modificabile. Qualità e disponibilità dipendono dal dispositivo; le voci online richiedono una connessione e possono elaborare il testo presso il fornitore del browser. Nessuna chiave API è richiesta. Una voce neurale uniforme su tutti i dispositivi richiede un’integrazione dedicata. I test simulano la sintesi: non certificano la qualità dell’audio reale.
+Configurazione, flusso degli strumenti, prompt modificabili, test e limiti sono descritti in [VOICE_ASSISTANT.md](VOICE_ASSISTANT.md). Richiede la chiave API sul server. La vecchia guida con Web Speech e audio preregistrati è stata rimossa.
 
 ## Routing e sessione (prototipo 02)
 
 Il punto di ingresso React monta React Router (`HashRouter`) e un unico `SessionProvider`, sopra le pagine. URL: `#/procedura/preparation`, `#/procedura/birth`, ecc. I supporti e le finestre usano `?panel=mrsopa`, `?panel=history`, ecc.; la scheda attiva dei supporti deriva dallo stesso parametro, senza un secondo stato potenzialmente incoerente. Il formato hash funziona anche su hosting statico e mantiene corretti gli asset relativi, senza riscritture lato server.
 
-Il contesto contiene passaggio effettivo, eventi, spunte e riferimenti temporali. La navigazione non esegue transizioni del percorso: un URL sconosciuto o un passaggio diverso da quello corrente viene normalizzato con `replace`. Le transizioni della procedura aggiornano l'URL senza costruire una seconda cronologia clinica nel browser. Indietro/avanti del browser può navigare le finestre ma non annulla valutazioni: usare “Passo precedente”, che registra una correzione. Aprire una finestra non smonta la procedura e sospende la lettura vocale tramite il flag esistente.
+Il contesto contiene passaggio effettivo, eventi, spunte e riferimenti temporali. La navigazione non esegue transizioni del percorso: un URL sconosciuto o un passaggio diverso da quello corrente viene normalizzato con `replace`. Le transizioni della procedura aggiornano l'URL senza costruire una seconda cronologia clinica nel browser. Indietro/avanti del browser può navigare le finestre ma non annulla valutazioni: usare “Passo precedente”, che registra una correzione. Aprire una finestra non smonta la procedura senza far ripartire la spiegazione dello step.
 
 La sessione viene salvata con chiave versionata in `sessionStorage`: resiste alla ricarica nella stessa scheda. I timestamp assoluti mantengono la continuità dei timer; non si azzerano al cambio pagina. I dati ripristinati vengono controllati; dati corrotti o incompatibili avviano una nuova simulazione. “Azzera e ricomincia” sostituisce anche il salvataggio. Se lo storage è bloccato o pieno l'app continua in memoria, ma la ricarica può perdere gli ultimi dati: esportare il registro.
 
-Non esistono autenticazione, sessione server o sincronizzazione tra dispositivi/schede. Una scheda duplicata può inizialmente ricevere una copia dello storage dal browser, poi le copie sono indipendenti. Gli URL non contengono registro o risposte e non condividono una simulazione con altri utenti. Usare solo dati fittizi; `sessionStorage` non è un archivio protetto. Conferma di ventilazione efficace, messaggi di errore e preferenze di visualizzazione restano temporanei: la conferma va ripetuta dopo una ricarica, mentre aprire un supporto la conserva.
+Non esistono autenticazione o sincronizzazione tra dispositivi/schede. Il server mantiene una sessione temporanea per il dialogo AI. Una scheda duplicata può inizialmente ricevere una copia dello storage dal browser, poi le copie sono indipendenti. Gli URL non contengono registro o risposte e non condividono una simulazione con altri utenti. Usare solo dati fittizi; `sessionStorage` non è un archivio protetto. Conferma di ventilazione efficace, messaggi di errore e preferenze di visualizzazione restano temporanei: la conferma va ripetuta dopo una ricarica, mentre aprire un supporto la conserva.
 
 ### Approfondimenti della preparazione
 
@@ -82,16 +82,46 @@ Counseling, briefing e checklist del materiale si aprono dalle relative schede, 
 
 ### Struttura delle pagine e transizioni
 
-`App.tsx` è il layout persistente: intestazione, timer, supporti, guida vocale e `<Outlet />`. `Router.tsx` dichiara una route esplicita per ciascuno dei 18 passaggi e una route `/procedura/conclusa`. Ogni route monta il proprio modulo in `src/pages/`; i componenti `StepFrame`, `ActionContent` e `DecisionContent` condividono solo presentazione e controlli riutilizzabili. Non esiste un selettore di schermate basato su `session.step` in App.
+`App.tsx` è il layout persistente: intestazione, timer, supporti, assistente AI e `<Outlet />`. `Router.tsx` dichiara una route esplicita per ciascuno dei 18 passaggi e una route `/procedura/conclusa`. Ogni route monta il proprio modulo in `src/pages/`; i componenti `StepFrame`, `ActionContent` e `DecisionContent` condividono solo presentazione e controlli riutilizzabili. Non esiste un selettore di schermate basato su `session.step` in App.
 
 `useWorkflow` esegue le transizioni del dominio e chiama esplicitamente `navigate` per proseguire, correggere, registrare la nascita, concludere o azzerare. `navigation.ts` gestisce esclusivamente gli URL dei pannelli; non rispecchia più il passaggio dello stato nell'URL tramite un effetto. Il passaggio salvato nella sessione è un riferimento per ripristino e controllo degli accessi, non il selettore del componente visualizzato. La guardia impedisce salti tramite indirizzi arbitrari senza smontare il layout comune.
 
-Il provider rimane sopra le route: eventi, spunte e timestamp sopravvivono allo smontaggio delle singole pagine. La conferma di ventilazione efficace vive nella sola pagina `HeartRate60` e si azzera quando si esce e si rientra: non viene riutilizzata per una valutazione successiva. L'apertura dei supporti mantiene montata la stessa pagina. Le spunte facoltative restano nella sessione; la loro visibilità è una preferenza locale della pagina. L'azzeramento della sessione ricrea anche i controlli locali della pagina corrente.
+Il provider rimane sopra le route: eventi, spunte e timestamp sopravvivono allo smontaggio delle singole pagine. La conferma di ventilazione efficace è condivisa fra voce e campi per la visita corrente e non viene riutilizzata in una nuova valutazione. L'apertura dei supporti mantiene montata la stessa pagina. Le spunte facoltative restano nella sessione; la loro visibilità è una preferenza locale della pagina. L'azzeramento della sessione ricrea anche i controlli locali della pagina corrente.
 
 ### Interventi animati in tutto il percorso
 
-Tutte le 11 pagine con interventi usano `AnimatedInterventions`, senza eccezioni riservate alla preparazione. Ogni voce dispone di sintesi, spiegazione, indicazioni di coordinamento e illustrazione; i testi aggiuntivi sono contenuti didattici e non una checklist clinica validata. Le spiegazioni specifiche sono in `src/actionDetails.ts`; i tre approfondimenti iniziali restano in `src/interventionDetails.ts`.
+Tutte le 11 pagine con interventi usano `AnimatedInterventions`, senza eccezioni riservate alla preparazione. Ogni voce dispone di sintesi, spiegazione, indicazioni di coordinamento e illustrazione; i testi aggiuntivi sono contenuti didattici e non una checklist clinica validata. Le spiegazioni specifiche sono in `src/procedureKnowledge.ts`, con presentazione grafica in `src/actionDetails.ts`; i tre approfondimenti iniziali restano in `src/interventionDetails.ts`.
 
 Gli approfondimenti degli altri passaggi usano `?panel=intervention-0`, `intervention-1`, ecc. L'indice viene validato contro gli interventi della route corrente, anche dopo una ricarica; un indice non valido viene rimosso. Aprire e chiudere un dettaglio non modifica eventi, timestamp o spunte. Le scelte dei bivi restano pulsanti di avanzamento, separati dai dettagli degli interventi.
 
 Il layout segue l'altezza del contenuto: riepilogo con immagine in una fascia orizzontale, schede allineate in alto e comandi subito dopo il contenuto. Su schermi ampi le liste si distribuiscono in due o tre colonne; su mobile passano a una colonna. La sezione centrale può scorrere quando la lista è lunga, mantenendo accessibili i supporti inferiori.
+
+
+### Playground locale senza API
+
+Con il sito avviato, apri `http://localhost:5180/?playground=1#/`.
+Il pannello **Playground locale · API disattivate** sostituisce il collegamento
+Realtime con un simulatore: nessun accesso al microfono, WebRTC o richiesta OpenAI.
+Funziona anche senza il servizio vocale e senza chiave API.
+
+- Invia frasi o frammenti per verificare le trascrizioni in chat.
+- Seleziona esplicitamente uno scenario per applicare le stesse regole locali
+  della sessione; il testo libero non viene interpretato da un modello.
+- Prova risposte progressive, interruzioni, ascolto, caricamento ed errore 429.
+- Usa i comandi normali dell'interfaccia per ripetere la spiegazione e la sua animazione.
+- Azzera la sessione di prova dal pannello, senza toccare quella reale.
+
+Il simulatore non genera audio e non valida la comprensione del linguaggio,
+la trascrizione reale o le prestazioni di OpenAI. La sessione di prova viene
+salvata separatamente in `sessionStorage` sotto `nls-playground-v1`.
+Per la modalità reale apri un indirizzo senza `?playground=1`.
+
+## Stili e input dell’assistente
+
+Gli stili dei componenti sono utility Tailwind direttamente nei `className`, inclusi breakpoint e stati. Il CSS rimasto contiene soltanto token condivisi, regole globali e keyframe. Non aggiungere fogli CSS per i nuovi componenti.
+
+La conversazione nella sidebar raccoglie input testuale e ascolto continuo, selezionabili con Scrivi/Microfono. Durante connessione, elaborazione e risposta, il pulsante di invio diventa Stop: annulla il turno in corso senza cancellare la bozza. La modalità testo non apre il microfono.
+
+La sidebar usa Animated Sidebar di beUI (MIT, sorgenti e licenza in `src/components/motion`), adattata sul lato destro. Su desktop si riduce a una barra con l’orb; Ctrl/Cmd+B alterna l’apertura. Su mobile è un pannello laterale con focus gestito, chiusura con Escape e ritorno del focus al pulsante di apertura. Conversazione, bozza e connessione dell’assistente restano attive quando il pannello si chiude. Il percorso conserva l’indicazione dello step corrente e non permette di saltare le verifiche della procedura.
+
+`src/components/ui/ai-voice-input.tsx` visualizza il flusso già aperto dal client; `src/components/agents/voice-orb.tsx` e il relativo renderer provengono da beUI (MIT, licenza conservata accanto ai file). L’orb riflette gli stati dell’agente e usa gli analizzatori audio locali quando disponibili. Il playground consente di provare gli stati senza richieste esterne.

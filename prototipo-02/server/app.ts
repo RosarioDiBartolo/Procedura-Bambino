@@ -1,3 +1,5 @@
+import { nativeConfiguration, executeTools } from './native-realtime.ts';
+import { interpret, newDialogue, resolveTurn, type Dialogue } from './guided.ts';
 import { randomUUID } from 'node:crypto';
 import { createServer, type IncomingMessage } from 'node:http';
 import { canComplete, type Context, type Decision, type Turn } from '../src/assistant/protocol.ts';
@@ -5,7 +7,7 @@ import { steps } from '../src/flow.ts';
 import { validateContext, validateDecision } from './policy.ts';
 import { evaluate, openai, realtimeConfig } from './provider.ts';
 
-type Active = { context: Context; expires: number; sequence: number; busy?: AbortController;
+type Active = { utterances?: Map<string, Turn>; calls?: Set<string>; exchanges?: Set<string>; dialogue?: Dialogue; context: Context; expires: number; sequence: number; busy?: AbortController;
   recent: Map<string, number>; proposal?: { id: string; revision: number; expires: number; decision: Exclude<Decision, { type: 'IGNORE' }> } };
 class HttpError extends Error { status: number; constructor(status: number, message: string) { super(message); this.status = status; } }
 async function readBody(req: IncomingMessage) {
@@ -18,7 +20,7 @@ function readTurns(value: unknown): Turn[] {
   if (!Array.isArray(value) || !value.length || value.length > 8 || value.some(t => !t || typeof t.id !== 'string' || t.id.length > 100 || typeof t.text !== 'string' || !t.text.trim() || t.text.length > 2000) || new Set(value.map(t => t.id)).size !== value.length) throw new HttpError(400, 'Turni non validi.');
   return value.map(({ id, text }) => ({ id, text }));
 }
-export function createAssistantServer(deps = { evaluate, mint: () => openai('realtime/client_secrets', realtimeConfig()) }) {
+export function createAssistantServer(deps: { evaluate: typeof evaluate; mint: () => Promise<any>; interpret?: typeof interpret } = { evaluate, mint: () => openai('realtime/client_secrets', realtimeConfig()), interpret }) {
   const sessions = new Map<string, Active>();
   let starts: number[] = [];
   return createServer(async (req, res) => {
@@ -54,10 +56,83 @@ export function createAssistantServer(deps = { evaluate, mint: () => openai('rea
       if (req.url === '/api/assistant/context') {
         let c: Context; try { c = validateContext(body.context); } catch { throw new HttpError(400, 'Contesto non valido.'); }
         if (c.revision <= s.context.revision || c.sessionKey !== s.context.sessionKey) throw new HttpError(409, 'Contesto superato.');
-        s.busy?.abort(); s.context = c; s.proposal = undefined; s.recent.clear();
+        s.busy?.abort(); if (c.visit !== s.context.visit) { s.dialogue = newDialogue(); s.utterances?.clear(); }
+        if (c.observations) { s.dialogue ??= newDialogue(); s.dialogue.observations = c.observations; }
+        s.context = c; s.proposal = undefined; s.recent.clear();
         return reply(200, { ok: true });
       }
       if (body.revision !== s.context.revision || s.context.finished) throw new HttpError(409, 'Il passaggio è cambiato.');
+      if (['/api/assistant/realtime-config', '/api/assistant/utterance', '/api/assistant/realtime-tools', '/api/assistant/exchange'].includes(req.url ?? '')) {
+        if (body.visit !== s.context.visit || body.sessionKey !== s.context.sessionKey) throw new HttpError(409, 'Visita superata.');
+        const dialogue = s.dialogue ??= { ...newDialogue(), observations: s.context.observations ?? {} };
+        if (req.url === '/api/assistant/exchange') {
+          if (typeof body.responseId !== 'string' || body.responseId.length > 100 || typeof body.assistant !== 'string' || body.assistant.length > 14000) throw new HttpError(400, 'Scambio non valido.');
+          s.exchanges ??= new Set();
+          if (!s.exchanges.has(body.responseId)) {
+            s.exchanges.add(body.responseId);
+            dialogue.history = [...dialogue.history, { user: s.utterances?.get(body.turnId)?.text ?? '[Ingresso nello step]', assistant: `${body.assistant}${body.interrupted ? ' [interrotta]' : ''}` }].slice(-8);
+          }
+          return reply(200, { ok: true });
+        }
+        if (req.url === '/api/assistant/realtime-config') {
+          const c = s.context;
+          const config = await nativeConfiguration(c, dialogue);
+          if (c !== s.context || sessions.get(token) !== s) throw new HttpError(409, 'Configurazione superata.');
+          return reply(200, config);
+        }
+        if (req.url === '/api/assistant/utterance') {
+          const turn = readTurns([body.turn])[0];
+          s.utterances ??= new Map();
+          const old = s.utterances.get(turn.id);
+          if (old && old.text !== turn.text) throw new HttpError(409, 'Trascrizione già registrata.');
+          s.utterances.set(turn.id, turn);
+          if (s.utterances.size > 32) s.utterances.delete(s.utterances.keys().next().value!);
+          if (dialogue.processed.has(turn.id)) throw new HttpError(409, 'Turno già elaborato.');
+          s.busy?.abort(); const controller = new AbortController(); s.busy = controller;
+          res.on('close', () => { if (!res.writableEnded) controller.abort(); });
+          const context = s.context;
+          const draft = { ...dialogue, observations: { ...dialogue.observations }, history: [...dialogue.history], processed: new Set(dialogue.processed) };
+          const interpreted: any = await (deps.interpret ?? interpret)(context, [turn], controller.signal, draft);
+          if (controller.signal.aborted || s.context !== context || sessions.get(token) !== s) throw new HttpError(409, 'Risposta superata.');
+          // Events already declared by the operator must be applied, not turned into a page asking for the same event.
+          const raw = ['birth', 'medication', 'finish'].includes(interpreted?.event)
+            ? { ...interpreted, intent: interpreted.event }
+            : interpreted?.intent === 'orient' && interpreted.scenario === 'birth' && interpreted.eventNow === true
+              ? { ...interpreted, intent: 'birth' } : interpreted;
+          const guided = raw?.intent === 'orient'
+            ? executeTools(context, draft, [{ id: `orientation:${turn.id}`, name: 'orienta_scenario', arguments: { scenario: raw.scenario, data: raw.data ?? [] } }], turn)
+            : resolveTurn(context, draft, raw, turn);
+          dialogue.processed.add(turn.id); dialogue.history = draft.history;
+          return reply(200, { ok: true, guided });
+        }
+        const turn = s.utterances?.get(body.turnId);
+        if (!turn) throw new HttpError(409, 'Turno non trascritto o superato.');
+        if (!Number.isSafeInteger(body.sequence) || body.sequence <= s.sequence) throw new HttpError(409, 'Turno superato.');
+        if (!Array.isArray(body.calls) || body.calls.some((c: any) => s.calls?.has(c?.id))) throw new HttpError(409, 'Chiamata duplicata.');
+        s.sequence = body.sequence;
+        try {
+          const draft = { ...dialogue, observations: { ...dialogue.observations }, history: [...dialogue.history], processed: new Set(dialogue.processed) };
+          const result = executeTools(s.context, draft, body.calls, turn);
+          // Observations become session state only when the UI acknowledges its applied context.
+          if (draft.processed.has(turn.id)) dialogue.processed.add(turn.id);
+          s.calls ??= new Set(); body.calls.forEach((call: any) => s.calls!.add(call.id));
+          return reply(200, result);
+        } catch (error) { throw new HttpError(409, error instanceof Error ? error.message : 'Strumento non applicabile.'); }
+      }
+      if (['/api/assistant/turn', '/api/assistant/enter'].includes(req.url ?? '')) {
+        if (body.visit !== s.context.visit || body.sessionKey !== s.context.sessionKey) throw new HttpError(409, 'Visita superata.');
+        const entry = req.url === '/api/assistant/enter';
+        const turn = readTurns([body.turn])[0];
+        const dialogue = s.dialogue ??= { ...newDialogue(), observations: s.context.observations ?? {} };
+        if (dialogue.processed.has(turn.id)) throw new HttpError(409, 'Turno già elaborato.');
+        if (!Number.isSafeInteger(body.sequence) || body.sequence <= s.sequence) throw new HttpError(409, 'Turno superato.');
+        s.sequence = body.sequence; s.busy?.abort();
+        const controller = new AbortController(); s.busy = controller;
+        res.on('close', () => { if (!res.writableEnded) controller.abort(); });
+        const raw = await (deps.interpret ?? interpret)(s.context, [turn], controller.signal, dialogue, entry);
+        if (controller.signal.aborted || body.sequence !== s.sequence || body.revision !== s.context.revision || sessions.get(token) !== s) throw new HttpError(409, 'Risposta superata.');
+        return reply(200, resolveTurn(s.context, dialogue, raw, turn, entry));
+      }
       if (req.url === '/api/assistant/action') {
         const p = s.proposal;
         if (!p || p.id !== body.proposalId || p.revision !== s.context.revision || p.expires < now) throw new HttpError(409, 'Proposta scaduta o superata.');

@@ -1,3 +1,4 @@
+import { italianVoiceInstructions } from '../src/assistant/voice-policy.ts';
 import { canComplete, type Context, type Turn } from '../src/assistant/protocol.ts';
 import { guidelinesFor, guidelineVersion } from '../src/assistant/guidelines.ts';
 import { decisionSchema } from './policy.ts';
@@ -15,7 +16,7 @@ export async function openai(path: string, body: unknown, signal?: AbortSignal) 
 export function realtimeConfig() {
   return { session: {
     type: 'realtime', model: process.env.OPENAI_REALTIME_MODEL || 'gpt-realtime-2.1',
-    instructions: 'Sei la voce italiana di una simulazione didattica. Leggi esclusivamente il testo autorizzato ricevuto con response.create. Non rispondere alla conversazione ambientale. Non aggiungere valutazioni, dosi o suggerimenti.',
+    instructions: 'Sei l’assistente vocale italiano di una simulazione. Conversa direttamente usando solo la procedura fornita nelle istruzioni della risposta. Usa gli strumenti per ogni aggiornamento dell’app e attendine l’esito prima di annunciare un cambiamento. Non citare il poster.' + '\n' + italianVoiceInstructions,
     audio: { input: { transcription: { model: process.env.OPENAI_TRANSCRIPTION_MODEL || 'gpt-transcribe', language: 'it' },
       turn_detection: { type: 'semantic_vad', eagerness: 'medium', create_response: false, interrupt_response: true } }, output: { voice: 'marin' } },
   } };

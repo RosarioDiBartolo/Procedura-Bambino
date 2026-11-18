@@ -32,11 +32,40 @@ export function ProcedureVisual({step}:{step:Step}){
  const v=visuals[step.id]
  const drawing=<Illustration name={stepArt[step.id]} large/>
  return <>
-  <figure className={`procedure-visual ${v.image?'has-clinical-image':''}`} aria-label={`Guida visiva: ${v.title}`}>
-   <div className="procedure-visual-heading"><span>GUIDA VISIVA</span><button type="button" onClick={()=>setOpen(true)}>Ingrandisci immagine ↗</button></div>
-   <div className="procedure-visual-body"><div className="procedure-artwork">{v.image?<img src={v.image} alt={v.alt} width="800" height="600"/>:drawing}</div><figcaption><strong>{v.title}</strong><ol>{v.points.map((point,i)=><li key={point}><span>{i+1}</span>{point}</li>)}</ol></figcaption></div>
-   {v.source&&<div className="image-credit"><a href={`https://commons.wikimedia.org/wiki/File:${v.source}`} target="_blank" rel="noreferrer">{v.author} · Wikimedia Commons</a><span> · </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a><span> · Immagine originale, non modificata.{v.image===simulation?' Simulazione su manichino.':v.image===airway?' Confronto anatomico; non rappresenta la tecnica esecutiva.':''}</span></div>}
+  <figure className={`
+      mx-0 overflow-hidden border border-solid border-[rgb(217,_229,_233)] mt-5.5 mb-6.5 rounded-[16px] bg-[#f5f9fa]
+      [&_figcaption]:py-[25px] [&_figcaption]:px-5 [&_figcaption]:self-center [&_figcaption>strong]:block
+      [&_figcaption>strong]:text-[length:18px] [&_figcaption>strong]:leading-[1.5]
+      [&_figcaption>strong]:text-[#244b60] [&_ol]:p-0 [&_ol]:mx-0 [&_ol]:gap-[17px] [&_ol]:list-none [&_ol]:mt-5
+      [&_ol]:mb-0 [&_ol]:grid [&_li]:gap-2.5 [&_li]:flex [&_li]:items-start [&_li]:text-[length:12px]
+      [&_li]:leading-[1.7] [&_li]:text-[#496a7d] [&_li>span]:grid [&_li>span]:place-items-center
+      [&_li>span]:min-w-[23px] [&_li>span]:h-[23px] [&_li>span]:rounded-full [&_li>span]:bg-[#e0eeed]
+      [&_li>span]:text-[#326967] [&_li>span]:text-[length:10px] [&_li>span]:font-[700]
+      max-[1150px]:[&_figcaption]:p-5 max-[1150px]:[&_ol]:gap-3 max-[1150px]:[&_ol]:mt-3.5
+      max-[650px]:[&_figcaption>strong]:text-[length:17px] max-[650px]:[&_li]:text-[length:12px]
+    ${v.image?'has-clinical-image':''}`} aria-label={`Guida visiva: ${v.title}`}>
+   <div className="
+      py-[13px] px-4.5 gap-3 [border-bottom:1px_solid_rgb(223,_233,_236)] flex items-center justify-between
+      [&>span]:text-[length:10px] [&>span]:tracking-[1.5px] [&>span]:font-[700] [&>span]:text-[#527182]
+      [&_button]:p-1.5 [&_button]:border-0 [&_button]:border-none [&_button]:border-[currentColor]
+      [&_button]:text-[length:11px] [&_button]:text-[#315b72] [&_button]:bg-[transparent] [&_button]:cursor-pointer
+      max-[650px]:py-2.5 max-[650px]:px-3 max-[650px]:[&_button]:text-[length:10px]
+    "><span>GUIDA VISIVA</span><button type="button" onClick={()=>setOpen(true)}>Ingrandisci immagine ↗</button></div>
+   <div className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-stretch min-h-72.5 max-[1150px]:grid-cols-[1fr]"><div className="
+      procedure-artwork p-2.5 flex items-center justify-center bg-[white] min-w-0
+      [&>img:not(.step-illustration)]:w-full [&>img:not(.step-illustration)]:h-80
+      [&>img:not(.step-illustration)]:object-contain max-[1150px]:[&>img:not(.step-illustration)]:h-85
+      max-[650px]:[&>img:not(.step-illustration)]:h-75
+    ">{v.image?<img src={v.image} alt={v.alt} width="800" height="600"/>:drawing}</div><figcaption><strong>{v.title}</strong><ol>{v.points.map((point,i)=><li key={point}><span>{i+1}</span>{point}</li>)}</ol></figcaption></div>
+   {v.source&&<div className="
+      py-2.5 px-4 [border-top:1px_solid_rgb(225,_233,_237)] bg-[white] text-[length:9px] leading-[1.8] text-[#728793]
+      [&_a]:underline [&_a]:[text-underline-offset:2px]
+    "><a href={`https://commons.wikimedia.org/wiki/File:${v.source}`} target="_blank" rel="noreferrer">{v.author} · Wikimedia Commons</a><span> · </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a><span> · Immagine originale, non modificata.{v.image===simulation?' Simulazione su manichino.':v.image===airway?' Confronto anatomico; non rappresenta la tecnica esecutiva.':''}</span></div>}
   </figure>
-  <Dialog open={open} onOpenChange={setOpen}><DialogContent className="procedure-image-dialog"><DialogHeader><DialogTitle>{v.title}</DialogTitle></DialogHeader>{v.image?<img src={v.image} alt={v.alt}/>:drawing}<p>{v.points.join(' · ')}</p>{v.source&&<p><a href={`https://commons.wikimedia.org/wiki/File:${v.source}`} target="_blank" rel="noreferrer">{v.author} · Fonte originale</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a> · Nessuna modifica</p>}</DialogContent></Dialog>
+  <Dialog open={open} onOpenChange={setOpen}><DialogContent className="
+      procedure-image-dialog overflow-auto w-[min(94vw,1050px)]! max-w-[1050px]! max-h-[93vh] [&>img]:w-full
+      [&>img]:h-auto [&>img]:max-h-[65vh] [&>img]:object-contain [&>p]:text-[length:12px] [&>p]:leading-[1.8]
+      [&>p]:text-[#496a7d] [&_a]:underline
+    "><DialogHeader><DialogTitle>{v.title}</DialogTitle></DialogHeader>{v.image?<img src={v.image} alt={v.alt}/>:drawing}<p>{v.points.join(' · ')}</p>{v.source&&<p><a href={`https://commons.wikimedia.org/wiki/File:${v.source}`} target="_blank" rel="noreferrer">{v.author} · Fonte originale</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a> · Nessuna modifica</p>}</DialogContent></Dialog>
  </>
 }

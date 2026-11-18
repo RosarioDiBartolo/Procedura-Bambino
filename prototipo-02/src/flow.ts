@@ -1,3 +1,4 @@
+import type { Observations } from "./assistant/assessment.ts";
 export type StepId='preparation'|'birth'|'cord'|'initial'|'skin'|'first-actions'|'respiration'|'distress'|'distress-support'|'ppv'|'hr100'|'correctives'|'hr60'|'compressions'|'advanced-hr'|'medication'|'recovery-review'|'post'
 export type Step={id:StepId;phase:number;title:string;subtitle:string;kind:'action'|'decision'|'birth';actions?:string[];question?:string;next?:StepId;box?:'saturation'|'mrsopa'|'doppes';source:string}
 export const phases=['Preparazione','Nascita e valutazione','Supporto respiratorio','Correttivi e rivalutazione','Supporto avanzato','Cure successive']
@@ -52,14 +53,14 @@ export function decide(step:StepId,a:Answers):StepId{
  }
  throw Error('In questo passaggio non è prevista una nuova valutazione.')
 }
-export type Event={id:number;at:number;step:StepId;type:'transition'|'action'|'assessment'|'birth'|'help'|'medication'|'correction'|'end';text:string;answers?:Answers}
-export type Session={step:StepId;enteredAt:number;birthAt:number|null;finishedAt:number|null;checks:Record<string,boolean>;events:Event[];stack:StepId[];lastMedicationAt:number|null;startedAt:number}
+export type Event={id:number;at:number;step:StepId;type:'transition'|'action'|'assessment'|'birth'|'help'|'medication'|'correction'|'end';from?:StepId;to?:StepId;text:string;answers?:Answers}
+export type Session={voiceDisabled?:boolean;observations?:{visit:string;values:Observations};appliedTurns?:string[];step:StepId;enteredAt:number;birthAt:number|null;finishedAt:number|null;checks:Record<string,boolean>;events:Event[];stack:StepId[];lastMedicationAt:number|null;startedAt:number}
 export function createSession(now=Date.now()):Session{return{step:'preparation',enteredAt:now,birthAt:null,finishedAt:null,checks:{},events:[],stack:[],lastMedicationAt:null,startedAt:now}}
 export function record(s:Session,event:Omit<Event,'id'>):Session{return {...s,events:[...s.events,{...event,id:(s.events.at(-1)?.id??0)+1}]}}
 export function move(s:Session,next:StepId,now:number,text:string,answers?:Answers):Session{
- const withEvent=record(s,{at:now,step:s.step,type:answers?'assessment':'transition',text,answers});
- return {...withEvent,step:next,enteredAt:now,stack:[...s.stack,s.step]}
+ const withEvent=record(s,{at:now,step:s.step,type:answers?'assessment':'transition',from:s.step,to:next,text,answers});
+ return {...withEvent,step:next,enteredAt:Math.max(now,s.enteredAt+1),stack:[...s.stack,s.step]}
 }
-export function back(s:Session,now:number):Session{const previous=s.stack.at(-1);if(!previous)return s;return {...record(s,{at:now,step:s.step,type:'correction',text:`Ritorno al passaggio «${steps[previous].title}» per correzione`}),step:previous,enteredAt:now,stack:s.stack.slice(0,-1)}}
+export function back(s:Session,now:number):Session{const previous=s.stack.at(-1);if(!previous)return s;return {...record(s,{at:now,step:s.step,type:'correction',from:s.step,to:previous,text:`Ritorno al passaggio «${steps[previous].title}» per correzione`}),step:previous,enteredAt:Math.max(now,s.enteredAt+1),stack:s.stack.slice(0,-1)}}
 export function secondsFrom(at:number|null,now:number){return at===null?null:Math.max(0,Math.floor((now-at)/1000))}
 export function formatTime(seconds:number|null){return seconds===null?'—:—':`${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`}

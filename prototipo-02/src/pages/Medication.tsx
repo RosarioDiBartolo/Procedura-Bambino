@@ -11,7 +11,11 @@ export default function Medication() {
   return (
     <StepFrame step="medication" footer={<Continue step="medication" />}>
       <ActionContent step="medication" />
-      <div className="compact-medication">
+      <div className="
+      compact-medication py-[9px] px-3 gap-[15px] flex items-center bg-[#f9f5ed] rounded-[8px] shrink-0
+      [&_button]:text-[length:11px] [&_button]:h-[35px] [&>span]:text-[length:11px] [&>span]:leading-[1.5]
+      [&>span]:text-[#7c704e] max-[699px]:flex-wrap
+    ">
         <Button
           variant="outline"
           onClick={() => {

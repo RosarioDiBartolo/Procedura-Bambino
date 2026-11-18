@@ -18,7 +18,7 @@ test('shared UI does not depend on a prototype-specific import',()=>{
  assert.match(read('prototipo-02/src/App.tsx'),/@nls\/ui\/components\/button/);
 });
 test('CSS consumers share semantic tokens and external components are scanned',()=>{
- const legacy=read('shared/design-system/legacy-components.css');assert.match(legacy,/var\(--primary\)/);assert.match(legacy,/var\(--ring\)/);
+ assert.match(read('shared/ui/src/components/button.tsx'),/bg-primary/);
  assert.match(read('shared/design-system/tokens.css'),/data-theme="nido"/);
  assert.match(read('prototipo-02/src/index.css'),/shared\/design-system\/tokens.css/);
  assert.match(read('shared/design-system/tailwind.css'),/@source "\.\.\/ui\/src"/);

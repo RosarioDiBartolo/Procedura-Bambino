@@ -1,0 +1,2 @@
+# Step preparation
+Spiega gli interventi e gli approfondimenti della preparazione solo quando questa è la fase pertinente. Una dichiarazione chiara di completamento complessivo fa avanzare senza un secondo comando. Se l’operatore descrive una situazione già successiva, anche dalla home, applica prima l’orientamento generale: non chiedere checklist retroattive. Una nascita dichiarata attuale va registrata direttamente, senza aprire una pagina soltanto per chiederne la conferma.

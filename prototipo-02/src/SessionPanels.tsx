@@ -45,7 +45,13 @@ export function SessionPanels() {
       }}
     >
       <DialogContent
-        className={panel === "poster" ? "poster-dialog" : "reference-dialog"}
+        className={panel === "poster" ? "w-[min(90vw,1050px)]! max-w-[1050px]! max-h-[94vh] overflow-y-auto max-[650px]:p-4.5! max-[650px]:w-[95vw]!" : `
+      reference-dialog p-[27px]! max-w-[570px]! max-h-[90vh] overflow-y-auto
+      [&_[data-slot=dialog-title]]:text-[length:19px] [&_[data-slot=dialog-title]]:tracking-[-.4px]
+      [&_[data-slot=dialog-title]]:text-[#29485f] [&_[data-slot=dialog-description]]:text-[length:11px]
+      [&_[data-slot=dialog-description]]:leading-[1.8] [&_[data-slot=dialog-description]]:text-[#8ba0af] [&_h3]:mx-0
+      [&_h3]:text-[length:14px] [&_h3]:font-[600] [&_h3]:text-[#48667c] [&_h3]:mt-0 [&_h3]:mb-3 max-[650px]:p-[23px]!
+    `}
       >
         <DialogHeader>
           <DialogTitle>
@@ -73,18 +79,24 @@ export function SessionPanels() {
         </DialogHeader>
         {["saturation", "mrsopa", "doppes"].includes(panel ?? "") && (
           <Tabs value={box} onValueChange={(value) => setPanel(value as Panel)}>
-            <TabsList className="reference-tabs">
+            <TabsList className="mx-0 w-full mt-3 mb-[23px] [&_button]:grow [&_button]:shrink [&_button]:basis-[0%] [&_button]:text-[length:11px]">
               <TabsTrigger value="saturation">01 · SpO₂</TabsTrigger>
               <TabsTrigger value="mrsopa">02 · MR SOPA</TabsTrigger>
               <TabsTrigger value="doppes">03 · DOPPES</TabsTrigger>
             </TabsList>
             <TabsContent value="saturation">
               <h3>Target SpO₂ preduttale dopo la nascita</h3>
-              <p className="reference-intro">
+              <p className="text-[length:11px] text-[#899caa] leading-[1.8]">
                 Confronta la saturazione preduttale con il tempo trascorso dalla
                 nascita.
               </p>
-              <table className="reference-table">
+              <table className="
+      w-full border-collapse text-[length:13px] mt-4.5 [&_td]:p-[13px]
+      [&_td]:[border-bottom:1px_solid_rgb(231,_237,_242)] [&_td]:text-left [&_th]:p-[13px]
+      [&_th]:[border-bottom:1px_solid_rgb(231,_237,_242)] [&_th]:text-left [&_th]:text-[length:10px]
+      [&_th]:text-[#91a0ae] [&_th]:bg-[#f5f8fb] [&_th]:font-[600] [&_td:last-child]:font-[600]
+      [&_td:last-child]:text-[#42667e]
+    ">
                 <thead>
                   <tr>
                     <th>Tempo dopo la nascita</th>
@@ -100,7 +112,7 @@ export function SessionPanels() {
                   ))}
                 </tbody>
               </table>
-              <p className="reference-caution">
+              <p className="p-3 text-[length:10px] leading-[1.8] bg-[#f7f4ee] text-[#9b896d] rounded-[7px] mt-5">
                 Questi target dei primi minuti non sono target universali per il
                 neonato già ricoverato in UTIN.
               </p>
@@ -113,7 +125,7 @@ export function SessionPanels() {
                 session={session}
                 setSession={setSession}
               />
-              <p className="reference-caution">
+              <p className="p-3 text-[length:10px] leading-[1.8] bg-[#f7f4ee] text-[#9b896d] rounded-[7px] mt-5">
                 Rimuovi le secrezioni solo se necessario. Verifica la risposta
                 della ventilazione dopo ogni correzione.
               </p>
@@ -130,7 +142,11 @@ export function SessionPanels() {
           </Tabs>
         )}
         {panel === "poster" && (
-          <div className="poster-view">
+          <div className="
+      [&>a]:mx-0 [&>a]:gap-[7px] [&>a]:flex [&>a]:items-center [&>a]:text-[length:11px] [&>a]:text-[#698ba4]
+      [&>a]:mt-2 [&>a]:mb-5 [&_img]:border [&_img]:border-solid [&_img]:border-[rgb(221,_229,_236)] [&_img]:w-full
+      [&_img]:rounded-[6px]
+    ">
             <a
               href="sources/poster-sin-2025.pdf"
               target="_blank"
@@ -147,7 +163,11 @@ export function SessionPanels() {
         )}
         {panel === "help" && (
           <>
-            <div className="help-panel-note">
+            <div className="
+      p-5 gap-[15px] flex items-start bg-[#f4f7f9] rounded-[10px] text-[#8299ab] [&_svg]:shrink-0 [&_p]:m-0
+      [&_p]:text-[length:12px] [&_p]:leading-[1.8] [&_p]:text-[#637e92]
+      [.reference-dialog>&~button]:text-[length:11px] [.reference-dialog>&~button]:mt-2.5
+    ">
               <PhoneCall size={25} />
               <p>
                 Attiva il sistema di chiamata previsto dalla struttura e
@@ -155,7 +175,7 @@ export function SessionPanels() {
                 .
               </p>
             </div>
-            <p className="reference-caution">
+            <p className="p-3 text-[length:10px] leading-[1.8] bg-[#f7f4ee] text-[#9b896d] rounded-[7px] mt-5">
               Nessuna chiamata viene effettuata dall’app.
             </p>
             <Button
@@ -176,7 +196,7 @@ export function SessionPanels() {
           </>
         )}
         {panel === "new" && (
-          <div className="dialog-actions">
+          <div className="gap-3 flex justify-between mt-[15px] [&_button]:text-[length:11px]">
             <Button variant="outline" onClick={() => exportSession(session)}>
               <Download size={15} />
               Esporta registro
@@ -192,7 +212,10 @@ export function SessionPanels() {
           </div>
         )}
         {panel === "limits" && (
-          <div className="limits-content">
+          <div className="
+      text-[length:12px] text-[#7990a2] leading-[1.9] [&_ul]:my-[15px] [&_ul]:mx-0 [&_ul]:[list-style:disc]
+      [&_ul]:pl-4.5 [&_li]:my-[9px] [&_li]:mx-0 [&_a]:gap-2 [&_a]:flex [&_a]:items-center [&_a]:text-[#3d6b8c]
+    ">
             <p className="source-context">
               <strong>Riferimento del passaggio:</strong> {current.source}
             </p>
@@ -249,7 +272,14 @@ export function SessionPanels() {
         )}
 
         {panel === "navigation" && (
-          <nav className="compact-navigation" aria-label="Fasi della procedura">
+          <nav className="
+      gap-2 grid [&>div]:p-3.5 [&>div]:gap-3 [&>div]:border [&>div]:border-solid [&>div]:border-[rgb(224,_232,_237)]
+      [&>div]:flex [&>div]:items-center [&>div]:rounded-[9px] [&>div]:text-[length:13px] [&>div]:text-[#758c9b]
+      [&>div>span]:grid [&>div>span]:place-items-center [&>div>span]:bg-[#edf2f6] [&>div>span]:rounded-[7px]
+      [&>div>span]:w-7.5 [&>div>span]:h-7.5 [&>div>span]:text-[length:12px] [&_[aria-current=step]]:border-[#9abccc]
+      [&_[aria-current=step]]:bg-[#edf5f8] [&_[aria-current=step]]:text-[#244f68] [&_small]:ml-auto
+      [&_small]:text-[length:10px] [&>p]:text-[length:11px] [&>p]:text-[#8195a1]
+    " aria-label="Fasi della procedura">
             {phases.map((name, i) => (
               <div
                 key={name}
@@ -264,9 +294,17 @@ export function SessionPanels() {
           </nav>
         )}
         {panel === "history" && (
-          <div className="compact-history">
+          <div className="
+      mt-2 space-y-5
+      [&>ol]:p-0 [&>ol]:mx-0 [&>ol]:overflow-auto [&>ol]:list-none [&>ol]:max-h-[55vh] [&>ol]:mt-0 [&>ol]:mb-[15px]
+      [&_li]:py-3 [&_li]:px-0 [&_li]:gap-2.5 [&_li]:[border-bottom:1px_solid_rgb(230,_237,_241)] [&_li]:grid
+      [&_li]:grid-cols-[62px_1fr] [&_li]:text-[length:11px] [&_li]:leading-[1.6] [&_time]:text-[#8598a4]
+    ">
             {!session.events.length ? (
-              <p>Nessun evento registrato.</p>
+              <div className="flex min-h-28 flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-border bg-muted/50 px-5 py-6 text-center">
+                <FileText size={22} className="text-muted-foreground/60" aria-hidden="true" />
+                <p className="text-sm text-muted-foreground">Nessun evento registrato.</p>
+              </div>
             ) : (
               <ol>
                 {[...session.events].reverse().map((e) => (
@@ -278,19 +316,21 @@ export function SessionPanels() {
                         second: "2-digit",
                       })}
                     </time>
-                    <span>{e.text}</span>
+                    <span>{e.from && e.to && <strong>{steps[e.from].title} → {steps[e.to].title}<br /></strong>}{e.text}</span>
                   </li>
                 ))}
               </ol>
             )}
-            <Button
-              variant="outline"
-              disabled={!session.events.length}
-              onClick={() => exportSession(session)}
-            >
-              <Download size={16} />
-              Esporta JSON
-            </Button>
+            <div className="flex justify-end border-t border-border pt-4">
+              <Button
+                variant="outline"
+                disabled={!session.events.length}
+                onClick={() => exportSession(session)}
+              >
+                <Download size={16} />
+                Esporta JSON
+              </Button>
+            </div>
           </div>
         )}
       </DialogContent>
@@ -309,11 +349,17 @@ function ReferenceChecklist({
   setSession: React.Dispatch<React.SetStateAction<Session>>;
 }) {
   return (
-    <div className="reference-checklist">
+    <div className="
+      reference-checklist [&_label]:py-[15px] [&_label]:px-0 [&_label]:gap-[15px]
+      [&_label]:[border-bottom:1px_solid_rgb(231,_237,_242)] [&_label]:flex [&_label]:items-center
+      [&_label]:text-[length:12px] [&_label]:text-[#617f93] [&_label]:cursor-pointer [&_label>span:nth-child(2)]:grow
+      [&_label>span:nth-child(2)]:shrink [&_label>span:nth-child(2)]:basis-[0%]
+      [&_label>span:nth-child(2)]:leading-[1.7] max-[650px]:[&_label]:gap-2 max-[650px]:[&_label]:text-[length:11px]
+    ">
       {items.map(([letter, text], i) => (
         <label key={`${prefix}-${i}`}>
           <Illustration name={artFor(text)} />
-          <span className="mnemonic-letter">{letter}</span>
+          <span className="w-7.5 h-7.5 grid place-items-center bg-[#edf3f7] rounded-[7px] text-[length:15px] font-[650] text-[#54758f] shrink-0">{letter}</span>
           <span>{text}</span>
           <Checkbox
             checked={!!session.checks[`${prefix}-${i}`]}
