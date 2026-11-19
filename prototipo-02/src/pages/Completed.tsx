@@ -4,6 +4,7 @@ import { Button } from "@nls/ui/components/button";
 import { Illustration } from "../Illustration";
 import { useSession } from "../SessionContext";
 import { useProcedureRoute } from "../navigation";
+import { exportReport } from "../sessionReport";
 import { exportSession } from "../exportSession";
 export default function Completed() {
   const [session] = useSession();
@@ -26,10 +27,11 @@ export default function Completed() {
         <p>
           <TextType text="Il registro conserva i passaggi in questa scheda, anche dopo una ricarica della pagina." />
         </p>
-        <Button onClick={() => exportSession(session)}>
+        <Button onClick={() => exportReport(session)}>
           <Download size={16} />
-          Esporta il registro
+          Scarica report
         </Button>
+        <Button variant="outline" onClick={() => exportSession(session)}>Esporta JSON</Button>
         <Button variant="outline" onClick={() => setPanel("new")}>
           Avvia un’altra sessione
         </Button>

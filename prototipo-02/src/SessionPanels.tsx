@@ -28,6 +28,7 @@ import { isInterventionPanel } from "./interventionDetails";
 import { useSession } from "./SessionContext";
 import { useProcedureRoute, type Panel } from "./navigation";
 import { useWorkflow } from "./useWorkflow";
+import { exportReport } from "./sessionReport";
 import { exportSession } from "./exportSession";
 export function SessionPanels() {
   const [session, setSession] = useSession();
@@ -196,11 +197,12 @@ export function SessionPanels() {
           </>
         )}
         {panel === "new" && (
-          <div className="gap-3 flex justify-between mt-[15px] [&_button]:text-[length:11px]">
-            <Button variant="outline" onClick={() => exportSession(session)}>
+          <div className="gap-3 flex flex-wrap justify-between mt-[15px] [&_button]:text-[length:11px]">
+            <Button variant="outline" onClick={() => exportReport(session)}>
               <Download size={15} />
-              Esporta registro
+              Scarica report
             </Button>
+            <Button variant="outline" onClick={() => exportSession(session)}>Esporta JSON</Button>
             <Button
               variant="destructive"
               onClick={() => {
@@ -321,7 +323,8 @@ export function SessionPanels() {
                 ))}
               </ol>
             )}
-            <div className="flex justify-end border-t border-border pt-4">
+            <div className="flex flex-wrap justify-end gap-2 border-t border-border pt-4">
+              <Button onClick={() => exportReport(session)}><Download size={16} />Scarica report</Button>
               <Button
                 variant="outline"
                 disabled={!session.events.length}

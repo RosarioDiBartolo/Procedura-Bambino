@@ -32,3 +32,7 @@ Si usano esclusivamente i WAV esistenti in `shared/assets/audio/qwen`. Non vengo
 Importare questo repository con Root Directory impostata alla radice del repository, non a `prototipo-02`. `vercel.json` configura installazione, compilazione e cartella di output. Branch produzione: `main`. Nessuna variabile d'ambiente o chiave API necessaria. Il routing hash non richiede riscritture.
 
 Prototipo per simulazione con dati fittizi, non validato per uso assistenziale. Registro e sessione restano nel browser; nessuna sincronizzazione tra dispositivi. Fonti originali in `fonti/`, interfaccia e asset comuni in `shared/`.
+
+## Report e JSON
+
+Scarica report genera un documento HTML autonomo e leggibile con riepilogo, tempi, valutazioni e cronologia completa. Aprirlo nel browser e usare Stampa / Salva PDF per produrre un PDF A4. È disponibile dal registro, dalla conclusione e prima di azzerare la sessione. Una sessione non conclusa è indicata come report parziale. Esporta JSON mantiene separati i dati strutturati originali. Nessun dato viene inviato a servizi esterni per generare il report.
