@@ -1,15 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { Button } from '@nls/ui/components/button';
 
+export const stepAudioDelayMs = 500;
 const preference = 'nido-recorded-voice-enabled';
 export function RecordedVoice({ clip, visit }: { clip: string; visit: string }) {
   const audio = useRef<HTMLAudioElement | null>(null);
   const generation = useRef(0);
+  const pending = useRef<ReturnType<typeof setTimeout> | null>(null);
   const activated = useRef(false);
   const [enabled, setEnabled] = useState(() => { try { return window.localStorage.getItem(preference) === 'true'; } catch { return false; } });
   const [status, setStatus] = useState('');
   const [playing, setPlaying] = useState(false);
   const stop = () => {
+    if (pending.current !== null) { clearTimeout(pending.current); pending.current = null; }
     generation.current++;
     if (audio.current) { audio.current.pause(); audio.current.currentTime = 0; }
     setPlaying(false);
@@ -27,15 +30,20 @@ export function RecordedVoice({ clip, visit }: { clip: string; visit: string }) 
       if (token === generation.current) { setPlaying(false); setStatus('Audio non avviato. Premi Ascolta per riprovare.'); }
     });
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
     const current = new Audio(`${import.meta.env.BASE_URL}audio/qwen/${clip}.wav`);
     current.preload = 'none';
     audio.current = current;
     current.onended = () => { setPlaying(false); setStatus('Lettura terminata'); };
     current.onerror = () => { generation.current++; setPlaying(false); setStatus('Registrazione non disponibile. Puoi continuare leggendo lo schermo.'); };
     setStatus('');
-    if (enabled && activated.current) play();
-    return () => { generation.current++; current.pause(); current.onended = null; current.onerror = null; current.removeAttribute('src'); current.load(); audio.current = null; };
+    setPlaying(false);
+    if (enabled && activated.current) {
+      setStatus('Lettura tra un momento…');
+      setPlaying(true);
+      pending.current = setTimeout(() => { pending.current = null; play(); }, stepAudioDelayMs);
+    }
+    return () => { if (pending.current !== null) { clearTimeout(pending.current); pending.current = null; } generation.current++; current.pause(); current.onended = null; current.onerror = null; current.removeAttribute('src'); current.load(); audio.current = null; };
   }, [clip, visit]);
   function toggle() {
     const next = !enabled;

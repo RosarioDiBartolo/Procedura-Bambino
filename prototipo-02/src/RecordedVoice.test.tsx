@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { RecordedVoice } from './RecordedVoice';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { RecordedVoice, stepAudioDelayMs } from './RecordedVoice';
 let clips: any[];
 beforeEach(() => {
   const storage = new Map<string,string>();
@@ -11,7 +11,7 @@ beforeEach(() => {
     constructor(src: string) { this.src = src; clips.push(this); }
   });
 });
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+afterEach(() => { cleanup(); vi.useRealTimers(); vi.unstubAllGlobals(); });
 it('attiva, ripete da zero, interrompe e disattiva la registrazione', async () => {
   render(<RecordedVoice clip="preparation" visit="1" />);
   expect(clips[0].play).not.toHaveBeenCalled();
@@ -26,10 +26,15 @@ it('attiva, ripete da zero, interrompe e disattiva la registrazione', async () =
   expect(window.localStorage.getItem('nido-recorded-voice-enabled')).toBe('false');
 });
 it('ferma il vecchio audio al cambio visita e non riparte dopo la disattivazione', async () => {
+  vi.useFakeTimers();
   const view = render(<RecordedVoice clip="preparation" visit="1" />);
   fireEvent.click(screen.getByRole('button', {name:'Attiva voce'}));
   view.rerender(<RecordedVoice clip="birth" visit="2" />);
   expect(clips[0].pause).toHaveBeenCalled(); expect(clips[1].src).toContain('/audio/qwen/birth.wav');
+  expect(clips[1].play).not.toHaveBeenCalled();
+  act(() => { vi.advanceTimersByTime(stepAudioDelayMs - 1); });
+  expect(clips[1].play).not.toHaveBeenCalled();
+  act(() => { vi.advanceTimersByTime(1); });
   expect(clips[1].play).toHaveBeenCalledOnce();
   fireEvent.click(screen.getByRole('button', {name:'Disattiva voce'}));
   view.rerender(<RecordedVoice clip="cord" visit="3" />);
@@ -41,4 +46,24 @@ it('gestisce il blocco della riproduzione senza impedire la procedura', async ()
   fireEvent.click(screen.getByRole('button', {name:'Attiva voce'}));
   await waitFor(() => expect(screen.getByRole('status').textContent).toContain('Premi Ascolta'));
   expect((screen.getByRole('button', {name:'Ascolta / Ripeti'}) as HTMLButtonElement).disabled).toBe(false);
+});
+
+it('annulla gli avvii pendenti passando rapidamente tra step o premendo Interrompi', () => {
+  vi.useFakeTimers();
+  const view = render(<RecordedVoice clip="preparation" visit="1" />);
+  fireEvent.click(screen.getByRole('button', {name:'Attiva voce'}));
+  view.rerender(<RecordedVoice clip="birth" visit="2" />);
+  view.rerender(<RecordedVoice clip="cord" visit="3" />);
+  expect(clips[0].pause).toHaveBeenCalled();
+  act(() => { vi.advanceTimersByTime(stepAudioDelayMs); });
+  expect(clips[1].play).not.toHaveBeenCalled();
+  expect(clips[2].play).toHaveBeenCalledOnce();
+  view.rerender(<RecordedVoice clip="initial" visit="4" />);
+  fireEvent.click(screen.getByRole('button', {name:'Interrompi'}));
+  act(() => { vi.advanceTimersByTime(stepAudioDelayMs); });
+  expect(clips[3].play).not.toHaveBeenCalled();
+  view.rerender(<RecordedVoice clip="skin" visit="5" />);
+  fireEvent.click(screen.getByRole('button', {name:'Disattiva voce'}));
+  act(() => { vi.advanceTimersByTime(stepAudioDelayMs); });
+  expect(clips[4].play).not.toHaveBeenCalled();
 });
