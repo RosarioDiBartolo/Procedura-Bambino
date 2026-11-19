@@ -2,7 +2,7 @@
   "name": "nls-prototypes",
   "private": true,
   "engines": {
-    "node": ">=22.18.0"
+    "node": "22.x"
   },
   "workspaces": [
     "prototipo-02",
