@@ -1,0 +1,10 @@
+{
+  "brand": {
+    "logo": "brand/nido-logo.png",
+    "favicon": "brand/favicon.svg"
+  },
+  "reference": {
+    "posterImage": "sources/poster.png",
+    "posterPdfSource": "../fonti/Poster Rianimazione 2025 DEFINITIVO.pdf"
+  }
+}

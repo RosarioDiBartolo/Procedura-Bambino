@@ -1,1 +1,0 @@
-{"$schema":"https://ui.shadcn.com/schema.json","style":"new-york","rsc":false,"tsx":true,"tailwind":{"config":"","css":"../shared/design-system/tailwind.css","baseColor":"slate","cssVariables":true},"iconLibrary":"lucide","aliases":{"components":"@/components","utils":"@nls/ui/lib/utils","ui":"@nls/ui/components","lib":"@/lib","hooks":"@/hooks"}}

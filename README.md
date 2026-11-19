@@ -1,38 +1,63 @@
 # Nido — simulazione NLS
 
-Versione React con guida vocale da file preregistrati, senza AI, chat, microfono o server API.
+Un’unica applicazione React, TypeScript e Vite. Guida della procedura con audio preregistrati, senza AI, chat, microfono o server API. Prototipo per simulazione con dati fittizi, non validato per uso assistenziale.
 
-## Avvio e verifica
+## Avvio
 
-Richiede Node.js 22.18 o successivo. Dalla cartella principale:
+Richiede Node.js 22. Dalla radice:
 
 ```sh
 npm ci
 npm run dev
-npm run build
-npm test
 ```
 
-Aprire http://localhost:5180. La compilazione produce `prototipo-02/dist`.
+Aprire http://localhost:5180. Tutti i comandi si eseguono dalla radice:
 
-## Versioni
+```sh
+npm test
+npm run build
+npm run preview
+```
 
-- `main`: versione senza AI destinata alla pubblicazione.
-- `codex/ai-preserved`: versione AI completa conservata prima della rimozione.
-- `codex/prerecorded-voice`: sviluppo della guida preregistrata.
+La compilazione produce `dist/`. Non ci sono workspace npm o app secondarie.
 
-## Voce
+## Struttura
 
-La voce è attiva per impostazione predefinita, salvo disattivazione salvata sul dispositivo. Attiva voce avvia il file dello step corrente. Ascolta / Ripeti ricomincia dall'inizio; Interrompi ferma la lettura. Disattiva voce interrompe e impedisce l'avvio automatico agli step successivi. Dopo l'attivazione, ogni cambio di step arresta immediatamente il vecchio audio e avvia il nuovo dopo 500 ms. Interrompere o disattivare durante questa pausa annulla anche la riproduzione in attesa; Ascolta / Ripeti resta immediato. La preferenza viene salvata sul dispositivo; a ogni ingresso o ricarica viene tentata la lettura automatica dopo 500 ms. Se il browser blocca la riproduzione automatica, un messaggio visibile invita a premere Ascolta.
+```text
+src/                  Codice React, flusso, sessione, audio e report
+  pages/              Pagine della procedura
+  components/ui/      Componenti dell’interfaccia
+  components/icons8.tsx  Icone dell’app
+  assets/             Foto, illustrazioni e icone importate dal codice
+  styles/             Token e configurazione Tailwind
+public/               File pubblicati con percorsi stabili
+  audio/qwen/         Registrazioni WAV esistenti
+  brand/              Logo e favicon
+  sources/            Immagine del poster
+fonti/                PDF originale SIN 2025
+docs/                 Materiali di lavoro, anteprime, script e notebook audio
+index.html            Ingresso dell’app
+vite.config.ts        Sviluppo, compilazione e test
+```
 
-Si usano esclusivamente i WAV esistenti in `shared/assets/audio/qwen`. Non vengono generati o inviati audio a servizi esterni. Alcune registrazioni descrivono i vecchi controlli: nascita, valutazione iniziale, respiro, difficoltà respiratoria, FC dopo ventilazione/correttivi/compressioni e conclusione. I testi sostitutivi non ancora registrati sono in `prototipo-02/audio/Testi-audio-nuove-schermate.md`. L'interfaccia attuale resta il riferimento per i comandi.
+I componenti UI e le utility appartengono all’app e usano l’alias `@/`. `components.json` configura shadcn sulla stessa struttura. Vite serve il poster PDF da `fonti/` e lo include in `dist/sources/`, senza duplicarne la sorgente.
+
+## Guida vocale
+
+La voce è attiva per impostazione predefinita, salvo disattivazione salvata sul dispositivo. Ogni ingresso nello step tenta la riproduzione dopo 500 ms. Cambiare step interrompe subito l’audio precedente; cambiare nuovamente step, Interrompi o Disattiva annullano anche gli avvii in attesa. Ascolta / Ripeti è immediato. Se il browser blocca l’avvio automatico, un messaggio visibile invita a premere Ascolta.
+
+Si usano esclusivamente i WAV in `public/audio/qwen`. Alcune registrazioni descrivono vecchi controlli: i testi sostitutivi non ancora registrati sono in `docs/audio/Testi-audio-nuove-schermate.md`. Nessun contenuto viene inviato a servizi esterni per riprodurre la voce.
+
+## Sessione e report
+
+La sessione resta in `sessionStorage` nella stessa scheda e non è sincronizzata tra dispositivi. Le scelte e le transizioni sono manuali; la voce non esegue decisioni.
+
+Scarica report genera un documento HTML autonomo con riepilogo, tempi, valutazioni e cronologia. Aprirlo nel browser e usare Stampa / Salva PDF per produrre un PDF A4. Esporta JSON mantiene separati i dati strutturati. I due comandi sono disponibili dal registro, dalla conclusione e prima di azzerare la sessione. Il report non certifica l’esecuzione o l’efficacia degli interventi.
 
 ## Deploy Vercel
 
-Importare questo repository con Root Directory impostata alla radice del repository, non a `prototipo-02`. `vercel.json` configura installazione, compilazione e cartella di output. Branch produzione: `main`. Nessuna variabile d'ambiente o chiave API necessaria. Il routing hash non richiede riscritture.
+Root Directory: radice del repository. `vercel.json` configura `npm ci`, `npm run build` e output `dist/`. Branch produzione: `main`. Nessuna variabile d’ambiente o chiave API richiesta. Il routing hash non necessita di riscritture. Gli aggiornamenti su `main` avviano il deploy automatico.
 
-Prototipo per simulazione con dati fittizi, non validato per uso assistenziale. Registro e sessione restano nel browser; nessuna sincronizzazione tra dispositivi. Fonti originali in `fonti/`, interfaccia e asset comuni in `shared/`.
+## Versione AI conservata
 
-## Report e JSON
-
-Scarica report genera un documento HTML autonomo e leggibile con riepilogo, tempi, valutazioni e cronologia completa. Aprirlo nel browser e usare Stampa / Salva PDF per produrre un PDF A4. È disponibile dal registro, dalla conclusione e prima di azzerare la sessione. Una sessione non conclusa è indicata come report parziale. Esporta JSON mantiene separati i dati strutturati originali. Nessun dato viene inviato a servizi esterni per generare il report.
+Il branch `codex/ai-preserved` conserva il lavoro AI precedente alla semplificazione. È indipendente dalla struttura corrente e non viene pubblicato sul sito di produzione.

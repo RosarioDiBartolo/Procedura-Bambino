@@ -1,5 +1,0 @@
-{
- "brand":{"logo":"brand/nido-logo.png","favicon":"brand/favicon.svg"},
- "reference":{"posterImage":"sources/poster.png","posterPdfSource":"../../fonti/Poster Rianimazione 2025 DEFINITIVO.pdf"},
- "previews":{"prototype02":"previews/prototipo-02.jpg","sharedComponents":"previews/componenti-condivisi.jpg","legacyCompatibility":"previews/compatibilita-prototipo-01.jpg","numberIndicatorsFix":"previews/correzione-indicatori-750.jpg","operationalCopy":"previews/testi-operativi-cordone.jpg"}
-}

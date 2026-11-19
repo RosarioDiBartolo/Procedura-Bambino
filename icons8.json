@@ -18,235 +18,235 @@
         "id": "S4uQPzcYuUUQ",
         "commonName": "medical-id",
         "selection": "3B",
-        "file": "shared/ui/src/icons8-assets/S4uQPzcYuUUQ.png"
+        "file": "src/assets/icons8/S4uQPzcYuUUQ.png"
       },
       "birth": {
         "id": "2090",
         "commonName": "baby",
         "selection": "4B",
-        "file": "shared/ui/src/icons8-assets/2090.png"
+        "file": "src/assets/icons8/2090.png"
       },
       "breathing": {
         "id": "NZ6xJ1MPsUMH",
         "commonName": "breath",
         "selection": "5B",
-        "file": "shared/ui/src/icons8-assets/NZ6xJ1MPsUMH.png"
+        "file": "src/assets/icons8/NZ6xJ1MPsUMH.png"
       },
       "care": {
         "id": "HquP7TI2ej2Z",
         "commonName": "hand-holding-heart",
         "selection": "6A",
-        "file": "shared/ui/src/icons8-assets/HquP7TI2ej2Z.png"
+        "file": "src/assets/icons8/HquP7TI2ej2Z.png"
       },
       "checklist": {
         "id": "3979",
         "commonName": "checklist",
         "selection": "7A",
-        "file": "shared/ui/src/icons8-assets/3979.png"
+        "file": "src/assets/icons8/3979.png"
       },
       "cord": {
         "id": "TSBeKJdyf0P3",
         "commonName": "newborn-baby",
         "selection": "9B",
-        "file": "shared/ui/src/icons8-assets/TSBeKJdyf0P3.png"
+        "file": "src/assets/icons8/TSBeKJdyf0P3.png"
       },
       "distress": {
         "id": "5355",
         "commonName": "lungs",
         "selection": "10A",
-        "file": "shared/ui/src/icons8-assets/5355.png"
+        "file": "src/assets/icons8/5355.png"
       },
       "heart": {
         "id": "956",
         "commonName": "heart-monitor",
         "selection": "12A",
-        "file": "shared/ui/src/icons8-assets/956.png"
+        "file": "src/assets/icons8/956.png"
       },
       "lungs": {
         "id": "5355",
         "commonName": "lungs",
         "selection": "13A",
-        "file": "shared/ui/src/icons8-assets/5355.png"
+        "file": "src/assets/icons8/5355.png"
       },
       "mask": {
         "id": "MM--xPq8Af1V",
         "commonName": "patient-oxygen-mask",
         "selection": "14A",
-        "file": "shared/ui/src/icons8-assets/MM--xPq8Af1V.png"
+        "file": "src/assets/icons8/MM--xPq8Af1V.png"
       },
       "medication": {
         "id": "962",
         "commonName": "syringe",
         "selection": "15A",
-        "file": "shared/ui/src/icons8-assets/962.png"
+        "file": "src/assets/icons8/962.png"
       },
       "mouth": {
         "id": "123858",
         "commonName": "smiling-mouth",
         "selection": "16A",
-        "file": "shared/ui/src/icons8-assets/123858.png"
+        "file": "src/assets/icons8/123858.png"
       },
       "oxygen": {
         "id": "14735",
         "commonName": "oxygen",
         "selection": "17A",
-        "file": "shared/ui/src/icons8-assets/14735.png"
+        "file": "src/assets/icons8/14735.png"
       },
       "position": {
         "id": "2090",
         "commonName": "baby",
         "selection": "18B",
-        "file": "shared/ui/src/icons8-assets/2090.png"
+        "file": "src/assets/icons8/2090.png"
       },
       "pregnancy": {
         "id": "OEOE_cGkfKPr",
         "commonName": "embryo",
         "selection": "19B",
-        "file": "shared/ui/src/icons8-assets/OEOE_cGkfKPr.png"
+        "file": "src/assets/icons8/OEOE_cGkfKPr.png"
       },
       "saturation": {
         "id": "1ywhPHT9sgZB",
         "commonName": "pulse-oximeter",
         "selection": "20A",
-        "file": "shared/ui/src/icons8-assets/1ywhPHT9sgZB.png"
+        "file": "src/assets/icons8/1ywhPHT9sgZB.png"
       },
       "skin": {
         "id": "tuW6n6tWOHYh",
         "commonName": "maternity",
         "selection": "21B",
-        "file": "shared/ui/src/icons8-assets/tuW6n6tWOHYh.png"
+        "file": "src/assets/icons8/tuW6n6tWOHYh.png"
       },
       "stomach": {
         "id": "5353",
         "commonName": "stomach",
         "selection": "22A",
-        "file": "shared/ui/src/icons8-assets/5353.png"
+        "file": "src/assets/icons8/5353.png"
       },
       "tone": {
         "id": "2090",
         "commonName": "baby",
         "selection": "25A",
-        "file": "shared/ui/src/icons8-assets/2090.png"
+        "file": "src/assets/icons8/2090.png"
       },
       "warmth": {
         "id": "1414",
         "commonName": "temperature",
         "selection": "27A",
-        "file": "shared/ui/src/icons8-assets/1414.png"
+        "file": "src/assets/icons8/1414.png"
       },
       "activity": {
         "id": "956",
         "commonName": "heart-monitor",
         "selection": "28B",
-        "file": "shared/ui/src/icons8-assets/956.png"
+        "file": "src/assets/icons8/956.png"
       },
       "clipboard": {
         "id": "3979",
         "commonName": "checklist",
         "selection": "29B",
-        "file": "shared/ui/src/icons8-assets/3979.png"
+        "file": "src/assets/icons8/3979.png"
       },
       "clock": {
         "id": "6902",
         "commonName": "present",
         "selection": "30B",
-        "file": "shared/ui/src/icons8-assets/6902.png"
+        "file": "src/assets/icons8/6902.png"
       },
       "file": {
         "id": "1395",
         "commonName": "document",
         "selection": "31A",
-        "file": "shared/ui/src/icons8-assets/1395.png"
+        "file": "src/assets/icons8/1395.png"
       },
       "menu": {
         "id": "120374",
         "commonName": "menu--v7",
         "selection": "32A",
-        "file": "shared/ui/src/icons8-assets/120374.png"
+        "file": "src/assets/icons8/120374.png"
       },
       "phone": {
         "id": "9659",
         "commonName": "phone",
         "selection": "33A",
-        "file": "shared/ui/src/icons8-assets/9659.png"
+        "file": "src/assets/icons8/9659.png"
       },
       "reset": {
         "id": "11676",
         "commonName": "restart",
         "selection": "34A",
-        "file": "shared/ui/src/icons8-assets/11676.png"
+        "file": "src/assets/icons8/11676.png"
       },
       "thermometer": {
         "id": "37802",
         "commonName": "thermometer",
         "selection": "35B",
-        "file": "shared/ui/src/icons8-assets/37802.png"
+        "file": "src/assets/icons8/37802.png"
       },
       "volume": {
         "id": "2795",
         "commonName": "high-volume",
         "selection": "36A",
-        "file": "shared/ui/src/icons8-assets/2795.png"
+        "file": "src/assets/icons8/2795.png"
       },
       "stop": {
         "id": "400",
         "commonName": "stop",
         "selection": "37A",
-        "file": "shared/ui/src/icons8-assets/400.png"
+        "file": "src/assets/icons8/400.png"
       },
       "forward": {
         "id": "355",
         "commonName": "right",
         "selection": "38A",
-        "file": "shared/ui/src/icons8-assets/355.png"
+        "file": "src/assets/icons8/355.png"
       },
       "back": {
         "id": "357",
         "commonName": "left",
         "selection": "39A",
-        "file": "shared/ui/src/icons8-assets/357.png"
+        "file": "src/assets/icons8/357.png"
       },
       "external": {
         "id": "742",
         "commonName": "external-link",
         "selection": "40A",
-        "file": "shared/ui/src/icons8-assets/742.png"
+        "file": "src/assets/icons8/742.png"
       },
       "check": {
         "id": "11695",
         "commonName": "checked",
         "selection": "41B",
-        "file": "shared/ui/src/icons8-assets/11695.png"
+        "file": "src/assets/icons8/11695.png"
       },
       "checkcircle": {
         "id": "11658",
         "commonName": "ok",
         "selection": "42A",
-        "file": "shared/ui/src/icons8-assets/11658.png"
+        "file": "src/assets/icons8/11658.png"
       },
       "close": {
         "id": "46",
         "commonName": "delete-sign",
         "selection": "43A",
-        "file": "shared/ui/src/icons8-assets/46.png"
+        "file": "src/assets/icons8/46.png"
       },
       "info": {
         "id": "77",
         "commonName": "info",
         "selection": "44A",
-        "file": "shared/ui/src/icons8-assets/77.png"
+        "file": "src/assets/icons8/77.png"
       },
       "download": {
         "id": "366",
         "commonName": "download",
         "selection": "45A",
-        "file": "shared/ui/src/icons8-assets/366.png"
+        "file": "src/assets/icons8/366.png"
       },
       "maximize": {
         "id": "6509",
         "commonName": "resize-diagonal",
         "selection": "46B",
-        "file": "shared/ui/src/icons8-assets/6509.png"
+        "file": "src/assets/icons8/6509.png"
       }
     }
   },

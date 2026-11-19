@@ -1,18 +1,41 @@
 {
-  "name": "nls-prototypes",
+  "name": "nido",
+  "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5180",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 5180",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "gsap": "^3.15.1",
+    "lucide-react": "^0.468.0",
+    "motion": "^14.14.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.18.5",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.0",
+    "radix-ui": "^1.8.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "jsdom": "^26.1.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.0",
+    "vitest": "^3.2.0"
+  },
   "engines": {
     "node": "22.x"
-  },
-  "workspaces": [
-    "prototipo-02",
-    "shared/ui"
-  ],
-  "scripts": {
-    "dev": "npm run dev --workspace nls-flow-prototype-02 -- --host 0.0.0.0 --port 5180",
-    "build": "npm run build --workspace nls-flow-prototype-02",
-    "test": "npm run test:react && npm run test:shared",
-    "test:react": "npm test --workspace nls-flow-prototype-02",
-    "test:shared": "node --test shared/tests/*.test.cjs"
   }
 }
