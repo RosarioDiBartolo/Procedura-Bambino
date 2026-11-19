@@ -1,4 +1,4 @@
-import type { Observations } from "./assistant/assessment.ts";
+type Observations = Partial<Record<'term'|'tone'|'breathing'|'apnea'|'hr'|'difficulty'|'cyanosis'|'effective', { value: boolean | number | 'below60' | 'atLeast60' | 'below100' | 'atLeast100' | null; source: 'voice' | 'manual'; at: number }>>;
 export type StepId='preparation'|'birth'|'cord'|'initial'|'skin'|'first-actions'|'respiration'|'distress'|'distress-support'|'ppv'|'hr100'|'correctives'|'hr60'|'compressions'|'advanced-hr'|'medication'|'recovery-review'|'post'
 export type Step={id:StepId;phase:number;title:string;subtitle:string;kind:'action'|'decision'|'birth';actions?:string[];question?:string;next?:StepId;box?:'saturation'|'mrsopa'|'doppes';source:string}
 export const phases=['Preparazione','Nascita e valutazione','Supporto respiratorio','Correttivi e rivalutazione','Supporto avanzato','Cure successive']

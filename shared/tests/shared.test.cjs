@@ -1,11 +1,5 @@
 const {test}=require('node:test');const assert=require('node:assert/strict');const fs=require('node:fs');const path=require('node:path');
 const root=path.resolve(__dirname,'../..');const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-test('legacy entry resolves shared assets and styles from its real location',()=>{
- const filename='prototipo-01/prototipo/index.html',html=read(filename);
- const refs=[...html.matchAll(/(?:src|href)="([^"]*shared\/[^"#]+)"/g)].map(m=>m[1]);assert.ok(refs.length>=4);
- for(const relative of refs)assert.ok(fs.existsSync(path.resolve(root,path.dirname(filename),relative)),relative);
- assert.match(html,/data-theme="nido"/);
-});
 test('manifest resolves generated assets and the single original PDF',()=>{
  const manifest=JSON.parse(read('shared/assets/manifest.json'));
  for(const group of Object.values(manifest))for(const asset of Object.values(group))assert.ok(fs.existsSync(path.resolve(root,'shared/assets',asset)),asset);

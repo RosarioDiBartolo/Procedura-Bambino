@@ -10,7 +10,7 @@ export function StepImage({ step }: { step: StepId }) {
     <img src={medication} alt="Mani con guanti preparano una siringa da un flaconcino" className="size-full min-h-0 flex-1 object-cover" />
     <figcaption className="absolute inset-x-0 bottom-0 bg-[#163e49c9] p-2 text-center text-[8px] leading-relaxed text-white">
       <a href="https://unsplash.com/photos/person-drawing-liquid-into-syringe-cM1aU42FnRg" target="_blank" rel="noreferrer" className="underline">Unsplash</a>
-      <span className="block">Foto di contesto · preparazione farmaci</span>
+      <span className="block">Foto di contesto Â· preparazione farmaci</span>
     </figcaption>
   </figure>;
   if (step === 'distress-support') return <figure className="compact-step-image relative m-0 flex size-full min-h-0 min-w-0 flex-1 overflow-hidden">

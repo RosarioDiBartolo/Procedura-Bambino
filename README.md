@@ -1,23 +1,34 @@
-# Prototipi del supporto NLS
+# Nido — simulazione NLS
 
-Assistente AI proattivo nel prototipo React: [configurazione e collaudo](prototipo-02/VOICE_ASSISTANT.md). `npm run dev` avvia interfaccia e API locale; richiede Node.js 22.18+. La voce AI richiede `OPENAI_API_KEY` in `prototipo-02/.env` (esempio incluso). Senza chiave, la procedura e la guida vocale esistente restano utilizzabili.
+Versione React con guida vocale da file preregistrati, senza AI, chat, microfono o server API.
 
-I prototipi condividono asset e base dell'interfaccia; flussi, contenuti decisionali e documenti di progetto restano specifici di ciascuna versione.
+## Avvio e verifica
 
-```text
-fonti/                   PDF originali: unica fonte dei documenti
-shared/
-  assets/                Logo, favicon, poster renderizzato e anteprime
-  design-system/         Token, temi e stili comuni
-  ui/                    Libreria React shadcn (@nls/ui)
-prototipo-01/            Nido: versione HTML, flussi e documenti propri
-prototipo-02/            React: assistente al flow-chart SIN 2025
+Richiede Node.js 22.18 o successivo. Dalla cartella principale:
+
+```sh
+npm ci
+npm run dev
+npm run build
+npm test
 ```
 
-Dalla cartella principale: `npm install`, poi `npm run dev`. Il secondo prototipo è su `http://127.0.0.1:5180/`. `npm run build` compila la versione React; `npm test` verifica entrambe le versioni e i riferimenti condivisi. Il lockfile delle dipendenze è unico nella cartella principale.
+Aprire http://localhost:5180. La compilazione produce `prototipo-02/dist`.
 
-Il primo prototipo resta apribile dal file `prototipo-01/prototipo/index.html`; importa gli stili e gli asset comuni tramite percorsi relativi. Non distribuire la sua sottocartella da sola: occorrono anche `shared/` e `fonti/`.
+## Versioni
 
-Con l'anteprima React avviata, è disponibile anche su `http://127.0.0.1:5180/prototipo-01/prototipo/index.html`, usando gli stessi file e asset senza copie aggiuntive. Questo indirizzo del primo prototipo è una comodità del server di sviluppo, non una seconda compilazione React.
+- `main`: versione senza AI destinata alla pubblicazione.
+- `codex/ai-preserved`: versione AI completa conservata prima della rimozione.
+- `codex/prerecorded-voice`: sviluppo della guida preregistrata.
 
-Regole di riuso e compatibilità: `shared/README.md`. Le decisioni del prototipo 01 non diventano requisiti del prototipo 02 per il fatto che l'interfaccia è condivisa.
+## Voce
+
+Attiva voce avvia il file dello step corrente. Ascolta / Ripeti ricomincia dall'inizio; Interrompi ferma la lettura. Disattiva voce interrompe e impedisce l'avvio automatico agli step successivi. Dopo l'attivazione, ogni cambio di step arresta il vecchio audio e avvia il nuovo. La preferenza viene salvata sul dispositivo; dopo una ricarica occorre premere Ascolta per rispettare le limitazioni dei browser.
+
+Si usano esclusivamente i WAV esistenti in `shared/assets/audio/qwen`. Non vengono generati o inviati audio a servizi esterni. Alcune registrazioni descrivono i vecchi controlli: nascita, valutazione iniziale, respiro, difficoltà respiratoria, FC dopo ventilazione/correttivi/compressioni e conclusione. I testi sostitutivi non ancora registrati sono in `prototipo-02/audio/Testi-audio-nuove-schermate.md`. L'interfaccia attuale resta il riferimento per i comandi.
+
+## Deploy Vercel
+
+Importare questo repository con Root Directory impostata alla radice del repository, non a `prototipo-02`. `vercel.json` configura installazione, compilazione e cartella di output. Branch produzione: `main`. Nessuna variabile d'ambiente o chiave API necessaria. Il routing hash non richiede riscritture.
+
+Prototipo per simulazione con dati fittizi, non validato per uso assistenziale. Registro e sessione restano nel browser; nessuna sincronizzazione tra dispositivi. Fonti originali in `fonti/`, interfaccia e asset comuni in `shared/`.

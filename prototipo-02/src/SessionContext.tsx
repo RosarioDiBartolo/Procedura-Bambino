@@ -1,8 +1,6 @@
-import { isPlayground, playgroundStorageKey } from './assistant/playground/mode';
-import { ConversationProvider } from './assistant/Conversation';
 import {createContext,useContext,useEffect,useState,type Dispatch,type SetStateAction,type ReactNode} from 'react'
 import {createSession,steps,type Session} from './flow'
-const storageKey=()=>isPlayground()?playgroundStorageKey:'nls-simulation-v1'
+const storageKey=()=>'nls-simulation-v1'
 function restore():Session{
  try{
   const s=JSON.parse(sessionStorage.getItem(storageKey())??'null')
@@ -16,6 +14,6 @@ const Context=createContext<[Session,Dispatch<SetStateAction<Session>>]|null>(nu
 export function SessionProvider({children}:{children:ReactNode}){
  const state=useState(restore)
  useEffect(()=>{try{sessionStorage.setItem(storageKey(),JSON.stringify(state[0]))}catch{/* The simulation remains usable in memory. */}},[state[0]])
- return <Context.Provider value={state}><ConversationProvider key={state[0].startedAt} events={state[0].events}>{children}</ConversationProvider></Context.Provider>
+ return <Context.Provider value={state}>{children}</Context.Provider>
 }
 export function useSession(){const value=useContext(Context);if(!value)throw new Error('SessionProvider missing');return value}

@@ -5,3 +5,7 @@ prototipo-02/dist/
 .env
 .env.*
 !.env.example
+
+.audio-tools/
+
+.test-results.log

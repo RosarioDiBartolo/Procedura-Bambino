@@ -89,10 +89,9 @@ describe("Routing e contesto della simulazione", () => {
       screen.getByRole("button", { name: "Azzera e ricomincia" }),
     );
     await waitFor(() =>
-      expect(window.location.hash).toBe("#/"),
+      expect(window.location.hash).toBe("#/procedura/preparation"),
     );
-    expect(screen.queryByRole('region', { name: 'Passaggio attuale' })).toBeNull();
-    expect(screen.getByRole('button', { name: 'Inizia dalla preparazione' })).toBeTruthy();
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Preparazione');
     expect(screen.queryByRole('dialog')).toBeNull();
     expect(
       JSON.parse(sessionStorage.getItem("nls-simulation-v1")!).events,
@@ -117,17 +116,12 @@ describe("Routing e contesto della simulazione", () => {
   it("mantiene il layout comune montato quando cambia la pagina", async () => {
     const user = userEvent.setup();
     render(<Application />);
-    await user.click(screen.getByRole("button", { name: "Comandi e impostazioni di Nido" }));
-      await user.click(screen.getByRole("button", { name: "Chiudi impostazioni assistente" }));
+
     const layout = screen.getByRole("banner");
     await user.click(screen.getByRole("button", { name: "Prosegui" }));
     await waitFor(() => expect(window.location.hash).toBe("#/procedura/birth"));
     expect(screen.getByRole("banner")).toBe(layout);
-    expect(
-      screen
-        .getByRole("button", { name: "Comandi e impostazioni di Nido" })
-        .getAttribute("aria-expanded"),
-    ).toBe("false");
+    expect(screen.getByRole('group', {name: 'Controlli vocali'})).toBeTruthy();
   });
   it("usa una route separata per la conclusione e la ripristina", async () => {
     const session = { ...createSession(), step: "skin" };

@@ -48,7 +48,7 @@ export default function Application() {
       <SessionProvider>
         <Routes>
           <Route element={<App />}>
-          <Route path="/" element={null} />
+          <Route path="/" element={<Resume />} />
           <Route path="/procedura">
             <Route index element={<Resume />} />
             <Route element={<SessionGuard />}>
