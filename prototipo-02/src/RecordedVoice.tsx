@@ -7,8 +7,7 @@ export function RecordedVoice({ clip, visit }: { clip: string; visit: string }) 
   const audio = useRef<HTMLAudioElement | null>(null);
   const generation = useRef(0);
   const pending = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const activated = useRef(false);
-  const [enabled, setEnabled] = useState(() => { try { return window.localStorage.getItem(preference) === 'true'; } catch { return false; } });
+  const [enabled, setEnabled] = useState(() => { try { return window.localStorage.getItem(preference) !== 'false'; } catch { return true; } });
   const [status, setStatus] = useState('');
   const [playing, setPlaying] = useState(false);
   const stop = () => {
@@ -38,7 +37,7 @@ export function RecordedVoice({ clip, visit }: { clip: string; visit: string }) 
     current.onerror = () => { generation.current++; setPlaying(false); setStatus('Registrazione non disponibile. Puoi continuare leggendo lo schermo.'); };
     setStatus('');
     setPlaying(false);
-    if (enabled && activated.current) {
+    if (enabled) {
       setStatus('Lettura tra un momento…');
       setPlaying(true);
       pending.current = setTimeout(() => { pending.current = null; play(); }, stepAudioDelayMs);
@@ -49,13 +48,13 @@ export function RecordedVoice({ clip, visit }: { clip: string; visit: string }) 
     const next = !enabled;
     setEnabled(next);
     try { window.localStorage.setItem(preference, String(next)); } catch { /* Controls remain usable without storage. */ }
-    if (next) { activated.current = true; play(); }
+    if (next) { play(); }
     else { stop(); setStatus('Guida vocale disattivata'); }
   }
   return <div role="group" aria-label="Controlli vocali" className="mr-auto flex min-w-0 flex-wrap items-center gap-2">
     <Button variant="outline" aria-pressed={enabled} onClick={toggle}>{enabled ? 'Disattiva voce' : 'Attiva voce'}</Button>
-    <Button variant="outline" disabled={!enabled} onClick={() => { activated.current = true; play(); }}>{playing ? 'Ripeti' : 'Ascolta / Ripeti'}</Button>
+    <Button variant="outline" disabled={!enabled} onClick={() => { play(); }}>{playing ? 'Ripeti' : 'Ascolta / Ripeti'}</Button>
     <Button variant="outline" disabled={!playing} onClick={() => { stop(); setStatus('Lettura interrotta'); }}>Interrompi</Button>
-    <span role="status" className="sr-only">{status || (enabled ? 'Premi Ascolta per avviare la lettura' : 'Guida vocale disattivata')}</span>
+    <span role="status" className={status.startsWith('Audio non avviato') || status.startsWith('Registrazione non disponibile') ? 'text-xs text-foreground' : 'sr-only'}>{status || (enabled ? 'Premi Ascolta per avviare la lettura' : 'Guida vocale disattivata')}</span>
   </div>;
 }

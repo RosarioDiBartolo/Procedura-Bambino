@@ -3,8 +3,8 @@ import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-libra
 import { RecordedVoice, stepAudioDelayMs } from './RecordedVoice';
 let clips: any[];
 beforeEach(() => {
-  const storage = new Map<string,string>();
-  vi.stubGlobal('localStorage', {getItem: (key:string) => storage.get(key) ?? null, setItem: (key:string,value:string) => storage.set(key,value)}); clips = [];
+  const storage = new Map<string,string>([['nido-recorded-voice-enabled', 'false']]);
+  vi.stubGlobal('localStorage', {getItem: (key:string) => storage.get(key) ?? null, setItem: (key:string,value:string) => storage.set(key,value), removeItem: (key:string) => storage.delete(key)}); clips = [];
   vi.stubGlobal('Audio', class {
     src: string; preload = ''; currentTime = 0; onended: any; onerror: any;
     play = vi.fn(() => Promise.resolve()); pause = vi.fn(); load = vi.fn(); removeAttribute = vi.fn();
@@ -66,4 +66,21 @@ it('annulla gli avvii pendenti passando rapidamente tra step o premendo Interrom
   fireEvent.click(screen.getByRole('button', {name:'Disattiva voce'}));
   act(() => { vi.advanceTimersByTime(stepAudioDelayMs); });
   expect(clips[4].play).not.toHaveBeenCalled();
+});
+
+it.each([null, 'true'])('avvia la lettura dopo 500 ms al primo ingresso con preferenza %s', async (preference) => {
+  vi.useFakeTimers();
+  if (preference === null) window.localStorage.removeItem('nido-recorded-voice-enabled');
+  else window.localStorage.setItem('nido-recorded-voice-enabled', preference);
+  render(<RecordedVoice clip="preparation" visit="1" />);
+  expect(screen.getByRole('button', {name:'Disattiva voce'})).toBeTruthy();
+  expect(clips[0].play).not.toHaveBeenCalled();
+  await act(async () => { vi.advanceTimersByTime(stepAudioDelayMs); });
+  expect(clips[0].play).toHaveBeenCalledOnce();
+});
+it('rispetta la disattivazione salvata anche al primo ingresso', () => {
+  vi.useFakeTimers();
+  render(<RecordedVoice clip="preparation" visit="1" />);
+  act(() => { vi.advanceTimersByTime(stepAudioDelayMs); });
+  expect(clips[0].play).not.toHaveBeenCalled();
 });

@@ -24,5 +24,5 @@ export default defineConfig({
  publicDir:'../shared/assets',base:'./',css:{postcss:{plugins:[]}},
  server:{fs:{allow:[projectRoot]}},
  resolve:{alias:{'@':fileURLToPath(new URL('./src',import.meta.url))},dedupe:['react','react-dom']},
- test:{environment:'jsdom',include:['src/**/*.test.{ts,tsx}'],restoreMocks:true}
+ test:{environment:'jsdom',setupFiles:['./src/testSetup.ts'],include:['src/**/*.test.{ts,tsx}'],restoreMocks:true}
 })
