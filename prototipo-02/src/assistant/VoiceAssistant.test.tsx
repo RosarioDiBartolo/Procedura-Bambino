@@ -529,7 +529,7 @@ describe('Input dell’agente nella conversazione', () => {
     expect(mock.interrupt).toHaveBeenCalledOnce();
     expect((input as HTMLTextAreaElement).value).toBe('La mia prossima domanda');
     expect(screen.getByRole('button', { name: 'Invia messaggio' })).toBeTruthy();
-    expect(document.querySelector('[data-agent-state=interrupted]')).toBeTruthy();
+    expect(document.querySelector('[data-agent-state=listening]')).toBeTruthy();
   });
 
   it('ferma anche una connessione ancora in apertura', async () => {
@@ -548,3 +548,4 @@ describe('Input dell’agente nella conversazione', () => {
     expect(document.querySelector(`[data-agent-state=${state}]`)).toBeTruthy();
   });
 });
+

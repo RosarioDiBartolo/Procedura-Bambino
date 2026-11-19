@@ -4,7 +4,7 @@ import { AppearanceContext } from './components/ui/AppearanceContext';
 import { AnimatedSidebar, AnimatedSidebarProvider, AnimatedSidebarTrigger, AnimatedSidebarMenuSub, useSidebarIsMobile } from './components/motion/animated-sidebar';
 import { PanelRightClose, PanelRightOpen, X, ChevronRight } from 'lucide-react';
 import { Conversation, useConversation } from './assistant/Conversation';
-import { useState, type ReactNode } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Outlet, useLocation, useMatch } from "react-router-dom";
 import { ClipboardList, Clock3, FileText, PhoneCall, RotateCcw, Thermometer } from "@nls/ui/icons8";
 import { Button } from "@nls/ui/components/button";
@@ -14,12 +14,13 @@ import { useProcedureRoute } from "./navigation";
 import { VoiceAssistant } from "./assistant/VoiceAssistant";
 import { SessionPanels } from "./SessionPanels";
 import { useNow } from "./useNow";
-function StepPresentation({ visit, children }: { visit: string; children: ReactNode }) {
-  const { replayVisit, replaySequence } = useConversation();
-  const replay = replayVisit === visit ? replaySequence + 1 : 1;
-  return <AppearanceContext.Provider value={{ sequential: true, enabled: true, replayKey: `${visit}:${replay}` }}><AnimatedContent sequentialText enabled replayKey={`${visit}:${replay}`} targets=".compact-heading, .assessment-fields, .assessment-field, .compact-list-heading, .compact-action-list>li, .step-photo-frame, .case-card, .compact-decision-instruction, .ventilation-gate, .compact-clinical-note, .compact-medication, .compact-procedure-footer, .compact-birth>.compact-step-image, .compact-birth>div, .compact-completion" className={`step-presentation min-h-0 flex flex-col h-full is-revealing [.step-presentation&_*]:[animation-play-state:running]! ${replay % 2 ? 'replay-odd' : 'replay-even'}`}>{children}</AnimatedContent></AppearanceContext.Provider>;
+function StepPresentation({ visit, seen, children }: { visit: string; seen: Set<string>; children: ReactNode }) {
+  const [animate] = useState(() => !seen.has(visit));
+  useLayoutEffect(() => { seen.add(visit); }, [seen, visit]);
+  return <AppearanceContext.Provider value={{ sequential: true, enabled: animate, replayKey: visit }}><AnimatedContent sequentialText enabled={animate} replayKey={visit} distance={0} targets=".compact-heading, .compact-list-heading, .compact-action-list>li, .step-photo-frame, .case-card, .compact-decision-instruction, .compact-clinical-note, .compact-medication, .compact-procedure-footer, .compact-birth>.compact-step-image, .compact-birth>div, .compact-completion" className="step-presentation min-h-0 flex flex-col h-full overflow-hidden">{children}</AnimatedContent></AppearanceContext.Provider>;
 }
 export default function App({ home: homeOverride }: { home?: boolean }) {
+  const seenSteps = useRef(new Set<string>());
   const location = useLocation();
   const home = homeOverride ?? location.pathname === '/';
   const [focused, setFocused] = useState(false);
@@ -124,7 +125,7 @@ export default function App({ home: homeOverride }: { home?: boolean }) {
     ${chatOpen ? 'chat-open' : 'chat-closed'}`}>
         {!home && <AnimatedSidebarProvider open={chatOpen} onOpenChange={setChatOpen} openMobile={chatMobileOpen} onOpenMobileChange={setChatMobileOpen}
           className="h-full min-h-0 gap-4.5 [--sidebar-width:340px] [--sidebar-width-icon:64px] [--sidebar-width-mobile:360px] max-[1100px]:[--sidebar-width:300px] max-md:gap-0">
-          <div className="min-w-0 min-h-0 h-full flex-1 overflow-hidden p-[3px] [container-type:inline-size]"><StepPresentation key={`${session.startedAt}:${session.enteredAt}:${location.pathname}`} visit={`${session.startedAt}:${session.enteredAt}:${session.stack.length}:${session.step}`}><Outlet /></StepPresentation></div>
+          <div className="min-w-0 min-h-0 h-full flex-1 overflow-hidden p-[3px] [container-type:inline-size]"><StepPresentation key={`${session.startedAt}:${location.pathname}`} seen={seenSteps.current} visit={`${session.startedAt}:${location.pathname}`}><Outlet /></StepPresentation></div>
           {isMobile && <AnimatedSidebarTrigger className="fixed bottom-20 right-4 z-30 size-11 bg-primary text-primary-foreground shadow-lg md:hidden" aria-label="Mostra conversazione" aria-controls="session-sidebar-content"><PanelRightOpen className="size-5" /></AnimatedSidebarTrigger>}
           <AnimatedSidebar id="session-conversation" side="right" variant="sidebar" ariaLabel="Conversazione della sessione"
             className={`session-chat minimal-sidebar min-h-0 h-full ${chatExpanded ? 'is-open' : 'is-collapsed'} max-md:rounded-l-2xl`}

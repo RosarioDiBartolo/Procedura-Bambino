@@ -15,17 +15,18 @@ describe("Routing e contesto della simulazione", () => {
     await waitFor(() => expect(window.location.hash).toBe("#/procedura/preparation"));
     expect(screen.getByRole("heading", {level: 1}).textContent).toBe("Preparazione");
   });
-  it("richiede una nuova conferma di ventilazione quando si rientra nella pagina", async () => {
+  it("conferma la ventilazione tramite la scelta del caso senza campi o checkbox", async () => {
     sessionStorage.setItem("nls-simulation-v1", JSON.stringify({...createSession(), step: "hr60", stack: ["correctives"]}));
     window.location.hash = "/procedura/hr60";
     const user = userEvent.setup();
     render(<Application />);
-    await user.click(screen.getByRole("checkbox", {name: "Il team conferma la ventilazione efficace"}));
-    expect((screen.getByRole("button", {name: /FC <60\/min/}) as HTMLButtonElement).disabled).toBe(false);
-    await user.click(screen.getByRole("button", {name: "Passo precedente"}));
-    await user.click(screen.getByRole("button", {name: "Prosegui"}));
-    expect(screen.getByRole("checkbox", {name: "Il team conferma la ventilazione efficace"}).getAttribute("aria-checked")).toBe("false");
-    expect((screen.getByRole("button", {name: /FC <60\/min/}) as HTMLButtonElement).disabled).toBe(true);
+    expect(screen.queryByText("Dati della valutazione")).toBeNull();
+    expect(screen.queryByRole("checkbox")).toBeNull();
+    expect(screen.getByText("Con ventilazione efficace confermata dal team")).toBeTruthy();
+    await user.click(screen.getByRole("button", {name: /FC <60\/min/}));
+    await waitFor(() => expect(window.location.hash).toBe("#/procedura/compressions"));
+    const stored = JSON.parse(sessionStorage.getItem("nls-simulation-v1")!);
+    expect(stored.events.at(-1).answers.effective).toBe(true);
   });
   it("normalizza un indirizzo arbitrario senza saltare le conferme", async () => {
     window.location.hash = "/procedura/compressions";

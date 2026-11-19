@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 export default function AnimatedContent({ children, sequentialText = false, enabled = true, replayKey = '', distance = 24, direction = 'vertical', reverse = false, duration = .65, ease = 'power3.out', initialOpacity = 0, scale = 1, blur = 0, delay = 0, stagger = .075, targets, className = '', style }: { children: ReactNode; sequentialText?: boolean; enabled?: boolean; replayKey?: string; distance?: number; direction?: 'vertical' | 'horizontal'; reverse?: boolean; duration?: number; ease?: string; initialOpacity?: number; scale?: number; blur?: number; delay?: number; stagger?: number; targets?: string; className?: string; style?: CSSProperties }) {
   const root = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
-    if (!root.current || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!enabled || !root.current || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = gsap.context(() => {
       const nodes = targets ? Array.from(root.current!.querySelectorAll(targets)) : Array.from(root.current!.children);
       if (!nodes.length) return;
@@ -26,9 +26,9 @@ export default function AnimatedContent({ children, sequentialText = false, enab
             if (photo) {
               // Keep the frame fixed; settle the photo inside its existing rounded crop.
               gsap.set(node, { [axis]: 0, scale: 1, filter: 'none' });
-              gsap.set(photo, { transform: 'translateY(10px) scale(1.045)', transformOrigin: '50% 50%' });
+              gsap.set(photo, { opacity: 0 });
               timeline.to(node, { opacity: 1, duration: .3, ease: 'power3.out' }, cursor);
-              timeline.to(photo, { transform: 'translateY(0px) scale(1)', duration: .3, ease: 'power3.out' }, cursor);
+              timeline.to(photo, { opacity: 1, duration: .3, ease: 'power3.out' }, cursor);
               return;
             }
             timeline.to(node, { [axis]: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: .3, ease }, cursor);

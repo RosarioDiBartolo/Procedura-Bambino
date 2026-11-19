@@ -1,5 +1,4 @@
 import TextType from '../components/ui/TextType';
-import { ObservationFields } from "../assistant/ObservationFields";
 import { useEffect, useRef, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight } from "@nls/ui/icons8";
 import { Button } from "@nls/ui/components/button";
@@ -47,7 +46,7 @@ export function StepFrame({
   const heading = useRef<HTMLHeadingElement>(null);
   const current = steps[step];
   useEffect(() => {
-    heading.current?.focus();
+    heading.current?.focus({ preventScroll: true });
   }, [step]);
   return (
     <section
@@ -84,7 +83,6 @@ export function StepFrame({
               : "INTERVENTI"}
         </span>
       </div>
-      <ObservationFields key={`${session.startedAt}:${session.enteredAt}:${step}`} step={step} />
       {children}
       <footer className="
       compact-procedure-footer px-2.5 gap-4 [border-top:1px_solid_rgb(220,_231,_231)] mt-auto flex items-center

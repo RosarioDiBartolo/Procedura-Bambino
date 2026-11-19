@@ -17,8 +17,8 @@ const palettes: Record<AgentState, readonly [string, string, string]> = {
 export function AgentOrb({ state, userSpeaking, microphone, error, interrupted, inputAnalyser, outputAnalyser, className }:
   { state: VoiceState; userSpeaking: boolean; microphone: boolean; error?: string; interrupted?: boolean;
     inputAnalyser?: AnalyserNode | null; outputAnalyser?: AnalyserNode | null; className?: string }) {
-  const status: AgentState = error ? 'error' : interrupted ? 'interrupted' : state;
-  const inactive = state === 'off' || status === 'error' || status === 'interrupted';
+  const status: AgentState = error ? 'error' : interrupted ? 'listening' : state;
+  const inactive = state === 'off' || status === 'error';
   const waiting = !inactive && state === 'listening' && !userSpeaking;
   const activity = useMotionValue(0);
   const reduced = useReducedMotion();
@@ -39,8 +39,10 @@ export function AgentOrb({ state, userSpeaking, microphone, error, interrupted, 
     data-orbit-state={state === 'speaking' && !userSpeaking ? 'speaking' : userSpeaking || state === 'connecting' || state === 'analyzing' ? 'resting' : 'idle'}
     aria-hidden="true">
     <VoiceOrb activity={activity} analyser={analyser} colors={palettes[status]}
-      active={status !== 'off' && status !== 'error' && status !== 'interrupted'}
+      active={status !== 'off' && status !== 'error'}
       speed={status === 'analyzing' ? 1.25 : status === 'connecting' ? .7 : .5}
       className="size-full" labels={{ unavailable: '' }} />
   </motion.div>;
 }
+
+

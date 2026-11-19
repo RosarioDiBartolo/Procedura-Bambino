@@ -4,3 +4,66 @@
 .assistant-highlight{outline:3px solid #187a89!important;outline-offset:3px;background-color:#edf9f8!important}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:0s!important;transition:none!important}}
+
+/* Paint containment prevents animated descendants from enlarging scrollable lists. */
+.step-presentation { overflow-anchor: none; }
+.animated-intervention-list { contain: paint; overflow-anchor: none; scrollbar-gutter: stable; }
+
+/* Size text against the actual remaining list space, including medication controls. */
+.animated-intervention-list { container: intervention-list / size; }
+.animated-intervention-list:not([data-action-count="1"]):not([data-action-count="2"]) strong {
+  font-size: clamp(16px, min(2.8cqw, 7cqh), 28px);
+  line-height: 1.22;
+}
+.animated-intervention-list .intervention-summary {
+  font-size: clamp(11px, 1.8cqw, 14px);
+  line-height: 1.35;
+}
+@container intervention-list (max-height: 300px) {
+  .intervention-summary { display: none !important; }
+}
+
+/* Shared rows keep complete text aligned and give remaining space to photos. */
+.decision-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:minmax(80px,1fr) auto auto auto auto; gap:0 14px; flex:1; min-height:0; overflow-y:auto; }
+.decision-card { display:grid; grid-template-rows:subgrid; grid-row:span 5; min-width:0; padding:12px 14px 0; text-align:left; border:2px solid #b6cdd8; border-radius:14px; background:#f7fafb; color:#23485d; cursor:pointer; transition:border-color .15s,background .15s; }
+.decision-card.case-no { border-color:#ccded4; background:#f5f8f6; }
+.decision-card:hover { border-color:#3f7894; background:#edf5f8; }
+.decision-card:focus-visible { outline:3px solid #3a7e9e; outline-offset:-3px; }
+.decision-photo { position:relative; min-height:80px; overflow:hidden; border-radius:8px; }
+.decision-photo>img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.decision-case-label { position:absolute; top:10px; left:10px; padding:4px 8px; border-radius:4px; background:#fffffff2; font-size:11px; font-weight:650; color:#31556c; }
+.decision-title { display:flex; align-items:start; gap:10px; padding-top:16px; }
+.decision-title strong { font-size:24px; line-height:1.3; font-weight:650; overflow-wrap:anywhere; }
+.decision-icon { display:grid; place-items:center; flex:0 0 24px; width:24px; height:28px; }
+.decision-icon img { width:24px!important; height:24px!important; max-width:24px; }
+.decision-detail { margin:8px 0 0; font-size:13px; line-height:1.5; color:#496b7d; }
+.decision-conditions { padding-bottom:14px; }
+.decision-conditions ul { list-style:none; padding:0; margin:8px 0 0; display:grid; gap:5px; }
+.decision-conditions li { display:flex; gap:8px; font-size:13px; line-height:1.4; }
+.decision-destination { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid #d4e2e9; font-size:13px; line-height:1.4; font-weight:650; }
+.decision-destination svg { flex-shrink:0; }
+@container (max-width:650px) {
+ .decision-title strong { font-size:20px; }
+ .decision-title { gap:8px; padding-top:12px; }
+ .decision-card { padding:8px 10px 0; }
+ .decision-options { column-gap:10px; }
+}
+@media(max-width:480px) {
+ .decision-title strong { font-size:18px; }
+ .decision-title { flex-wrap:wrap; }
+ .decision-detail,.decision-conditions li,.decision-destination { font-size:12px; }
+}
+
+/* The collapsed assistant is a compact dock, not an empty full-height panel. */
+@media (min-width: 768px) {
+  #session-conversation.is-collapsed { height: auto; align-self: flex-start; }
+  #session-conversation.is-collapsed > div { height: auto; min-height: 112px; width: 100%; overflow: hidden; }
+  #session-conversation.is-collapsed .sidebar-toggle { top: 8px; right: 50%; translate: none; transform: translateX(50%); }
+  #session-conversation.is-collapsed .assistant-sidebar-slot { padding: 48px 10px 12px; border: 0; }
+  #session-conversation.is-collapsed .assistant-stage { display: flex; width: 100%; justify-content: center; }
+  #session-conversation.is-collapsed .orbit-toggle { flex: 0 0 40px; width: 40px; height: 40px; }
+  #session-conversation.is-collapsed .orbit-toggle > span { width: 40px; height: 40px; }
+  #session-conversation.is-collapsed .assistant-name,
+  #session-conversation.is-collapsed .assistant-stage > small,
+  #session-conversation.is-collapsed #session-sidebar-content { display: none; }
+}

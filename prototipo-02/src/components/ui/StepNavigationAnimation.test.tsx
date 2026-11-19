@@ -6,7 +6,7 @@ import { createSession } from '../../flow';
 const animation = vi.hoisted(() => ({ to: vi.fn(), set: vi.fn() }));
 vi.mock('gsap', () => ({ gsap: { set: animation.set, context: (callback: () => void) => { callback(); return { revert: vi.fn() }; }, timeline: () => ({ to: animation.to }) } }));
 afterEach(() => { cleanup(); sessionStorage.clear(); vi.unstubAllGlobals(); window.history.replaceState(null, '', '/'); });
-it('avvia una nuova timeline sui contenuti dello step navigato, anche tornando indietro senza voce', async () => {
+it('avvia una nuova timeline sui contenuti dello step navigato, una sola volta per step senza voce', async () => {
   vi.stubGlobal('matchMedia', () => ({ matches: false, addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {} }));
   vi.stubGlobal('fetch', vi.fn(() => { throw new Error('La voce deve restare disattivata'); }));
   sessionStorage.setItem('nls-simulation-v1', JSON.stringify({ ...createSession(), voiceDisabled: true }));
@@ -21,6 +21,6 @@ it('avvia una nuova timeline sui contenuti dello step navigato, anche tornando i
   animation.to.mockClear();
   await user.click(screen.getByRole('button', { name: 'Passo precedente' }));
   await waitFor(() => expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Preparazione'));
-  expect(animatedHeading('Preparazione')).toBe(true);
+  expect(animatedHeading('Preparazione')).toBe(false);
   expect(fetch).not.toHaveBeenCalled();
 });

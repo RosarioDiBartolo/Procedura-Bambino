@@ -44,7 +44,7 @@ export function AnimatedInterventions({
       <p className="mx-0 hidden text-[length:11px] leading-[1.6] text-[#6b8190] mt-0 mb-3.5 min-[700px]:[.dense-procedure_&]:mb-3">
         Apri un intervento per leggere spiegazione e coordinamento con il team.
       </p>
-      <ol className="
+      <ol data-action-count={details.length} className="
       compact-action-list animated-intervention-list m-0 flex min-h-0 flex-1 list-none flex-col overflow-y-auto [.many-actions_&]:overflow-hidden p-0 [.very-dense-actions_&]:[@media(max-height:700px)]:grid [.very-dense-actions_&]:[@media(max-height:700px)]:grid-cols-2 [.very-dense-actions_&]:[@media(max-height:700px)]:gap-x-5
       [justify-content:safe_center] [.many-actions_&]:justify-evenly [&_[data-slot=checkbox]]:size-5 [&_[data-slot=checkbox]]:shrink-0
     ">
@@ -93,7 +93,7 @@ export function AnimatedInterventions({
                   >
                     <TextType text={item.title} />
                   </motion.strong>
-                  <span className="
+                  <span className="intervention-summary
       mt-1 block whitespace-normal text-[clamp(13px,1.6cqw,17px)] leading-[1.55] text-[#677f8f]
       [.many-actions_&]:hidden [@container(max-width:650px)]:text-[11px] [@media(max-height:700px)]:hidden
     " title={item.summary}><TextType text={item.summary} /></span>
@@ -141,7 +141,7 @@ export function AnimatedInterventions({
                   asChild
                   onCloseAutoFocus={(event) => {
                     event.preventDefault();
-                    origin.current?.focus();
+                    origin.current?.focus({ preventScroll: true });
                   }}
                 >
                   <motion.div

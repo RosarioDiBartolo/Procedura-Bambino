@@ -206,7 +206,11 @@ export function VoiceAssistant({ home = false, onFocus, onActive, dockTarget, co
       if (update.assistantTranscript !== undefined) {
 
         if (!update.assistantTranscript) newResponse.current = true;
-        else { conversationRef.current.update('assistant', update.assistantTranscript, newResponse.current); newResponse.current = false; }
+        else {
+          const repeatedIntroduction = home && welcome.startsWith(update.assistantTranscript) && conversationRef.current.messages.some(message => message.role === 'assistant' && message.text === welcome);
+          if (!repeatedIntroduction) conversationRef.current.update('assistant', update.assistantTranscript, newResponse.current);
+          newResponse.current = false;
+        }
       }
 
 
@@ -348,6 +352,7 @@ export function VoiceAssistant({ home = false, onFocus, onActive, dockTarget, co
   function repeatStep() {
     setOpen(false); setInterrupted(false); setError('');
     pendingReplay.current = visitOf(current.current);
+    if (home) { reactivate(false); return; }
     if (client.current && !current.current.voiceDisabled) {
       setState('analyzing');
       void client.current.enterStep({ ...contextOf(current.current), revision: ++revision.current });
@@ -418,7 +423,7 @@ export function VoiceAssistant({ home = false, onFocus, onActive, dockTarget, co
   const docked = !!dockTarget;
   const orb = <AgentOrb state={state} userSpeaking={userSpeaking} microphone={microphone} error={error} interrupted={interrupted}
     inputAnalyser={inputAnalyser} outputAnalyser={outputAnalyser}
-    className={home ? 'size-36 sm:size-44' : 'size-full'} />;
+    className="size-full" />;
   const stage = <motion.section layout={!docked} layoutId={docked ? undefined : 'nido-stage'} transition={layoutTransition}
     className={docked
       ? `
@@ -431,7 +436,7 @@ export function VoiceAssistant({ home = false, onFocus, onActive, dockTarget, co
       -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 overflow-y-auto p-3 text-center
     `}
     aria-label="Guida della procedura">
-    {home ? <div role="img" aria-label={userSpeaking ? 'Nido in ascolto' : state === 'speaking' ? 'Nido sta parlando' : 'Nido in attesa'}>{orb}</div>
+    {home ? <div role="img" aria-label={userSpeaking ? 'Nido in ascolto' : state === 'speaking' ? 'Nido sta parlando' : 'Nido in attesa'}><span ref={setOrbSource} className="block size-36 sm:size-44" /></div>
       : <button type="button" className="orbit-toggle row-span-2 grid min-w-0 max-w-full place-items-center self-center justify-self-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
         aria-label="Comandi e impostazioni di Nido" aria-expanded={open} aria-controls="ai-voice-panel" onClick={() => setOpen(value => !value)}><span ref={setOrbSource} aria-hidden="true" className="block size-[76px] [.minimal-sidebar.is-collapsed_&]:size-11 [@media(max-height:700px)]:size-14" /></button>}
     {docked && <strong className="assistant-name min-w-0 self-end text-[17px] text-foreground [.minimal-sidebar.is-collapsed_&]:hidden">Nido
@@ -447,7 +452,7 @@ export function VoiceAssistant({ home = false, onFocus, onActive, dockTarget, co
   </motion.section>;
 
   return <LayoutGroup id={layoutScope}>
-    {!home && orbSource && <OrbFlight source={orbSource} destination={orbDestination} open={open}>{orb}</OrbFlight>}
+    {orbSource && <OrbFlight source={orbSource} destination={orbDestination} open={open}>{orb}</OrbFlight>}
     {isPlayground() && <Playground />}
     {!home && (conversationTarget ? createPortal(composer, conversationTarget) : composer)}
     {docked ? createPortal(stage, dockTarget!) : stage}
@@ -471,3 +476,4 @@ export function VoiceAssistant({ home = false, onFocus, onActive, dockTarget, co
     </Dialog>
   </LayoutGroup>;
 }
+

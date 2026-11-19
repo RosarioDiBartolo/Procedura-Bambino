@@ -32,3 +32,7 @@ Per sostituire le immagini principali e le spiegazioni: ../../ProcedureVisual.ts
 - Licenza: Unsplash License, indicata dalla pagina come gratuita: https://unsplash.com/license
 - Descrizione della fonte: neonato prematuro in incubatrice con ossigeno. Ãˆ una foto di contesto, non una dimostrazione della tecnica CPAP.
 - Copia locale ridimensionata; ritaglio di visualizzazione tramite object-fit. La didascalia rimanda alla pagina originale.
+
+## Aggiornamento — 19 novembre 2026
+- `medication-unsplash.jpg`: https://unsplash.com/photos/person-drawing-liquid-into-syringe-cM1aU42FnRg — Unsplash License (gratuita, verificata sulla pagina). Immagine: https://images.unsplash.com/photo-1611694449252-02453c27856a. Copia locale ridimensionata. Foto di preparazione da flaconcino, non illustrazione di adrenalina, dose o via neonatale.
+- Il caso positivo dello step `distress` usa anche `respiratory-support-unsplash.jpg`, documentata sopra, come foto di contesto.
