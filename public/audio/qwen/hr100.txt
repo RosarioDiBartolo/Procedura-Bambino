@@ -1,0 +1,1 @@
+Rileva la frequenza cardiaca dopo la ventilazione e seleziona il caso corrispondente. Se è inferiore a 100 battiti al minuto, passa ai correttivi della ventilazione. Se è uguale o superiore a 100 battiti al minuto, prosegui con le cure post-rianimatorie.

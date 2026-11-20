@@ -9,6 +9,7 @@ import {
 import { SessionProvider, useSession } from "./SessionContext";
 import { sessionPath } from "./navigation";
 import App from "./App";
+import InformationPage from "./pages/InformationPage";
 import Completed from "./pages/Completed";
 import Preparation from "./pages/Preparation";
 import Birth from "./pages/Birth";
@@ -47,6 +48,10 @@ export default function Application() {
     <HashRouter>
       <SessionProvider>
         <Routes>
+          <Route path="/guida" element={<InformationPage guide />} />
+          <Route path="/privacy" element={<InformationPage privacy />} />
+          <Route path="/il-progetto" element={<InformationPage />} />
+          <Route path="/note-legali" element={<InformationPage legal />} />
           <Route element={<App />}>
           <Route path="/" element={<Resume />} />
           <Route path="/procedura">

@@ -79,7 +79,7 @@ export function SessionPanels() {
           </DialogDescription>
         </DialogHeader>
         {["saturation", "mrsopa", "doppes"].includes(panel ?? "") && (
-          <Tabs value={box} onValueChange={(value) => setPanel(value as Panel)}>
+          <Tabs className="support-tabs" value={box} onValueChange={(value) => setPanel(value as Panel)}>
             <TabsList className="mx-0 w-full mt-3 mb-[23px] [&_button]:grow [&_button]:shrink [&_button]:basis-[0%] [&_button]:text-[length:11px]">
               <TabsTrigger value="saturation">01 · SpO₂</TabsTrigger>
               <TabsTrigger value="mrsopa">02 · MR SOPA</TabsTrigger>
@@ -221,7 +221,8 @@ export function SessionPanels() {
             <p className="source-context">
               <strong>Riferimento del passaggio:</strong> {current.source}
             </p>
-            <Button variant="outline" onClick={() => setPanel("poster")}>
+            <Button variant="outline" className="my-4 min-h-11 gap-2.5 px-4 py-2.5" onClick={() => setPanel("poster")}>
+              <FileText size={18} className="shrink-0" />
               Consulta il documento originale
             </Button>
             <p>
@@ -340,6 +341,10 @@ export function SessionPanels() {
     </Dialog>
   );
 }
+const referenceTitles: Record<string, string[]> = {
+  mrsopa: ['Maschera', 'Posizione', 'Secrezioni', 'Bocca', 'Pressioni', 'Via aerea'],
+  doppes: ['Posizione del tubo', 'Pervietà', 'Ventilazione', 'Pneumotorace', 'Strumentazione', 'Stomaco'],
+};
 function ReferenceChecklist({
   items,
   prefix,
@@ -352,19 +357,12 @@ function ReferenceChecklist({
   setSession: React.Dispatch<React.SetStateAction<Session>>;
 }) {
   return (
-    <div className="
-      reference-checklist [&_label]:py-[15px] [&_label]:px-0 [&_label]:gap-[15px]
-      [&_label]:[border-bottom:1px_solid_rgb(231,_237,_242)] [&_label]:flex [&_label]:items-center
-      [&_label]:text-[length:12px] [&_label]:text-[#617f93] [&_label]:cursor-pointer [&_label>span:nth-child(2)]:grow
-      [&_label>span:nth-child(2)]:shrink [&_label>span:nth-child(2)]:basis-[0%]
-      [&_label>span:nth-child(2)]:leading-[1.7] max-[650px]:[&_label]:gap-2 max-[650px]:[&_label]:text-[length:11px]
-    ">
+    <div className="reference-checklist">
       {items.map(([letter, text], i) => (
-        <label key={`${prefix}-${i}`}>
-          <Illustration name={artFor(text)} />
-          <span className="w-7.5 h-7.5 grid place-items-center bg-[#edf3f7] rounded-[7px] text-[length:15px] font-[650] text-[#54758f] shrink-0">{letter}</span>
-          <span>{text}</span>
+        <label className="reference-check-row" key={`${prefix}-${i}`}>
           <Checkbox
+            aria-label={`${letter} · ${text}`}
+            aria-describedby={`${prefix}-${i}-description`}
             checked={!!session.checks[`${prefix}-${i}`]}
             onCheckedChange={(value) =>
               setSession((s) =>
@@ -383,6 +381,11 @@ function ReferenceChecklist({
               )
             }
           />
+          <span className="reference-check-copy">
+            <strong>{letter} · {referenceTitles[prefix]?.[i] ?? text}</strong>
+            <span id={`${prefix}-${i}-description`}>{text}</span>
+          </span>
+          <span className="reference-check-icon"><Illustration name={artFor(text)} /></span>
         </label>
       ))}
     </div>

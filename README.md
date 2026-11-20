@@ -46,7 +46,7 @@ I componenti UI e le utility appartengono all’app e usano l’alias `@/`. `com
 
 La voce è attiva per impostazione predefinita, salvo disattivazione salvata sul dispositivo. Ogni ingresso nello step tenta la riproduzione dopo 500 ms. Cambiare step interrompe subito l’audio precedente; cambiare nuovamente step, Interrompi o Disattiva annullano anche gli avvii in attesa. Ascolta / Ripeti è immediato. Se il browser blocca l’avvio automatico, un messaggio visibile invita a premere Ascolta.
 
-Si usano esclusivamente i WAV in `public/audio/qwen`. Alcune registrazioni descrivono vecchi controlli: i testi sostitutivi non ancora registrati sono in `docs/audio/Testi-audio-nuove-schermate.md`. Nessun contenuto viene inviato a servizi esterni per riprodurre la voce.
+Si usano esclusivamente i WAV in `public/audio/qwen`. Per rigenerare le registrazioni con i 23 testi aggiornati, segui `docs/audio/README.md`. Le registrazioni attuali restano quelle precedenti finché non vengono sostituite con i nuovi WAV. Nessun contenuto viene inviato a servizi esterni per riprodurre la voce.
 
 ## Sessione e report
 
@@ -61,3 +61,9 @@ Root Directory: radice del repository. `vercel.json` configura `npm ci`, `npm ru
 ## Versione AI conservata
 
 Il branch `codex/ai-preserved` conserva il lavoro AI precedente alla semplificazione. È indipendente dalla struttura corrente e non viene pubblicato sul sito di produzione.
+
+## Preparazione del rilascio
+
+`npm run check` verifica risorse e integrità degli audio, esegue i test e compila l’app. La procedura GitHub esegue gli stessi controlli. La guida rapida, la privacy e le note legali sono raggiungibili dal footer.
+
+Il registro delle verifiche e delle condizioni ancora da chiudere per la beta pubblica è in [docs/RELEASE.md](docs/RELEASE.md). L’app dichiara la revisione comunicata dal gestore senza presentarla come validazione per uso assistenziale.

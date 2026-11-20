@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
+import { Volume2, RotateCcw, Square } from '@/components/icons8';
 import { Button } from '@/components/ui/button';
 
 export const stepAudioDelayMs = 500;
@@ -52,9 +53,9 @@ export function RecordedVoice({ clip, visit }: { clip: string; visit: string }) 
     else { stop(); setStatus('Guida vocale disattivata'); }
   }
   return <div role="group" aria-label="Controlli vocali" className="mr-auto flex min-w-0 flex-wrap items-center gap-2">
-    <Button variant="outline" aria-pressed={enabled} onClick={toggle}>{enabled ? 'Disattiva voce' : 'Attiva voce'}</Button>
-    <Button variant="outline" disabled={!enabled} onClick={() => { play(); }}>{playing ? 'Ripeti' : 'Ascolta / Ripeti'}</Button>
-    <Button variant="outline" disabled={!playing} onClick={() => { stop(); setStatus('Lettura interrotta'); }}>Interrompi</Button>
+    <Button variant="outline" aria-pressed={enabled} onClick={toggle}><Volume2 size={18} />{enabled ? 'Disattiva voce' : 'Attiva voce'}</Button>
+    <Button variant="outline" disabled={!enabled} onClick={() => { play(); }}><RotateCcw size={18} />{playing ? 'Ripeti' : 'Ascolta / Ripeti'}</Button>
+    <Button variant="outline" disabled={!playing} onClick={() => { stop(); setStatus('Lettura interrotta'); }}><Square size={16} />Interrompi</Button>
     <span role="status" className={status.startsWith('Audio non avviato') || status.startsWith('Registrazione non disponibile') ? 'text-xs text-foreground' : 'sr-only'}>{status || (enabled ? 'Premi Ascolta per avviare la lettura' : 'Guida vocale disattivata')}</span>
   </div>;
 }

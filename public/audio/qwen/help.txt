@@ -1,0 +1,1 @@
+Attiva il sistema di chiamata previsto dalla struttura e comunica al team il passaggio attuale. L’app non effettua chiamate. Conferma sullo schermo la richiesta effettuata nello scenario.

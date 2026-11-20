@@ -22,290 +22,255 @@
     {
       "id": "preparation",
       "category": "step",
-      "title": "Counseling prenatale · Briefing del team · Checklist del materiale",
-      "text": "Counseling prenatale. Briefing del team. Checklist del materiale. Partecipa al counseling prenatale e al briefing; chiarisci il compito assegnato e verifica il materiale prima della nascita. Interventi: Counseling prenatale. Briefing del team. Checklist del materiale. Al termine, premi Prosegui.",
+      "title": "Preparazione",
+      "text": "Interventi iniziali: counseling prenatale, briefing del team e checklist del materiale. Partecipa al counseling e al briefing, chiarisci il compito assegnato e verifica il materiale prima della nascita. Al termine, premi Prosegui.",
       "source": "Poster · Counseling prenatale / briefing / checklist",
       "file": "preparation.wav",
       "sample_rate": 24000,
-      "duration_seconds": 21.28,
-      "sha256_audio": "02b0743e794be1013ab45431fadc0545777d73ae0ed2b20d2b92e210ce9731d3",
-      "playback": "recording"
+      "duration_seconds": 14.68,
+      "sha256_audio": "7a69380d4eef23ed5f6dae00955eda80b06ec8502b8babf298e3b05e7e216250"
     },
     {
       "id": "birth",
       "category": "step",
       "title": "Nascita",
-      "text": "Nascita. Registra quando è avvenuta la nascita: questo è il riferimento per il tempo trascorso e i target saturazione periferica di ossigeno. Inserisci i minuti trascorsi dalla nascita, poi premi Registra nascita e prosegui.",
+      "text": "Quando avviene la nascita nello scenario, premi Nascita ora e prosegui. Questo avvia il riferimento per il tempo trascorso e per i target di saturazione periferica di ossigeno.",
       "source": "Poster · Nascita",
       "file": "birth.wav",
       "sample_rate": 24000,
-      "duration_seconds": 15.56,
-      "sha256_audio": "79489b7f51ed16ac5fde9be58e741655d689b41a4748d69789bec09d3bab6cfc",
-      "playback": "browser-current-text"
+      "duration_seconds": 10.5,
+      "sha256_audio": "b72070c90e6996c7cc27cdf50b26e57fca2cccee820d11509b208962399c0d24"
     },
     {
       "id": "cord",
       "category": "step",
-      "title": "Gestione cordone ombelicale",
-      "text": "Gestione cordone ombelicale. Concorda il clampaggio con il team e assisti la gestione del cordone. Non ritardare gli interventi necessari. Interventi: Gestione cordone ombelicale. Clampaggio e milking: attendere almeno 60 secondi prima di clampare; considerare milking nei neonati depressi tra 35 e 42 settimane. Non ritardare gli interventi necessari: concorda la gestione con il team. Al termine, premi Prosegui.",
+      "title": "Gestione del cordone ombelicale",
+      "text": "Concorda con il team il clampaggio e assisti la gestione del cordone ombelicale. Attendere almeno 60 secondi prima di clampare; considerare il milking nei neonati depressi tra 35 e 42 settimane. Non ritardare gli interventi necessari. Al termine, premi Prosegui.",
       "source": "Poster · Gestione cordone ombelicale",
       "file": "cord.wav",
       "sample_rate": 24000,
-      "duration_seconds": 30.46,
-      "sha256_audio": "fdeb35153693ec8296d3fa1fd763e3942be1e39c6d4c815b8b357686e7cfd368",
-      "playback": "recording"
+      "duration_seconds": 17.92,
+      "sha256_audio": "fb6d98068740245b51220209d4d67cf3df5c15ff00bb8607d97dcd285f191773"
     },
     {
       "id": "initial",
       "category": "step",
-      "title": "Gravidanza a termine? Buon tono? Respira o piange?",
-      "text": "Gravidanza a termine? Buon tono? Respira o piange?. Verifica l’età gestazionale, valuta il tono e osserva se il neonato respira o piange. Registra separatamente le tre risposte. Indica separatamente: gravidanza a termine, buon tono, respira o piange. Poi conferma la valutazione.",
+      "title": "Valutazione post-natale immediata",
+      "text": "Verifica che la gravidanza sia a termine, valuta il tono e osserva se il neonato respira o piange. Se tutte e tre le condizioni sono presenti, seleziona Tutte le condizioni presenti per proseguire con il contatto pelle a pelle e l’osservazione. Se almeno una è assente, seleziona Almeno una condizione assente per passare ai primi interventi.",
       "source": "Poster · Primo bivio",
       "file": "initial.wav",
       "sample_rate": 24000,
-      "duration_seconds": 20.92,
-      "sha256_audio": "571f2ca75b0ba4fdfe58409a7169689f4717347dfa72f5fe63e203fb84c337d2",
-      "playback": "browser-current-text"
+      "duration_seconds": 20.12,
+      "sha256_audio": "0e7aed3499beabaa54cb930f1928f2f3f32c9873715762c98205c874ea407f66"
     },
     {
       "id": "skin",
       "category": "step",
-      "title": "Skin to skin · Controllo della temperatura · Valutazione continua",
-      "text": "Skin to skin. Controllo della temperatura. Valutazione continua. Assisti il contatto skin to skin, controlla la temperatura e continua a valutare il neonato. La valutazione prosegue nel tempo; non si esaurisce con una conferma. Interventi: Skin to skin. Controllo della temperatura. Valutazione continua",
+      "title": "Skin to skin e osservazione",
+      "text": "Assisti il contatto pelle a pelle, controlla la temperatura e continua a valutare il neonato. Mantieni l’osservazione nel tempo e comunica al team eventuali cambiamenti.",
       "source": "Poster · Skin to skin / controllo temperatura / valutazione continua",
       "file": "skin.wav",
       "sample_rate": 24000,
-      "duration_seconds": 22.88,
-      "sha256_audio": "5e7dc80c955e665367372971b05388ef032505b7d2ee76ffbaa14d701ff60bf6",
-      "playback": "recording"
+      "duration_seconds": 10.42,
+      "sha256_audio": "00db0b36997df9c0309a8b2de7d09535836e31d376dead07fa3cf8f7001b29d8"
     },
     {
       "id": "first-actions",
       "category": "step",
-      "title": "Fornire calore e mantenere la temperatura · Asciugare · Posizione idonea per la pervietà delle vie aeree · Rimuovere le secrezioni se necessario · Stimolare · Riposizionare",
-      "text": "Fornire calore e mantenere la temperatura. Asciugare. Posizione idonea per la pervietà delle vie aeree. Rimuovere le secrezioni se necessario. Stimolare. Riposizionare. Mantieni la temperatura, asciuga e posiziona il neonato per mantenere pervie le vie aeree. Rimuovi le secrezioni solo se necessario, stimola e riposiziona; poi valuta apnea o gasping e frequenza cardiaca. Interventi: Fornire calore e mantenere la temperatura. Asciugare. Posizione idonea per la pervietà delle vie aeree. Rimuovere le secrezioni se necessario. Stimolare. Riposizionare. Al termine, premi Prosegui.",
+      "title": "Azioni immediate",
+      "text": "Mantieni la temperatura, asciuga e posiziona il neonato per mantenere pervie le vie aeree. Rimuovi le secrezioni solo se necessario, stimola e riposiziona. Al termine, premi Prosegui per valutare il respiro e la frequenza cardiaca.",
       "source": "Poster · Primi passi",
       "file": "first-actions.wav",
       "sample_rate": 24000,
-      "duration_seconds": 44.86,
-      "sha256_audio": "a5de84d676b36a4d57853566d265078aa5759d4f77ab56ac74808bb2badde81e",
-      "playback": "recording"
+      "duration_seconds": 15.24,
+      "sha256_audio": "ec381965ed7a4a19ffc706b9e5fb6fc7919c375ebed7e1ccb960a47255697da4"
     },
     {
       "id": "respiration",
       "category": "step",
-      "title": "Apnea e/o gasping? FC <100/min?",
-      "text": "Apnea o gasping? frequenza cardiaca inferiore a 100 battiti al minuto?. Osserva se sono presenti apnea o gasping e rileva la frequenza cardiaca. Apnea/gasping o frequenza cardiaca inferiore a 100 battiti al minuto richiedono supporto ventilatorio. Inserisci la frequenza cardiaca rilevata in battiti al minuto e indica se sono presenti apnea o gasping. Poi conferma la valutazione.",
+      "title": "Valutazione del respiro e della frequenza cardiaca",
+      "text": "Osserva se sono presenti apnea o gasping e rileva la frequenza cardiaca. Se è presente apnea o gasping, oppure la frequenza cardiaca è inferiore a 100 battiti al minuto, seleziona il caso corrispondente per passare alla ventilazione a pressione positiva. Se non sono presenti né apnea né gasping e la frequenza cardiaca è almeno 100 battiti al minuto, seleziona l’altro caso per valutare la difficoltà respiratoria.",
       "source": "Poster · Bivio apnea/gasping o FC <100/min",
       "file": "respiration.wav",
       "sample_rate": 24000,
-      "duration_seconds": 26.82,
-      "sha256_audio": "0733b62f4d85a2eb8a644d1b834cf279a43d5ac6b02ab924ed2192e4354c3a53",
-      "playback": "browser-current-text"
+      "duration_seconds": 24.28,
+      "sha256_audio": "5c7296e1255f61a08e20afd53adc764543ae5c233fe5a308a224a3c39301fdc5"
     },
     {
       "id": "distress",
       "category": "step",
-      "title": "Respiro difficoltoso e/o cianosi persistente?",
-      "text": "Respiro difficoltoso o cianosi persistente?. Osserva il respiro e verifica la presenza di cianosi persistente. Se è presente almeno una delle due condizioni, seleziona SÌ. Indica se sono presenti respiro difficoltoso o cianosi persistente. Poi conferma la valutazione.",
+      "title": "Valutazione della difficoltà respiratoria",
+      "text": "Osserva il respiro e verifica la presenza di cianosi persistente. Se è presente almeno una delle due condizioni, seleziona Respiro difficoltoso o cianosi persistente per passare al supporto respiratorio. Se entrambe sono assenti, seleziona Nessuna delle due condizioni per proseguire con il contatto pelle a pelle e l’osservazione.",
       "source": "Poster · Bivio respiro difficoltoso / cianosi persistente",
       "file": "distress.wav",
       "sample_rate": 24000,
-      "duration_seconds": 18.4,
-      "sha256_audio": "ee74c25f2733f561d23857095b0d952b4bf8d4b62142294e50b3f771e38d3ec8",
-      "playback": "browser-current-text"
+      "duration_seconds": 19.4,
+      "sha256_audio": "46968914be94ecabe2e90ffcde17ed00a23cd5ea7181f31e858ef041fb8833dd"
     },
     {
       "id": "distress-support",
       "category": "step",
-      "title": "Posizione idonea per la pervietà delle vie aeree · Monitoraggio SpO₂ · Supplementazione O₂ · Considerare CPAP",
-      "text": "Posizione idonea per la pervietà delle vie aeree. Monitoraggio saturazione periferica di ossigeno. Supplementazione ossigeno. Considerare pressione positiva continua nelle vie aeree. Mantieni pervie le vie aeree e attiva il monitoraggio saturazione periferica di ossigeno. Collabora alla supplementazione di ossigeno e valuta con il team la necessità di pressione positiva continua nelle vie aeree. Interventi: Posizione idonea per la pervietà delle vie aeree. Monitoraggio saturazione periferica di ossigeno. Supplementazione ossigeno. Considerare pressione positiva continua nelle vie aeree. Al termine, premi Prosegui.",
+      "title": "Supporto respiratorio",
+      "text": "Mantieni pervie le vie aeree e attiva il monitoraggio della saturazione periferica di ossigeno. Collabora alla supplementazione di ossigeno e valuta con il team la necessità di pressione positiva continua nelle vie aeree. Al termine, premi Prosegui.",
       "source": "Poster · Ramo respiro difficoltoso",
       "file": "distress-support.wav",
       "sample_rate": 24000,
-      "duration_seconds": 43.4,
-      "sha256_audio": "7fcb16a30975a4fce1ab9906358e5136ccd65d548715a7220ad5003ea914a298",
-      "playback": "recording"
+      "duration_seconds": 14.76,
+      "sha256_audio": "ab0ce1de20ac888d3f5e3b86f443192348fda06f517a23bf453af28bd7e37a01"
     },
     {
       "id": "ppv",
       "category": "step",
-      "title": "PPV · Monitoraggio SpO₂ · Considerare monitoraggio ECG",
-      "text": "ventilazione a pressione positiva. Monitoraggio saturazione periferica di ossigeno. Considerare monitoraggio elettrocardiogramma. Esegui o assisti la ventilazione a pressione positiva. Monitora la saturazione periferica di ossigeno, valuta con il team il monitoraggio elettrocardiogramma e rivaluta la frequenza cardiaca. Interventi: ventilazione a pressione positiva. Monitoraggio saturazione periferica di ossigeno. Considerare monitoraggio elettrocardiogramma. Al termine, premi Prosegui.",
+      "title": "Ventilazione a pressione positiva",
+      "text": "Esegui o assisti la ventilazione a pressione positiva. Monitora la saturazione periferica di ossigeno e valuta con il team il monitoraggio elettrocardiografico. Al termine, premi Prosegui per rivalutare la frequenza cardiaca.",
       "source": "Poster · PPV",
       "file": "ppv.wav",
       "sample_rate": 24000,
-      "duration_seconds": 33.12,
-      "sha256_audio": "7dae31300b32b4592c876990ac82368c08358aeefc35af3c7b323c3b1a43e749",
-      "playback": "recording"
+      "duration_seconds": 14.12,
+      "sha256_audio": "06f56bddc12ff818bd99d2bec6857a47bd1a6c64df691bf39f9307e51291ea42"
     },
     {
       "id": "hr100",
       "category": "step",
-      "title": "FC <100/min?",
-      "text": "frequenza cardiaca inferiore a 100 battiti al minuto?. Rileva la frequenza cardiaca dopo la ventilazione. Se rimane inferiore a 100 battiti al minuto, correggi la ventilazione; altrimenti prosegui con le cure post-rianimatorie. Inserisci la frequenza cardiaca rilevata in battiti al minuto, poi conferma la valutazione.",
+      "title": "Frequenza cardiaca dopo la ventilazione",
+      "text": "Rileva la frequenza cardiaca dopo la ventilazione e seleziona il caso corrispondente. Se è inferiore a 100 battiti al minuto, passa ai correttivi della ventilazione. Se è uguale o superiore a 100 battiti al minuto, prosegui con le cure post-rianimatorie.",
       "source": "Poster · Bivio dopo PPV",
       "file": "hr100.wav",
       "sample_rate": 24000,
-      "duration_seconds": 20.8,
-      "sha256_audio": "537077ba74ec7723faf6afcf6c96a7baba6669a70c5a774a6f5f632c016fcbda",
-      "playback": "browser-current-text"
+      "duration_seconds": 15.64,
+      "sha256_audio": "4b28f24f51c397a0da150da022d4bd1de0ff6c7b83ef93df4597f8b7296e87d2"
     },
     {
       "id": "correctives",
       "category": "step",
-      "title": "Correttivi della ventilazione · Se necessario tubo tracheale o maschera laringea · Monitor ECG",
-      "text": "Correttivi della ventilazione. Se necessario tubo tracheale o maschera laringea. Monitor elettrocardiogramma. Verifica maschera, posizione, secrezioni, apertura della bocca e pressioni. Se necessario prepara una via aerea alternativa e attiva il monitoraggio elettrocardiogramma. Interventi: Correttivi della ventilazione. Se necessario tubo tracheale o maschera laringea. Monitor elettrocardiogramma. Al termine, premi Prosegui.",
+      "title": "Correttivi della ventilazione",
+      "text": "Verifica maschera, posizione, secrezioni, apertura della bocca e pressioni. Se necessario, prepara il tubo tracheale o la maschera laringea e attiva il monitoraggio elettrocardiografico. Al termine, premi Prosegui per rivalutare la frequenza cardiaca.",
       "source": "Poster · Correttivi della ventilazione",
       "file": "correctives.wav",
       "sample_rate": 24000,
-      "duration_seconds": 31.76,
-      "sha256_audio": "dfa807d22fb906f1f54f6a15358231e5dbf3a16ac71bcd2f63c4ac86d1fa73a5",
-      "playback": "recording"
+      "duration_seconds": 16.12,
+      "sha256_audio": "4760487f210684760796547a750927a63295c349e7868280e683aef87873986d"
     },
     {
       "id": "hr60",
       "category": "step",
-      "title": "FC <60/min?",
-      "text": "frequenza cardiaca inferiore a 60 battiti al minuto?. Rileva la frequenza cardiaca dopo i correttivi. Prima di avviare le compressioni, conferma con il team che la ventilazione sia efficace. Inserisci la frequenza cardiaca rilevata in battiti al minuto. Prima delle compressioni, conferma con il team la ventilazione efficace. Poi conferma la valutazione.",
+      "title": "Frequenza cardiaca dopo i correttivi",
+      "text": "Rileva la frequenza cardiaca dopo i correttivi. Se è inferiore a 60 battiti al minuto, conferma prima con il team che la ventilazione sia efficace, poi seleziona il caso che porta alle compressioni coordinate con la ventilazione. Se è almeno 60 battiti al minuto, seleziona l’altro caso per rivalutarla rispetto alla soglia di 100 battiti al minuto. Se la ventilazione non è efficace, torna ai correttivi.",
       "source": "Poster · Bivio dopo correttivi / messaggi chiave",
       "file": "hr60.wav",
       "sample_rate": 24000,
-      "duration_seconds": 27.22,
-      "sha256_audio": "2e6b98fe06b4910680d3640a65052e6f5775eeda90453d4ff169043b99afa6b6",
-      "playback": "browser-current-text"
+      "duration_seconds": 24.14,
+      "sha256_audio": "bec3b39544ab4d478c750b142a844f6ff18663b4da3eb1a7954037aabb5b815c"
     },
     {
       "id": "compressions",
       "category": "step",
-      "title": "O₂ al 100% · Tubo tracheale o maschera laringea · Compressioni toraciche coordinate con PPV · Monitoraggio ECG · Considerare CVO o IO",
-      "text": "ossigeno al 100 per cento. Tubo tracheale o maschera laringea. Compressioni toraciche coordinate con ventilazione a pressione positiva. Monitoraggio elettrocardiogramma. Considerare catetere venoso ombelicale o accesso intraosseo. Collabora all’erogazione di ossigeno al 100 per cento e alla gestione della via aerea. Esegui o assisti le compressioni coordinate con ventilazione a pressione positiva secondo il ruolo assegnato, monitora l’elettrocardiogramma e prepara il materiale per catetere venoso ombelicale o accesso intraosseo se indicato dal team. Interventi: ossigeno al 100 per cento. Tubo tracheale o maschera laringea. Compressioni toraciche coordinate con ventilazione a pressione positiva. Monitoraggio elettrocardiogramma. Considerare catetere venoso ombelicale o accesso intraosseo. Al termine, premi Prosegui.",
+      "title": "Compressioni e ventilazione",
+      "text": "Collabora all’erogazione di ossigeno al 100 per cento e alla gestione del tubo tracheale o della maschera laringea. Esegui o assisti le compressioni toraciche coordinate con la ventilazione a pressione positiva, secondo il ruolo assegnato. Monitora l’elettrocardiogramma e prepara il materiale per il catetere venoso ombelicale o l’accesso intraosseo, se indicato dal team. Al termine, premi Prosegui per rivalutare la frequenza cardiaca.",
       "source": "Poster · Compressioni toraciche coordinate con PPV",
       "file": "compressions.wav",
       "sample_rate": 24000,
-      "duration_seconds": 52.88,
-      "sha256_audio": "8752bc1eba81c0b48e0a3178bb0dc5d46706a884c071f47604524d8fc8e33ed7",
-      "playback": "recording"
+      "duration_seconds": 26.38,
+      "sha256_audio": "9cc6099aedd75d13691800733e268d66974b7daa4b3a752d4a7471d679b351fb"
     },
     {
       "id": "advanced-hr",
       "category": "step",
-      "title": "FC <60/min?",
-      "text": "frequenza cardiaca inferiore a 60 battiti al minuto?. Rileva e comunica la frequenza cardiaca dopo le compressioni coordinate con ventilazione a pressione positiva. Registra il valore per verificare se rimane inferiore a 60 battiti al minuto. Inserisci la frequenza cardiaca rilevata in battiti al minuto, poi conferma la valutazione.",
+      "title": "Frequenza cardiaca dopo le compressioni",
+      "text": "Rileva e comunica la frequenza cardiaca dopo le compressioni coordinate con la ventilazione. Se rimane inferiore a 60 battiti al minuto, seleziona il caso che porta all’adrenalina e alla valutazione delle cause reversibili. Se è uguale o superiore a 60 battiti al minuto, seleziona l’altro caso per rivalutare la risposta del neonato con il team.",
       "source": "Poster · Bivio dopo compressioni",
       "file": "advanced-hr.wav",
       "sample_rate": 24000,
-      "duration_seconds": 20.94,
-      "sha256_audio": "23cbd42119e7ca54887862ecc4c0bd0746dba135d8d1ae43ca76f5ab017dc8b3",
-      "playback": "browser-current-text"
+      "duration_seconds": 20.52,
+      "sha256_audio": "09c6c8b7e55ee6b5118c200f05058f9cdf719c6a824d37df7eb9e6398f017f51"
     },
     {
       "id": "medication",
       "category": "step",
-      "title": "Adrenalina in CVO o IO ogni 3–5 min · Se FC <60/min persistente considerare ipovolemia · DOPPES",
-      "text": "Adrenalina in catetere venoso ombelicale o accesso intraosseo ogni 3 a 5 minuti. Se frequenza cardiaca inferiore a 60 battiti al minuto persistente considerare ipovolemia. Doppes. Verifica la prescrizione e prepara l’adrenalina per la via catetere venoso ombelicale o accesso intraosseo. Registra ogni somministrazione e controlla il tempo trascorso; se frequenza cardiaca rimane inferiore a 60 battiti al minuto, collabora alla valutazione di ipovolemia e delle cause di ventilazione inefficace. Interventi: Adrenalina in catetere venoso ombelicale o accesso intraosseo ogni 3 a 5 minuti. Se frequenza cardiaca inferiore a 60 battiti al minuto persistente, considerare ipovolemia. Rivalutazione Doppes. Al termine, premi Prosegui.",
+      "title": "Adrenalina e cause reversibili",
+      "text": "Verifica la prescrizione e prepara l’adrenalina per il catetere venoso ombelicale o l’accesso intraosseo. Registra ogni somministrazione e controlla l’intervallo di 3–5 minuti. Se la frequenza cardiaca rimane inferiore a 60 battiti al minuto, collabora alla valutazione dell’ipovolemia e delle cause di ventilazione inefficace con le verifiche Doppes. Premi Prosegui per rivalutare la frequenza cardiaca.",
       "source": "Poster · Adrenalina / ipovolemia / DOPPES",
       "file": "medication.wav",
       "sample_rate": 24000,
-      "duration_seconds": 54.18,
-      "sha256_audio": "e84a7150fc6339c7b05dfac4aec847f2cefae0d2d02cebb483259b9b5b903551",
-      "playback": "recording"
+      "duration_seconds": 24.3,
+      "sha256_audio": "6ed4bc39cbac986ad0b2171e6c4f577d7aa425abd567deab42713d55de879677"
     },
     {
       "id": "recovery-review",
       "category": "step",
-      "title": "Rivalutare la risposta del neonato",
-      "text": "Rivalutare la risposta del neonato. Comunica la frequenza cardiaca rilevata, rivaluta il respiro e concorda con il team la prosecuzione del supporto. Interventi: Risposta del neonato rivalutata con il team",
+      "title": "Rivalutazione della risposta",
+      "text": "Comunica la frequenza cardiaca rilevata, rivaluta il respiro e concorda con il team come proseguire il supporto in base alla risposta del neonato.",
       "source": "Limite esplicito della trasposizione del diagramma",
       "file": "recovery-review.wav",
       "sample_rate": 24000,
-      "duration_seconds": 14.36,
-      "sha256_audio": "5110f6640fd2ef2855f3ae93eae146f32d98618bcf18c2732dcacdd84e425886",
-      "playback": "recording"
+      "duration_seconds": 7.6,
+      "sha256_audio": "906f28b001780553b19992a8b3ba29eec06890b170e94af67eca7d57b7fa3b15"
     },
     {
       "id": "post",
       "category": "step",
-      "title": "Cure post-rianimatorie · Debriefing",
-      "text": "Cure post-rianimatorie. Debriefing. Prosegui l’assistenza post-rianimatoria secondo le indicazioni del team e partecipa al debriefing, riferendo valutazioni, interventi e tempi registrati. Interventi: Cure post-rianimatorie. Debriefing del team",
+      "title": "Cure post-rianimatorie e debriefing",
+      "text": "Prosegui l’assistenza post-rianimatoria secondo le indicazioni del team. Partecipa al debriefing, riferendo le valutazioni, gli interventi e i tempi registrati.",
       "source": "Poster · Cure post-rianimatorie / debriefing",
       "file": "post.wav",
       "sample_rate": 24000,
-      "duration_seconds": 17.68,
-      "sha256_audio": "842820558e5e007481180fcf984c236d19d6435e8b95a38c4c51be018c2f1d86",
-      "playback": "recording"
+      "duration_seconds": 9.38,
+      "sha256_audio": "e54d74ec0bb2ad9665c0dc3d2e7c5aa49c3f507a66814355e77de0c842d83f88"
     },
     {
       "id": "saturation",
       "category": "reference",
       "title": "Target di saturazione preduttale",
-      "text": "Target di saturazione preduttale. A 2 minuti: dal 65 al 70 per cento. A 3 minuti: dal 70 al 75 per cento. A 4 minuti: dal 75 all’80 per cento. A 5 minuti: dall’80 all’85 per cento. A 10 minuti: dall’85 al 95 per cento.",
+      "text": "Confronta la saturazione preduttale con il tempo trascorso dalla nascita. A 2 minuti, il target è dal 65 al 70 per cento. A 3 minuti, dal 70 al 75 per cento. A 4 minuti, dal 75 all’80 per cento. A 5 minuti, dall’80 all’85 per cento. A 10 minuti, dall’85 al 95 per cento.",
       "source": "Contenuti di Nido",
       "file": "saturation.wav",
       "sample_rate": 24000,
-      "duration_seconds": 22.98,
-      "sha256_audio": "428c0ddb45516df007ca2b168ab7e99324fd6d2bd7b9371e254354477d7bc888",
-      "playback": "recording"
+      "duration_seconds": 22.74,
+      "sha256_audio": "c6af1aa8ba86eee2ec251f050a7b17643bf2e2350eb48bea7f1c0ad1045514b1"
     },
     {
       "id": "mrsopa",
       "category": "reference",
       "title": "Correttivi MR SOPA",
-      "text": "Correttivi della ventilazione in maschera. Maschera adeguata al volto. Riposizionamento in sniffing position. Verifica secrezioni e aspira le vie aeree. Apri (Open) la bocca. Pressioni adeguate. Via aerea alternativa.",
+      "text": "Verifica i correttivi della ventilazione in maschera: adatta la maschera al volto, riposiziona in sniffing position, verifica le secrezioni e aspira se necessario, apri la bocca e verifica che le pressioni siano adeguate. Se necessario, prepara una via aerea alternativa.",
       "source": "Contenuti di Nido",
       "file": "mrsopa.wav",
       "sample_rate": 24000,
-      "duration_seconds": 17.72,
-      "sha256_audio": "4081ef500b06df2bcf7a333088be232a7360f545444a5ff58114faa8bb606787",
-      "playback": "recording"
+      "duration_seconds": 16.34,
+      "sha256_audio": "d8b2ef1a2433d3379ce4a79f9f8b469b632c9e23c75e005d648b01e01026853c"
     },
     {
       "id": "doppes",
       "category": "reference",
       "title": "Verifiche DOPPES",
-      "text": "Cause di ventilazione inefficace nel neonato intubato. Dislocazione. Ostruzione. Pressioni adeguate. Pneumotorace. Strumentazione (Equipment) ben funzionante. Rimuovere aria dallo stomaco.",
+      "text": "Se la ventilazione nel neonato intubato è inefficace, verifica con il team: dislocazione, ostruzione, adeguatezza delle pressioni, pneumotorace e funzionamento della strumentazione. Valuta anche la necessità di rimuovere aria dallo stomaco.",
       "source": "Contenuti di Nido",
       "file": "doppes.wav",
       "sample_rate": 24000,
-      "duration_seconds": 15.48,
-      "sha256_audio": "eb2991980c4c5e1d10186861b70fdf5385a25924a0d98516692bca1808be711f",
-      "playback": "recording"
-    },
-    {
-      "id": "newborn",
-      "category": "interface",
-      "title": "Dati dichiarati nello scenario",
-      "text": "Inserisci, se disponibili, l’età gestazionale in settimane compiute e la temperatura rilevata in gradi Celsius. Poi premi Registra dati dello scenario.",
-      "source": "Contenuti di Nido",
-      "file": "newborn.wav",
-      "sample_rate": 24000,
-      "duration_seconds": 10.26,
-      "sha256_audio": "1f4cc36e5854eb6fd840b94218fe1fdb53fb5438123032e8e09230643a84b662",
-      "playback": "browser-current-text"
+      "duration_seconds": 14.9,
+      "sha256_audio": "b45ea0fd07970871844cb10a0f6a48939d1022be1775d41ffe3fefdee17d1f9b"
     },
     {
       "id": "help",
       "category": "interface",
       "title": "Aiuto e coordinamento del team",
-      "text": "Attiva il sistema di chiamata previsto dalla struttura e condividi il passaggio attuale. Nessuna chiamata viene effettuata dall’app. Conferma sullo schermo la richiesta effettuata nello scenario.",
+      "text": "Attiva il sistema di chiamata previsto dalla struttura e comunica al team il passaggio attuale. L’app non effettua chiamate. Conferma sullo schermo la richiesta effettuata nello scenario.",
       "source": "Contenuti di Nido",
       "file": "help.wav",
       "sample_rate": 24000,
-      "duration_seconds": 11.56,
-      "sha256_audio": "f6cc8f88e74ca2402337807f4286a22d9b16d6298df75b0d533687c804374601",
-      "playback": "recording"
+      "duration_seconds": 10.6,
+      "sha256_audio": "b8ac3b3be316998fe0aebba27c1a812cdca9676a8d3d56e288a459dc29bfcd3a"
     },
     {
       "id": "finished",
       "category": "interface",
       "title": "Simulazione conclusa",
-      "text": "Simulazione conclusa. Puoi esportare il registro o avviare un’altra sessione. Il registro corrente viene perso chiudendo o ricaricando la pagina.",
+      "text": "La simulazione è conclusa. Esporta il registro se vuoi conservarlo, oppure avvia un’altra sessione. Chiudendo o ricaricando la pagina, il registro corrente viene perso.",
       "source": "Contenuti di Nido",
       "file": "finished.wav",
       "sample_rate": 24000,
-      "duration_seconds": 9.8,
-      "sha256_audio": "a8604e569792ce6c3e076fa6e44acd59015a26f3585c950518b4f7f786c54ee0",
-      "playback": "recording"
+      "duration_seconds": 10.68,
+      "sha256_audio": "a18b9e4c47bfaf0ea2359dbccab0bbb2cd8a886bea05ef942a2b4d6b3b436e50"
     }
   ]
 }

@@ -67,3 +67,6 @@ export const XIcon = makeIcon(icon17)
 export const Info = makeIcon(icon23)
 export const Download = makeIcon(icon13)
 export const Maximize2 = makeIcon(icon20)
+
+export const OxygenMask = makeIcon(icon28)
+export const Lungs = makeIcon(icon19)

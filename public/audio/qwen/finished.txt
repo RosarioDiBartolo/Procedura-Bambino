@@ -1,0 +1,1 @@
+La simulazione è conclusa. Esporta il registro se vuoi conservarlo, oppure avvia un’altra sessione. Chiudendo o ricaricando la pagina, il registro corrente viene perso.

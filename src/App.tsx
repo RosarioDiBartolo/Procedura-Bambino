@@ -2,8 +2,8 @@ import { AppearanceContext } from './components/ui/AppearanceContext';
 import AnimatedContent from './components/ui/AnimatedContent';
 import { RecordedVoice } from './RecordedVoice';
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { Outlet, useLocation, useMatch } from "react-router-dom";
-import { ClipboardList, Clock3, FileText, PhoneCall, RotateCcw, Thermometer } from "@/components/icons8";
+import { Link, Outlet, useLocation, useMatch } from "react-router-dom";
+import { Activity, ClipboardList, Clock3, FileText, Info, OxygenMask, PhoneCall, RotateCcw, Thermometer, Lungs } from "@/components/icons8";
 import { Button } from "@/components/ui/button";
 import { formatTime, phases, secondsFrom, steps, type StepId } from "./flow";
 import { useSession } from "./SessionContext";
@@ -30,35 +30,22 @@ export default function App() {
 
   return (
     <div className={`
-      app-shell compact-shell relative overflow-x-hidden grid-rows-[24px_auto_minmax(0,1fr)_auto] h-[100dvh]
+      app-shell compact-shell relative overflow-x-hidden grid-rows-[auto_minmax(0,1fr)_auto] h-[100dvh]
       min-h-160 grid bg-[#f0f4f7] text-[#203c50] max-[760px]:h-[100dvh] max-[760px]:min-h-0
-      max-[760px]:grid-rows-[22px_auto_minmax(0,1fr)_auto] [@media(min-width:700px)_and_(max-height:740px)]:min-h-150
+      max-[760px]:grid-rows-[auto_minmax(0,1fr)_auto] [@media(min-width:700px)_and_(max-height:740px)]:min-h-150
     `}>
-      <div className="
-      [.assistant-home_&]:[animation:reveal-chrome_.8s_1.6s_both] gap-2 [border-bottom:1px_solid_rgb(223,_229,_236)]
-      h-[29px] bg-[#edf1f5] text-[#637386] flex items-center justify-center text-[length:10px] tracking-[1.3px]
-      font-[700] max-[650px]:h-6.5 max-[650px]:text-[length:8px] [.compact-shell_&]:h-6
-      [.compact-shell_&]:text-[length:9px] [.compact-shell_&]:tracking-[1px]
-      [@media(min-width:700px)_and_(max-height:740px)]:[.compact-shell_&]:h-5
-      [@media(min-width:700px)_and_(max-height:740px)]:[.compact-shell_&]:text-[length:8px]
-    ">
-        NIDO · SIMULAZIONE · NON VALIDATO PER USO ASSISTENZIALE
-      </div>
       <header className="
       [.assistant-home_&]:[animation:reveal-chrome_.8s_1.6s_both] py-3 px-6
       [border-bottom:1px_solid_rgb(220,_229,_235)] min-h-19 grid grid-cols-[auto_1fr_auto] gap-y-3 gap-x-6
       items-center justify-between bg-[#fff] max-[1100px]:py-3 max-[1100px]:px-4.5 max-[1100px]:gap-2.5
       max-[760px]:py-2.5 max-[760px]:px-3 max-[760px]:gap-2 max-[760px]:grid-cols-[1fr_auto]
     ">
-        <div className="
-      compact-identity gap-2.5 whitespace-nowrap flex items-center max-[1100px]:[&_strong>span]:hidden
-      max-[760px]:flex [&_strong]:text-[length:17px] [&_strong>span]:text-[length:12px] [&_strong>span]:font-[400]
-      [&_strong>span]:text-[#718494] [&_strong>span]:ml-2.5
-      [@media(min-width:700px)_and_(max-width:950px)]:[&_strong>span]:hidden
-    ">
-          <img className="block h-10.5 w-31 object-contain max-[760px]:h-9 max-[760px]:w-26" src="/brand/nido-logo.png" alt="Nido" />
+        <div className="compact-identity brand-identity">
+          <img src="/brand/nido-logo.png" alt="Nido" />
+          <div className="brand-caption"><span className="brand-title">Procedura NLS</span><span className="brand-subtitle">Simulazione didattica neonatale</span></div>
         </div>
         <div className="gap-[7px] [grid-column:3] [grid-row:1] flex max-[760px]:[grid-column:2] [&_button]:p-2 [&_button]:w-[37px] [&_button]:h-[37px] max-[699px]:gap-[3px]">
+          <Link to="/il-progetto" aria-label="Il progetto e note legali" className="inline-flex h-[37px] w-[37px] items-center justify-center rounded-md hover:bg-slate-100 focus-visible:outline-2"><Info size={18} /></Link>
           <Button
             variant="ghost"
             size="sm"
@@ -112,18 +99,23 @@ export default function App() {
     `}>
         <div className="min-w-0 min-h-0 h-full overflow-hidden p-[3px] [container-type:inline-size]"><StepPresentation key={`${session.startedAt}:${location.pathname}`} seen={seenSteps.current} visit={`${session.startedAt}:${location.pathname}`}><Outlet /></StepPresentation></div>
       </main>
-      <footer className="
-      compact-utility-bar [.assistant-home_&]:[animation:reveal-chrome_.8s_1.6s_both] max-[760px]:py-2
-      max-[760px]:px-2.5 max-[760px]:gap-[5px] max-[760px]:[grid-row:auto] max-[760px]:relative
-      max-[760px]:flex-nowrap py-3 px-6 gap-4 [border-top:1px_solid_rgb(219,_229,_235)] flex flex-wrap items-center justify-end
-      bg-[white] [&>div]:gap-2 [&>div]:flex [&_button]:gap-2 [&_button]:h-10 [&_button]:text-[length:12px]
-      [@media(min-width:700px)_and_(max-height:740px)]:py-2 [@media(min-width:700px)_and_(max-width:950px)]:px-4.5
-      [@media(min-width:700px)_and_(max-width:950px)]:[&_button]:text-[length:11px]
-      [@media(min-width:700px)_and_(max-width:950px)]:[&>div]:gap-1.5 max-[699px]:py-2.5 max-[699px]:px-3
-      max-[699px]:gap-2 max-[699px]:sticky max-[699px]:bottom-0 max-[699px]:flex-wrap max-[699px]:[&>div]:grow
-      max-[699px]:[&>div]:shrink max-[699px]:[&>div]:basis-[0%] max-[699px]:[&>div]:justify-between
-      max-[699px]:[&_button]:px-2.5 max-[699px]:[&_button]:text-[length:10px] max-[699px]:[&_button]:h-9
-    "><Button variant="outline" onClick={() => setPanel('mrsopa')}>MR SOPA</Button><Button variant="outline" onClick={() => setPanel('doppes')}>DOPPES</Button><Button variant="outline" onClick={() => setPanel('saturation')}>Target SpO₂</Button><RecordedVoice clip={session.finishedAt ? 'finished' : session.step} visit={`${session.startedAt}:${session.enteredAt}:${session.stack.length}:${session.step}`} /><Button className="max-[760px]:[.compact-utility-bar_&]:text-[length:9px] [.compact-utility-bar_&]:bg-[#8d514b] [.compact-utility-bar_&]:text-[#fff]" onClick={() => setPanel('help')}><PhoneCall size={17} />{helpRequested ? 'Aiuto segnalato' : 'Richiedere aiuto'}</Button></footer>
+      <footer className="compact-utility-bar">
+        <div role="group" aria-label="Promemoria" className="utility-references">
+          <span className="utility-label">Promemoria</span>
+          <div className="utility-buttons">
+            <Button variant="outline" onClick={() => setPanel('mrsopa')}><OxygenMask size={18} />MR SOPA</Button>
+            <Button variant="outline" onClick={() => setPanel('doppes')}><Lungs size={18} />DOPPES</Button>
+            <Button variant="outline" onClick={() => setPanel('saturation')}><Activity size={18} />Target SpO₂</Button>
+          </div>
+        </div>
+        <div className="utility-voice"><span className="utility-label">Guida vocale</span>
+          <RecordedVoice clip={session.finishedAt ? 'finished' : session.step} visit={`${session.startedAt}:${session.enteredAt}:${session.stack.length}:${session.step}`} />
+        </div>
+        <div className="utility-help"><span className="utility-label">Coordinamento · simulazione</span>
+          <Button className="bg-[#8d514b] text-white hover:bg-[#78443f]" onClick={() => setPanel('help')}><PhoneCall size={17} />{helpRequested ? 'Aiuto segnalato' : 'Richiedere aiuto'}</Button>
+        </div>
+        <nav aria-label="Informazioni sulla piattaforma" className="utility-info"><span>Simulazione didattica</span><Link to="/il-progetto">Il progetto</Link><Link to="/guida">Guida rapida</Link><Link to="/privacy">Privacy</Link><Link to="/note-legali">Note legali</Link></nav>
+      </footer>
 
       <SessionPanels />
     </div>

@@ -13,7 +13,7 @@ def code(text):
     cells.append({'cell_type':'code','metadata':{},'source':text.splitlines(keepends=True),'execution_count':None,'outputs':[]})
 
 md('''# Qwen3-TTS · Audio italiani del prototipo NLS
-Notebook autonomo: contiene i testi dei **24 audio** (18 passaggi, 3 supporti, 3 messaggi).
+Notebook autonomo: contiene i testi dei **23 audio** (18 passaggi, 3 supporti, 2 messaggi).
 
 1. In Colab scegli **Runtime → Cambia tipo di runtime → GPU**. Una T4 è il punto di partenza; disponibilità e limiti dipendono da Colab.
 2. Esegui installazione e configurazione, poi genera e ascolta i due campioni.
@@ -118,8 +118,8 @@ OUTPUT = WORK / f"audio-{reference_hash[:10]}-{BASE_MODEL.split('/')[-1]}"
 OUTPUT.mkdir(parents=True, exist_ok=True)
 print("Riferimento scelto:", REFERENCE_PATH.name)
 ''')
-md('## 5 · Testi dei 24 audio\nPuoi correggere un testo prima della generazione. I nomi dei 18 passaggi corrispondono agli identificativi dell’app. Questi testi sono una fotografia del prototipo al 15 novembre 2026.\n')
-code('AUDIO_SCRIPTS = '+repr(clips)+'\nassert len(AUDIO_SCRIPTS) == 24\nprint("Testi caricati:", len(AUDIO_SCRIPTS))\n')
+md('## 5 · Testi dei 23 audio\nPuoi correggere un testo prima della generazione. I nomi dei 18 passaggi corrispondono agli identificativi dell’app. Testi revisionati il 20 novembre 2026. La fonte modificabile è scripts-it.json; dopo una modifica, rigenera questo notebook con build-qwen-notebook.py.\n')
+code('AUDIO_SCRIPTS = '+repr(clips)+'\nassert len(AUDIO_SCRIPTS) == 23\nprint("Testi caricati:", len(AUDIO_SCRIPTS))\n')
 md('## 6 · Carica il modello Base e prepara la voce\nIl modello VoiceDesign è già stato liberato. Se la memoria non basta, cambia `BASE_MODEL` nella configurazione in `Qwen/Qwen3-TTS-12Hz-0.6B-Base`, riesegui la selezione e riparti da questa cella.\n')
 code('''release_models()
 clone_model = load_model(BASE_MODEL)
@@ -202,7 +202,7 @@ if failures:
 else:
     display(Audio(filename=str(OUTPUT / "respiration.wav")))
 ''')
-md('## 8 · ZIP e download\nLo ZIP completo viene creato solo quando tutti i 24 audio sono disponibili. Include WAV, testi, manifest, versione delle librerie e voce di riferimento; esclude la cache dei segmenti. L’opzione di recupero permette di scaricare anche un lavoro incompleto, con nome esplicito.\n')
+md('## 8 · ZIP e download\nLo ZIP completo viene creato solo quando tutti i 23 audio sono disponibili. Include WAV, testi, manifest, versione delle librerie e voce di riferimento; esclude la cache dei segmenti. L’opzione di recupero permette di scaricare anche un lavoro incompleto, con nome esplicito.\n')
 code('''ALLOW_PARTIAL_DOWNLOAD = False
 assert "manifest" in globals(), "Esegui prima la generazione."
 complete = len(manifest["clips"]) == len(AUDIO_SCRIPTS) and not failures
@@ -231,5 +231,5 @@ files.download(str(archive))
 nb={'nbformat':4,'nbformat_minor':5,'metadata':{'colab':{'name':'Qwen3-TTS - Audio NLS italiano.ipynb'},'accelerator':'GPU','kernelspec':{'display_name':'Python 3','language':'python','name':'python3'}},'cells':cells}
 path=ROOT/'Genera-audio-NLS-Qwen-Colab.ipynb'
 path.write_text(json.dumps(nb,ensure_ascii=False,indent=2),encoding='utf-8')
-assert len(clips)==24 and len({c['id'] for c in clips})==24
-print(f'Creato {path.name}: {sum(c["cell_type"]=="code" for c in cells)} celle di codice, 24 testi. Sintassi Python verificata.')
+assert len(clips)==23 and len({c['id'] for c in clips})==23
+print(f'Creato {path.name}: {sum(c["cell_type"]=="code" for c in cells)} celle di codice, 23 testi. Sintassi Python verificata.')

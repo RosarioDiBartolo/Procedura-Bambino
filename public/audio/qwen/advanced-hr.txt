@@ -1,0 +1,1 @@
+Rileva e comunica la frequenza cardiaca dopo le compressioni coordinate con la ventilazione. Se rimane inferiore a 60 battiti al minuto, seleziona il caso che porta all’adrenalina e alla valutazione delle cause reversibili. Se è uguale o superiore a 60 battiti al minuto, seleziona l’altro caso per rivalutare la risposta del neonato con il team.

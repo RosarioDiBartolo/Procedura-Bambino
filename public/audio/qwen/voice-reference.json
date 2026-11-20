@@ -1,0 +1,7 @@
+{
+  "text": "Valuta il respiro e rileva la frequenza cardiaca. Inserisci il valore in battiti al minuto, poi conferma la valutazione. Comunica al team gli interventi e la risposta del neonato.",
+  "description": "An adult female voice speaking native standard Italian, clear and natural, calm and professional. Moderate, unhurried pace with short pauses between sentences. Precise articulation of numbers and medical terminology. Neutral delivery, no theatrical emotion, no whispering. Clean studio recording without background sounds.",
+  "seed": 42,
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "sample_rate": 24000
+}
