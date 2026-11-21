@@ -15,6 +15,7 @@ afterEach(() => { cleanup(); vi.useRealTimers(); vi.unstubAllGlobals(); });
 it('attiva, ripete da zero, interrompe e disattiva la registrazione', async () => {
   render(<RecordedVoice clip="preparation" visit="1" />);
   expect(clips[0].play).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole('button', {name:'Disattiva voce'}));
   fireEvent.click(screen.getByRole('button', {name:'Attiva voce'}));
   await waitFor(() => expect(screen.getByRole('status').textContent).toBe('Lettura in corso'));
   clips[0].currentTime = 12;
@@ -23,11 +24,12 @@ it('attiva, ripete da zero, interrompe e disattiva la registrazione', async () =
   fireEvent.click(screen.getByRole('button', {name:'Interrompi'}));
   expect(screen.getByRole('status').textContent).toBe('Lettura interrotta');
   fireEvent.click(screen.getByRole('button', {name:'Disattiva voce'}));
-  expect(window.localStorage.getItem('nido-recorded-voice-enabled')).toBe('false');
+  expect(screen.getByRole('button', {name:'Attiva voce'})).toBeTruthy();
 });
 it('ferma il vecchio audio al cambio visita e non riparte dopo la disattivazione', async () => {
   vi.useFakeTimers();
   const view = render(<RecordedVoice clip="preparation" visit="1" />);
+  fireEvent.click(screen.getByRole('button', {name:'Disattiva voce'}));
   fireEvent.click(screen.getByRole('button', {name:'Attiva voce'}));
   view.rerender(<RecordedVoice clip="birth" visit="2" />);
   expect(clips[0].pause).toHaveBeenCalled(); expect(clips[1].src).toContain('/audio/qwen/birth.wav');
@@ -43,6 +45,7 @@ it('ferma il vecchio audio al cambio visita e non riparte dopo la disattivazione
 it('gestisce il blocco della riproduzione senza impedire la procedura', async () => {
   render(<RecordedVoice clip="birth" visit="1" />);
   clips[0].play.mockRejectedValueOnce(new Error('NotAllowedError'));
+  fireEvent.click(screen.getByRole('button', {name:'Disattiva voce'}));
   fireEvent.click(screen.getByRole('button', {name:'Attiva voce'}));
   await waitFor(() => expect(screen.getByRole('status').textContent).toContain('Premi Ascolta'));
   expect((screen.getByRole('button', {name:'Ascolta / Ripeti'}) as HTMLButtonElement).disabled).toBe(false);
@@ -51,6 +54,7 @@ it('gestisce il blocco della riproduzione senza impedire la procedura', async ()
 it('annulla gli avvii pendenti passando rapidamente tra step o premendo Interrompi', () => {
   vi.useFakeTimers();
   const view = render(<RecordedVoice clip="preparation" visit="1" />);
+  fireEvent.click(screen.getByRole('button', {name:'Disattiva voce'}));
   fireEvent.click(screen.getByRole('button', {name:'Attiva voce'}));
   view.rerender(<RecordedVoice clip="birth" visit="2" />);
   view.rerender(<RecordedVoice clip="cord" visit="3" />);
@@ -68,7 +72,7 @@ it('annulla gli avvii pendenti passando rapidamente tra step o premendo Interrom
   expect(clips[4].play).not.toHaveBeenCalled();
 });
 
-it.each([null, 'true'])('avvia la lettura dopo 500 ms al primo ingresso con preferenza %s', async (preference) => {
+it.each([null, 'true', 'false'])('avvia la lettura dopo 500 ms al primo ingresso con preferenza %s', async (preference) => {
   vi.useFakeTimers();
   if (preference === null) window.localStorage.removeItem('nido-recorded-voice-enabled');
   else window.localStorage.setItem('nido-recorded-voice-enabled', preference);
@@ -78,9 +82,14 @@ it.each([null, 'true'])('avvia la lettura dopo 500 ms al primo ingresso con pref
   await act(async () => { vi.advanceTimersByTime(stepAudioDelayMs); });
   expect(clips[0].play).toHaveBeenCalledOnce();
 });
-it('rispetta la disattivazione salvata anche al primo ingresso', () => {
+it('riattiva la voce dopo un nuovo caricamento anche se era stata disattivata', async () => {
   vi.useFakeTimers();
-  render(<RecordedVoice clip="preparation" visit="1" />);
+  const view = render(<RecordedVoice clip="preparation" visit="1" />);
+  fireEvent.click(screen.getByRole('button', {name:'Disattiva voce'}));
   act(() => { vi.advanceTimersByTime(stepAudioDelayMs); });
   expect(clips[0].play).not.toHaveBeenCalled();
+  view.unmount();
+  render(<RecordedVoice clip="preparation" visit="2" />);
+  await act(async () => { vi.advanceTimersByTime(stepAudioDelayMs); });
+  expect(clips[1].play).toHaveBeenCalledOnce();
 });

@@ -1,5 +1,5 @@
 import { beforeEach, afterEach, describe, expect, it } from "vitest";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Application from "./Router";
 import { createSession, steps } from "./flow";
@@ -9,6 +9,28 @@ afterEach(() => {
   window.history.replaceState(null, "", "/");
 });
 describe("Routing e contesto della simulazione", () => {
+  it("mantiene la stessa navigazione e torna al passaggio della sessione", async () => {
+    sessionStorage.setItem("nls-simulation-v1", JSON.stringify({
+      ...createSession(), step: "birth", stack: ["preparation"],
+    }));
+    window.location.hash = "/procedura/birth";
+    const user = userEvent.setup();
+    render(<Application />);
+    const navbar = screen.getByRole("navigation", { name: "Navigazione principale" });
+    const links = within(navbar);
+
+    for (const name of ["Il progetto", "Guida rapida", "Privacy", "Note legali", "Simulazione"]) {
+      const link = links.getByRole("link", { name });
+      await user.click(link);
+      expect(screen.getByRole("navigation", { name: "Navigazione principale" })).toBe(navbar);
+      expect(link.getAttribute("aria-current")).toBe("page");
+      expect(link.querySelector('svg[aria-hidden="true"]')).toBeTruthy();
+      const header = within(screen.getByRole("banner"));
+      expect(header.getByText("Marco Di Bartolo")).toBeTruthy();
+      expect(header.getByText("Rosario Di Bartolo")).toBeTruthy();
+    }
+    expect(window.location.hash).toBe("#/procedura/birth");
+  });
   it("risolve l'indice del percorso alla pagina della sessione", async () => {
     window.location.hash = "/procedura";
     render(<Application />);

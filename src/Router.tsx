@@ -9,6 +9,7 @@ import {
 import { SessionProvider, useSession } from "./SessionContext";
 import { sessionPath } from "./navigation";
 import App from "./App";
+import { SiteLayout } from "./components/SiteLayout";
 import InformationPage from "./pages/InformationPage";
 import Completed from "./pages/Completed";
 import Preparation from "./pages/Preparation";
@@ -48,37 +49,39 @@ export default function Application() {
     <HashRouter>
       <SessionProvider>
         <Routes>
-          <Route path="/guida" element={<InformationPage guide />} />
-          <Route path="/privacy" element={<InformationPage privacy />} />
-          <Route path="/il-progetto" element={<InformationPage />} />
-          <Route path="/note-legali" element={<InformationPage legal />} />
-          <Route element={<App />}>
-          <Route path="/" element={<Resume />} />
-          <Route path="/procedura">
-            <Route index element={<Resume />} />
-            <Route element={<SessionGuard />}>
-              <Route path="preparation" element={<Preparation />} />
-              <Route path="birth" element={<Birth />} />
-              <Route path="cord" element={<Cord />} />
-              <Route path="initial" element={<Initial />} />
-              <Route path="skin" element={<Skin />} />
-              <Route path="first-actions" element={<FirstActions />} />
-              <Route path="respiration" element={<Respiration />} />
-              <Route path="distress" element={<Distress />} />
-              <Route path="distress-support" element={<DistressSupport />} />
-              <Route path="ppv" element={<Ventilation />} />
-              <Route path="hr100" element={<HeartRate100 />} />
-              <Route path="correctives" element={<Correctives />} />
-              <Route path="hr60" element={<HeartRate60 />} />
-              <Route path="compressions" element={<Compressions />} />
-              <Route path="advanced-hr" element={<AdvancedHeartRate />} />
-              <Route path="medication" element={<Medication />} />
-              <Route path="recovery-review" element={<RecoveryReview />} />
-              <Route path="post" element={<PostCare />} />
-              <Route path="conclusa" element={<Completed />} />
+          <Route element={<SiteLayout />}>
+            <Route path="/guida" element={<InformationPage guide />} />
+            <Route path="/privacy" element={<InformationPage privacy />} />
+            <Route path="/il-progetto" element={<InformationPage />} />
+            <Route path="/note-legali" element={<InformationPage legal />} />
+            <Route element={<App />}>
+              <Route path="/" element={<Resume />} />
+              <Route path="/procedura">
+                <Route index element={<Resume />} />
+                <Route element={<SessionGuard />}>
+                  <Route path="preparation" element={<Preparation />} />
+                  <Route path="birth" element={<Birth />} />
+                  <Route path="cord" element={<Cord />} />
+                  <Route path="initial" element={<Initial />} />
+                  <Route path="skin" element={<Skin />} />
+                  <Route path="first-actions" element={<FirstActions />} />
+                  <Route path="respiration" element={<Respiration />} />
+                  <Route path="distress" element={<Distress />} />
+                  <Route path="distress-support" element={<DistressSupport />} />
+                  <Route path="ppv" element={<Ventilation />} />
+                  <Route path="hr100" element={<HeartRate100 />} />
+                  <Route path="correctives" element={<Correctives />} />
+                  <Route path="hr60" element={<HeartRate60 />} />
+                  <Route path="compressions" element={<Compressions />} />
+                  <Route path="advanced-hr" element={<AdvancedHeartRate />} />
+                  <Route path="medication" element={<Medication />} />
+                  <Route path="recovery-review" element={<RecoveryReview />} />
+                  <Route path="post" element={<PostCare />} />
+                  <Route path="conclusa" element={<Completed />} />
+                </Route>
+              </Route>
+              <Route path="*" element={<Resume />} />
             </Route>
-          </Route>
-          <Route path="*" element={<Resume />} />
           </Route>
         </Routes>
       </SessionProvider>

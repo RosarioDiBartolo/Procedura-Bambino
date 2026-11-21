@@ -3,12 +3,11 @@ import { Volume2, RotateCcw, Square } from '@/components/icons8';
 import { Button } from '@/components/ui/button';
 
 export const stepAudioDelayMs = 500;
-const preference = 'nido-recorded-voice-enabled';
 export function RecordedVoice({ clip, visit }: { clip: string; visit: string }) {
   const audio = useRef<HTMLAudioElement | null>(null);
   const generation = useRef(0);
   const pending = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [enabled, setEnabled] = useState(() => { try { return window.localStorage.getItem(preference) !== 'false'; } catch { return true; } });
+  const [enabled, setEnabled] = useState(true);
   const [status, setStatus] = useState('');
   const [playing, setPlaying] = useState(false);
   const stop = () => {
@@ -48,7 +47,6 @@ export function RecordedVoice({ clip, visit }: { clip: string; visit: string }) 
   function toggle() {
     const next = !enabled;
     setEnabled(next);
-    try { window.localStorage.setItem(preference, String(next)); } catch { /* Controls remain usable without storage. */ }
     if (next) { play(); }
     else { stop(); setStatus('Guida vocale disattivata'); }
   }

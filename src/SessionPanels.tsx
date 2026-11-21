@@ -67,7 +67,7 @@ export function SessionPanels() {
                     : panel === "history"
                       ? "Registro della sessione"
                       : panel === "limits"
-                        ? "Nido · perimetro"
+                        ? "UTIN e Neonatologia · perimetro"
                         : "Supporti operativi"}
           </DialogTitle>
           <DialogDescription>
@@ -227,7 +227,7 @@ export function SessionPanels() {
             </Button>
             <p>
               <strong>
-                Nido · applicazione React per simulazione.
+                UTIN e Neonatologia · applicazione React per simulazione.
               </strong>{" "}
               Il percorso riproduce i nodi e i box del poster SIN 2025; non è
               una trasposizione di tutte le linee guida.

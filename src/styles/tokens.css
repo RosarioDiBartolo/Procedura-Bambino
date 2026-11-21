@@ -1,19 +1,84 @@
 /* Shared visual language; named themes preserve prototype comparisons. */
 :root {
- --font-sans:'Segoe UI',Arial,sans-serif;--radius:.75rem;
- --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;
- --background:#f3f5f8;--foreground:#182b3c;--card:#fff;--card-foreground:#182b3c;
- --popover:#fff;--popover-foreground:#182b3c;--primary:#203f59;--primary-foreground:#fff;
- --secondary:#edf1f5;--secondary-foreground:#294258;--muted:#f4f6f9;--muted-foreground:#718092;
- --accent:#e8eef4;--accent-foreground:#18364f;--destructive:#bd444a;--border:#e0e6ed;
- --input:#d6dfe8;--ring:#6b91b0;--warning:#9b7547;--warning-background:#fbf4e9;
- --success:#5b7c6e;--success-background:#f4f8f5;
+    --font-sans: 'Segoe UI', Arial, sans-serif;
+    --radius: .75rem;
+    --space-1: .25rem;
+    --space-2: .5rem;
+    --space-3: .75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --background: #f3f5f8;
+    --foreground: #182b3c;
+    --card: #fff;
+    --card-foreground: #182b3c;
+    --popover: #fff;
+    --popover-foreground: #182b3c;
+    --primary: #203f59;
+    --primary-foreground: #fff;
+    --secondary: #edf1f5;
+    --secondary-foreground: #294258;
+    --muted: #f4f6f9;
+    --muted-foreground: #718092;
+    --accent: #e8eef4;
+    --accent-foreground: #18364f;
+    --destructive: #bd444a;
+    --border: #e0e6ed;
+    --input: #d6dfe8;
+    --ring: #6b91b0;
+    --warning: #9b7547;
+    --warning-background: #fbf4e9;
+    --success: #5b7c6e;
+    --success-background: #f4f8f5;
+
+    --color-chrome:  #003a37;
+    --color-chrome-edge: #0b4f4a;
+    --color-chrome-divider: #009689;
+    --color-chrome-foreground: #f0fdfa;
+    --color-chrome-hover: #00786f;
+    --color-chrome-action: #cbfbf1;
+    --color-chrome-action-hover: #96f7e4;
+    --color-chrome-action-foreground: #022f2e;
+    --color-chrome-white: #fff;
+    --color-chrome-credit: #ffe45c;
+    --color-chrome-help: #8d514b;
+    --color-chrome-help-hover: #78443f;
 }
+
+/* Palette condivisa da navbar e comandi della simulazione. */
+@theme inline {
+    --color-chrome:  var(--color-chrome);
+    --color-chrome-edge: var(--color-chrome-edge);
+    --color-chrome-divider: var(--color-chrome-divider);
+    --color-chrome-foreground: var(--color-chrome-foreground);
+    --color-chrome-hover: var(--color-chrome-hover);
+    --color-chrome-action: var(--color-chrome-action);
+    --color-chrome-action-hover: var(--color-chrome-action-hover);
+    --color-chrome-action-foreground: var(--color-chrome-action-foreground);
+    --color-chrome-white: var(--color-chrome-white);
+    --color-chrome-help: var(--color-chrome-help);
+    --color-chrome-help-hover: var(--color-chrome-help-hover);
+}
+
 :root[data-theme="nido"] {
- --font-sans:Inter,'Segoe UI',sans-serif;
- --background:#f3f6f5;--foreground:#163b42;--card-foreground:#163b42;--popover-foreground:#163b42;
- --primary:#146b5d;--secondary:#e5efeb;--secondary-foreground:#244d50;
- --muted:#f9fbfa;--muted-foreground:#617a7a;--accent:#dceee7;--accent-foreground:#165f53;
- --border:#dce6e1;--input:#bdcec8;--ring:#b47519;--destructive:#a52c33;
- --warning:#775a22;--warning-background:#fff4df;--success:#285e43;--success-background:#dfefe5;
+    --font-sans: Inter, 'Segoe UI', sans-serif;
+    --background: #f3f6f5;
+    --foreground: #163b42;
+    --card-foreground: #163b42;
+    --popover-foreground: #163b42;
+    --primary: #9bb347;
+    --secondary: #e5efeb;
+    --secondary-foreground: #244d50;
+    --muted: #f9fbfa;
+    --muted-foreground: #617a7a;
+    --accent: #dceee7;
+    --accent-foreground: #165f53;
+    --border: #dce6e1;
+    --input: #bdcec8;
+    --ring: #b47519;
+    --destructive: #a52c33;
+    --warning: #775a22;
+    --warning-background: #fff4df;
+    --success: #285e43;
+    --success-background: #dfefe5;
 }

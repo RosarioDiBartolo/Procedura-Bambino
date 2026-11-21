@@ -2,8 +2,8 @@ import { AppearanceContext } from './components/ui/AppearanceContext';
 import AnimatedContent from './components/ui/AnimatedContent';
 import { RecordedVoice } from './RecordedVoice';
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { Link, Outlet, useLocation, useMatch } from "react-router-dom";
-import { Activity, ClipboardList, Clock3, FileText, Info, OxygenMask, PhoneCall, RotateCcw, Thermometer, Lungs } from "@/components/icons8";
+import { Outlet, useLocation, useMatch } from "react-router-dom";
+import { Activity, ClipboardList, Clock3, FileText, OxygenMask, PhoneCall, RotateCcw, Thermometer, Lungs } from "@/components/icons8";
 import { Button } from "@/components/ui/button";
 import { formatTime, phases, secondsFrom, steps, type StepId } from "./flow";
 import { useSession } from "./SessionContext";
@@ -30,22 +30,20 @@ export default function App() {
 
   return (
     <div className={`
-      app-shell compact-shell relative overflow-x-hidden grid-rows-[auto_minmax(0,1fr)_auto] h-[100dvh]
-      min-h-160 grid bg-[#f0f4f7] text-[#203c50] max-[760px]:h-[100dvh] max-[760px]:min-h-0
-      max-[760px]:grid-rows-[auto_minmax(0,1fr)_auto] [@media(min-width:700px)_and_(max-height:740px)]:min-h-150
+      app-shell compact-shell relative overflow-x-hidden grid-rows-[auto_minmax(0,1fr)_auto]
+      min-h-0 flex-1 grid bg-[#f0f4f7] text-[#203c50]
+      max-[760px]:grid-rows-[auto_minmax(0,1fr)_auto]
     `}>
-      <header className="
+      <div role="group" aria-label="Stato e comandi della simulazione" className="
       [.assistant-home_&]:[animation:reveal-chrome_.8s_1.6s_both] py-3 px-6
-      [border-bottom:1px_solid_rgb(220,_229,_235)] min-h-19 grid grid-cols-[auto_1fr_auto] gap-y-3 gap-x-6
+      [border-bottom:1px_solid_rgb(220,_229,_235)] min-h-19 grid grid-cols-[minmax(0,1fr)_auto_auto] gap-y-3 gap-x-6
       items-center justify-between bg-[#fff] max-[1100px]:py-3 max-[1100px]:px-4.5 max-[1100px]:gap-2.5
       max-[760px]:py-2.5 max-[760px]:px-3 max-[760px]:gap-2 max-[760px]:grid-cols-[1fr_auto]
     ">
-        <div className="compact-identity brand-identity">
-          <img src="/brand/nido-logo.png" alt="Nido" />
-          <div className="brand-caption"><span className="brand-title">Procedura NLS</span><span className="brand-subtitle">Simulazione didattica neonatale</span></div>
+        <div className="min-w-0 max-[580px]:col-span-2">
+          <p className="mt-1 text-[11px] text-[#49677b]">Procedura NLS · Simulazione didattica per l’UTIN</p>
         </div>
-        <div className="gap-[7px] [grid-column:3] [grid-row:1] flex max-[760px]:[grid-column:2] [&_button]:p-2 [&_button]:w-[37px] [&_button]:h-[37px] max-[699px]:gap-[3px]">
-          <Link to="/il-progetto" aria-label="Il progetto e note legali" className="inline-flex h-[37px] w-[37px] items-center justify-center rounded-md hover:bg-slate-100 focus-visible:outline-2"><Info size={18} /></Link>
+        <div className="gap-[7px] [grid-column:3] [grid-row:1] flex max-[760px]:[grid-column:2] max-[580px]:[grid-row:2] [&_button]:p-2 [&_button]:w-[37px] [&_button]:h-[37px] max-[699px]:gap-[3px]">
           <Button
             variant="ghost"
             size="sm"
@@ -77,6 +75,7 @@ export default function App() {
       [&>span:first-child]:max-w-none [&>span:first-child]:font-[650] [&>span:first-child]:text-[#244d65]
       max-[1100px]:gap-3 max-[1100px]:text-[length:10px] max-[760px]:py-0.5 max-[760px]:px-0
       max-[760px]:[grid-column:1/3] max-[760px]:[grid-row:2] max-[760px]:justify-between max-[760px]:flex-wrap
+      max-[580px]:[grid-column:1] max-[580px]:[&_span]:!ml-0
       [&>span]:gap-[7px] [&>span]:flex [&>span]:items-center max-[699px]:text-[length:9px] max-[699px]:flex-wrap
     ">
         <span>{phases[current.phase]}</span>
@@ -92,29 +91,28 @@ export default function App() {
           Dalla nascita <strong>{formatTime(born)}</strong>
         </span>
       </div>
-      </header>
+      </div>
       <main className={`
       compact-main workspace-main relative py-4.5 px-6 my-0 mx-auto overflow-hidden
       max-w-none min-h-0 w-full min-w-0 max-[1100px]:pl-4.5 max-[760px]:p-2.5
     `}>
         <div className="min-w-0 min-h-0 h-full overflow-hidden p-[3px] [container-type:inline-size]"><StepPresentation key={`${session.startedAt}:${location.pathname}`} seen={seenSteps.current} visit={`${session.startedAt}:${location.pathname}`}><Outlet /></StepPresentation></div>
       </main>
-      <footer className="compact-utility-bar">
-        <div role="group" aria-label="Promemoria" className="utility-references">
-          <span className="utility-label">Promemoria</span>
-          <div className="utility-buttons">
+      <footer className="flex flex-wrap items-start gap-x-6 gap-y-3.5 border-t border-chrome-edge bg-chrome px-6 pt-3 pb-2 max-[1000px]:gap-x-4 max-[1000px]:gap-y-3 max-[1000px]:px-[18px] max-[600px]:gap-2 max-[600px]:px-3 max-[600px]:py-2 [&_button]:h-[38px] [&_button]:gap-1.5 [&_button]:px-[11px] [&_button]:text-[11px] max-[600px]:[&_button]:h-8 max-[600px]:[&_button]:text-[10px] [&_[role=status]]:text-chrome-foreground [&_button[data-variant=outline]]:border-chrome-action [&_button[data-variant=outline]]:bg-chrome-action [&_button[data-variant=outline]]:text-chrome-action-foreground [&_button[data-variant=outline]:enabled:hover]:border-chrome-action-hover [&_button[data-variant=outline]:enabled:hover]:bg-chrome-action-hover">
+        <div role="group" aria-label="Promemoria" className="max-[600px]:basis-full">
+          <span className="mb-[7px] block text-[10px] font-semibold text-chrome-foreground max-[600px]:mb-1">Promemoria</span>
+          <div className="flex flex-wrap gap-1.5">
             <Button variant="outline" onClick={() => setPanel('mrsopa')}><OxygenMask size={18} />MR SOPA</Button>
             <Button variant="outline" onClick={() => setPanel('doppes')}><Lungs size={18} />DOPPES</Button>
             <Button variant="outline" onClick={() => setPanel('saturation')}><Activity size={18} />Target SpO₂</Button>
           </div>
         </div>
-        <div className="utility-voice"><span className="utility-label">Guida vocale</span>
+        <div className="flex-1 border-l border-chrome-divider pl-6 max-[1000px]:pl-4 max-[600px]:basis-full max-[600px]:border-t max-[600px]:border-l-0 max-[600px]:pt-2 max-[600px]:pl-0"><span className="mb-[7px] block text-[10px] font-semibold text-chrome-foreground max-[600px]:mb-1">Guida vocale</span>
           <RecordedVoice clip={session.finishedAt ? 'finished' : session.step} visit={`${session.startedAt}:${session.enteredAt}:${session.stack.length}:${session.step}`} />
         </div>
-        <div className="utility-help"><span className="utility-label">Coordinamento · simulazione</span>
-          <Button className="bg-[#8d514b] text-white hover:bg-[#78443f]" onClick={() => setPanel('help')}><PhoneCall size={17} />{helpRequested ? 'Aiuto segnalato' : 'Richiedere aiuto'}</Button>
+        <div className="ml-auto max-[1000px]:flex max-[1000px]:basis-full max-[1000px]:items-center max-[1000px]:justify-between max-[1000px]:[&>span]:mb-0"><span className="mb-[7px] block text-[10px] font-semibold text-chrome-foreground max-[600px]:mb-1">Coordinamento · simulazione</span>
+          <Button className="bg-chrome-help text-chrome-white hover:bg-chrome-help-hover" onClick={() => setPanel('help')}><PhoneCall size={17} />{helpRequested ? 'Aiuto segnalato' : 'Richiedere aiuto'}</Button>
         </div>
-        <nav aria-label="Informazioni sulla piattaforma" className="utility-info"><span>Simulazione didattica</span><Link to="/il-progetto">Il progetto</Link><Link to="/guida">Guida rapida</Link><Link to="/privacy">Privacy</Link><Link to="/note-legali">Note legali</Link></nav>
       </footer>
 
       <SessionPanels />

@@ -4,7 +4,7 @@ export function exportSession(session: Session) {
     [
       JSON.stringify(
         {
-          application: "Nido",
+          application: "UTIN e Neonatologia",
           schemaVersion: 1,
           source: "Poster SIN 2025",
           purpose: "simulation",
